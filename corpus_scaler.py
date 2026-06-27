@@ -116,7 +116,8 @@ def apply_erosion_mask(
         else:
             # Eroded signs exist but not near anchors — keep, strip eroded tokens
             clean_seq = [s for s in seq if s not in eroded_tokens]
-            if clean_seq:
+            # Guard: drop single-sign remnants — too short for positional analysis
+            if len(clean_seq) >= 2:
                 patched = dict(seal)
                 patched["seq"] = clean_seq
                 clean.append(patched)

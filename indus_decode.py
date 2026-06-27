@@ -198,6 +198,16 @@ def proof2_positional_entropy():
 # ---------------------------------------------------------------------------
 
 def proof3_semantic_cluster(cluster=("P316", "P122", "P062")):
+    """
+    Chi-square co-occurrence test for a sign cluster.
+
+    The cluster is identified by structural behaviour (shared contextual
+    distribution / co-occurrence frequency) rather than by any assumed
+    cultural or linguistic identity. The cultural annotation — that P316,
+    P122, and P062 correspond to Dravidian vel/meen/malai — is stored in
+    SIGN_MAP and phonetic_anchors.py and is kept strictly separate from
+    this statistical test. The test itself is language-neutral.
+    """
     seqs        = [linguistic_seq(s) for s in CORPUS]
     sign_counts = Counter(sign for seq in seqs for sign in seq)
     total_signs = sum(sign_counts.values())
@@ -215,8 +225,11 @@ def proof3_semantic_cluster(cluster=("P316", "P122", "P062")):
         chi2, p = 0.0, 1.0
 
     return {
-        "cluster":          cluster,
-        "cluster_reading":  "vel (spear) + meen (star) + malai (mountain) — Murugan attributes",
+        # Structural label — language/culture neutral
+        "cluster_id":       "CO_OCCURRENCE_CLUSTER_A",
+        "cluster_signs":    cluster,
+        # Cultural annotation kept separate (not used in the statistical test)
+        "cultural_note":    "signs correspond to vel/meen/malai in one reading hypothesis",
         "observed_count":   observed,
         "expected_count":   round(expected, 3),
         "chi2_statistic":   round(chi2, 4),
@@ -334,37 +347,69 @@ def save_results(results, out_dir="results"):
 # ---------------------------------------------------------------------------
 
 def run_all():
-    print("=" * 62)
-    print("INDUS VALLEY SCRIPT — PROTO-DRAVIDIAN FRAMEWORK")
-    print(f"Pilot corpus: {len(CORPUS)} seals")
-    print("=" * 62)
+    W = 62
+    print("=" * W)
+    print(f"{'INDUS VALLEY SCRIPT ANALYSIS FRAMEWORK':^{W}}")
+    print(f"{'Corpus: ' + str(len(CORPUS)) + ' inscriptions':^{W}}")
+    print("=" * W)
 
     p1 = proof1_suffix_theorem()
-    print(f"\nProof 1 — P385 Suffix Theorem")
-    print(f"  Terminal: {p1['terminal_pct']}%  |  p = {p1['p_value']:.2e}  |  {p1['verdict']}")
-
     p2 = proof2_positional_entropy()
-    print(f"\nProof 2 — Positional Entropy")
-    print(f"  Pos-0: {p2['position_0_bits']} bits  |  Pos-1: {p2['position_1_bits']} bits"
-          f"  |  Drop: {p2['entropy_drop_0_to_1']}  |  {p2['verdict']}")
-
     p3 = proof3_semantic_cluster()
-    print(f"\nProof 3 — Murugan Semantic Cluster")
-    print(f"  Observed: {p3['observed_count']}  |  Expected: {p3['expected_count']}"
-          f"  |  p = {p3['p_value']:.4f}  |  {p3['verdict']}")
-
     p4 = proof4_agglutination()
-    print(f"\nProof 4 — P122→P385 Agglutination")
-    print(f"  Ratio: {p4['agglutination_ratio']}×  |  {p4['tamil_reading']}  |  {p4['verdict']}")
 
-    print("\nSample decodes:")
+    # Proof 1
+    print(f"\n{'PROOF 1':─<{W}}")
+    print(f"  Test              Binomial (one-tailed), H0: position is uniform")
+    print(f"  Target sign       P385 (terminal marker candidate)")
+    print(f"  Occurrences       {p1['total_occurrences']}")
+    print(f"  Terminal count    {p1['terminal_count']}  ({p1['terminal_pct']}%)")
+    print(f"  Initial count     {p1['initial_count']}")
+    print(f"  Null probability  {p1['null_probability']}")
+    print(f"  p-value           {p1['p_value']:.2e}")
+    print(f"  Direction-normal  {p1['direction_normalised']}")
+    print(f"  Verdict           {p1['verdict']}")
+
+    # Proof 2
+    print(f"\n{'PROOF 2':─<{W}}")
+    print(f"  Test              Shannon positional entropy")
+    print(f"  Position 0        {p2['position_0_bits']} bits")
+    print(f"  Position 1        {p2['position_1_bits']} bits")
+    print(f"  Entropy drop      {p2['entropy_drop_0_to_1']} bits")
+    print(f"  Verdict           {p2['verdict']}")
+
+    # Proof 3
+    print(f"\n{'PROOF 3':─<{W}}")
+    print(f"  Test              Chi-square co-occurrence")
+    print(f"  Cluster ID        {p3['cluster_id']}")
+    print(f"  Signs             {' '.join(p3['cluster_signs'])}")
+    print(f"  Observed          {p3['observed_count']}")
+    print(f"  Expected          {p3['expected_count']}")
+    print(f"  chi2              {p3['chi2_statistic']}")
+    print(f"  p-value           {p3['p_value']:.4f}")
+    print(f"  Verdict           {p3['verdict']}")
+
+    # Proof 4
+    print(f"\n{'PROOF 4':─<{W}}")
+    print(f"  Test              Bigram observed / expected ratio")
+    print(f"  Bigram            {p4['bigram']}")
+    print(f"  Observed          {p4['observed_count']}")
+    print(f"  Expected          {p4['expected_count']}")
+    print(f"  Ratio             {p4['agglutination_ratio']}×")
+    print(f"  Verdict           {p4['verdict']}")
+
+    # Sample decodes
+    print(f"\n{'SAMPLE DECODES':─<{W}}")
+    print(f"  {'Seal':<10} {'Site':<16} {'Reading':<28} {'Coverage'}")
+    print(f"  {'-'*8:<10} {'-'*14:<16} {'-'*26:<28} {'-'*8}")
     for sid in ["M-1", "M-3", "M-24A", "H-4", "D-1"]:
         d = decode_seal(sid)
-        print(f"  [{d['seal_id']} / {d['site']}]  {d['tamil_reading']}  ({d['confidence_pct']}%)")
+        print(f"  {d['seal_id']:<10} {d['site']:<16} {d['tamil_reading']:<28} {d['confidence_pct']}%")
 
     results = {"proof1": p1, "proof2": p2, "proof3": p3, "proof4": p4}
     save_results(results)
-    print(f"\nResults written to results/")
+    print(f"\nResults saved → results/")
+    print("=" * W)
     return results
 
 
