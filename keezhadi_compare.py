@@ -16,6 +16,36 @@ Key statistics (Rajan & Sivanantham 2025:35):
 
 Keeladi (site #35 in the survey) is the note spellings: Keeladi / Keezhadi —
 same site, official spelling Keeladi; romanised from கீழடி.
+
+SCOPE LIMITATION — READ BEFORE USING
+--------------------------------------
+This module performs MORPHOLOGICAL comparison only.
+
+The source (Rajan & Sivanantham 2025) catalogues sign shapes across sherds.
+It does not publish per-sherd sequence data (i.e. sign ordering within a
+single inscription). Therefore this module CANNOT evaluate:
+
+  (a) Whether Tamil Nadu graffiti signs obey the same positional constraints
+      as IVC signs (strict terminal/initial edge behaviour).
+  (b) Whether graffiti signs function as suffixes vs. isolated ownership marks.
+  (c) Bigram or trigram transition probabilities in the graffiti corpus.
+
+Morphological overlap (shape similarity) is a necessary but not sufficient
+condition for structural equivalence. Peer reviewers will correctly note this
+distinction. The `positional_caveat()` function makes the boundary explicit.
+
+To close this gap we need the raw per-sherd sign-sequence data from the
+Tamil Nadu Dept. of Archaeology excavation reports. That data has not been
+published in machine-readable form as of June 2026.
+
+SIGN NUMBER MAPPING CAUTION
+-----------------------------
+Mahadevan (1977) collapsed many graphically similar variants into a single
+sign number to reduce noise. Wells (2006) split them apart to preserve detail.
+The MAHADEVAN_TO_PARPOLA mapping below bridges the two systems only for the
+subset of signs where the grouping philosophies agree. Where they diverge
+(marked with a warning comment) the mapping is approximate and should not be
+used for quantitative analysis without manual verification.
 """
 
 # ---------------------------------------------------------------------------
@@ -150,6 +180,39 @@ def overlap_statistics() -> dict:
     }
 
 
+def positional_caveat() -> dict:
+    """
+    Explicit statement of what this module can and cannot claim.
+
+    Returns a dict suitable for printing in a notebook or paper appendix.
+    Call this before citing keezhadi_compare results in any academic context.
+    """
+    return {
+        "what_is_established": [
+            "Morphological similarity between 22 TN graffiti signs and IVC signs (Mahadevan 1977)",
+            "~60% of 42 base signs have shape-level parallels with IVC corpus",
+            ">90% figure (Rajan & Sivanantham 2025) refers to graffiti mark similarity, not structural identity",
+            "Signs P385 (jar) and P122 (fish) are present as graffiti base signs in Tamil Nadu soil",
+        ],
+        "what_is_NOT_established": [
+            "That graffiti signs obey IVC-style positional constraints (terminal/initial edge rules)",
+            "That graffiti signs function as grammatical suffixes rather than ownership or clan marks",
+            "That bigram/trigram transition probabilities match between graffiti and IVC sequences",
+            "That the 60%/90% overlap figures survive sequence-level statistical testing",
+        ],
+        "data_gap": (
+            "Per-sherd sequence data (sign ordering within a single graffiti inscription) has not "
+            "been published in machine-readable form by the Tamil Nadu Dept. of Archaeology as of "
+            "June 2026. Without this, positional analysis of the graffiti corpus is not possible."
+        ),
+        "valid_claim": (
+            "The same sign shapes that our computational proofs identify as statistically significant "
+            "in IVC sequences (P385, P122) are archaeologically documented in Tamil Nadu Iron Age "
+            "contexts. This is consistent with but does not prove structural continuity."
+        ),
+    }
+
+
 def get_exact_parallels() -> list[dict]:
     """
     Return list of all exact IVC parallels with Mahadevan sign numbers.
@@ -214,24 +277,31 @@ MAHADEVAN_TO_PARPOLA = {
     125: "P125",   # vertical stroke
     130: "P130",   # clan/bracket
     133: "P133",   # stroke composite
-    134: "P134",   # composite
-    136: "P136",   # circle/oval
-    137: "P385",   # jar sign — P385 in Parpola; Mahadevan 137 = terminal jar
-    148: "P148",   # arrow/triangle
-    149: "P122",   # fish sign — P122 in Parpola; Mahadevan 149 = fish
-    162: "P162",   # U-shaped
-    168: "P168",   # jar without arms
-    176: "P176",   # cross/plus
-    177: "P177",   # bow and arrow
-    190: "P190",   # circle
-    204: "P204",   # rectangle
-    210: "P210",   # ladder/comb  (also kai/hand in some mappings)
-    211: "P211",   # square box
-    214: "P214",   # X/star
-    225: "P225",   # plain square
-    304: "P304",   # hourglass
-    328: "P328",   # swastika
-    365: "P365",   # wavy line
+    # GROUPING BIAS NOTE (Mahadevan vs Wells / Parpola):
+    # Mahadevan (1977) collapsed graphically similar variants to reduce noise.
+    # Wells (2006) and Parpola (1994) split variants to capture structural detail.
+    # Entries marked [SAFE] have 1:1 correspondence across all three systems.
+    # Entries marked [APPROX] diverge — the mapping is shape-based and should
+    # not be used for quantitative cluster analysis without manual verification.
+
+    134: "P134",   # composite — [APPROX] Wells splits this further
+    136: "P136",   # circle/oval — [SAFE] consistent across systems
+    137: "P385",   # jar sign — [SAFE] Mahadevan 137 = P385; confirmed TMK in ICIT (Wells 520)
+    148: "P148",   # arrow/triangle — [APPROX] Mahadevan collapses several arrow variants
+    149: "P122",   # fish sign — [SAFE] Mahadevan 149 = P122; confirmed in Fuls ICIT notation
+    162: "P162",   # U-shaped — [SAFE]
+    168: "P168",   # jar without arms — [APPROX] may overlap with P311 (kudam) in Wells
+    176: "P176",   # cross/plus — [APPROX] Wells 17-series has multiple sub-variants
+    177: "P177",   # bow and arrow — [SAFE]
+    190: "P190",   # circle — [APPROX] Mahadevan 190 collapses plain circle + dotted circle
+    204: "P204",   # rectangle — [APPROX] Mahadevan 204 includes divided rectangles
+    210: "P210",   # ladder/comb — [SAFE] matches kai/hand in Wells 803 mapping
+    211: "P211",   # square box — [APPROX] Wells splits plain vs divided forms
+    214: "P214",   # X/star — [APPROX] Mahadevan collapses X, star, asterisk
+    225: "P225",   # plain square — [SAFE]
+    304: "P304",   # hourglass — [SAFE]
+    328: "P328",   # swastika — [SAFE] both clockwise and anti-clockwise under same number
+    365: "P365",   # wavy line — [SAFE]
 }
 
 
