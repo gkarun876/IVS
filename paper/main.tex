@@ -15,6 +15,7 @@
 \usepackage{setspace}
 \usepackage{caption}
 \usepackage{array}
+\usepackage{tabularx}
 \usepackage{url}
 
 \geometry{margin=1in}
@@ -148,7 +149,7 @@ The pilot corpus comprises $N = 41$ seals from \citet{Parpola1994} CISI
 Vol.~I--II. Selection criteria are documented in the codebase to prevent
 cherry-pick critique (Table~\ref{tab:criteria}).
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Corpus selection criteria}
 \label{tab:criteria}
@@ -172,7 +173,7 @@ criterion and is expected to decrease in the full erosion-containing corpus.
 
 \subsection{Sign Notation and Cross-System Correspondences}
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Cross-system correspondences for the two anchor signs}
 \begin{tabular}{lll}
@@ -209,11 +210,11 @@ If P385 encodes the Proto-Dravidian masculine suffix \textit{-a\d{n}},
 it must be terminal-only: never initial.
 
 \paragraph{Test.}
-One-tailed binomial test. $H_0$: positional distribution of P385 is
-uniform; $P(\text{terminal}) = 1/\bar{L}$ where $\bar{L}$ is mean sequence
-length. $H_1$: P385 is preferentially terminal.
+One-tailed binomial test with null hypothesis $H_0$: P385 is uniformly distributed
+across positions, so $P(\text{terminal}) = 1/\bar{L}$ (mean sequence length).
+Alternative $H_1$: P385 is preferentially terminal.
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Proof 1 --- Suffix Theorem results}
 \begin{tabular}{lr}
@@ -258,7 +259,7 @@ Cultural annotation is kept strictly separate from the statistical test.
 If P122 (\meen) is an agglutinative root and P385 (\an) its suffix,
 the bigram P122$\to$P385 must exceed independence expectations.
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Proof 4 --- Agglutination Ratio results}
 \begin{tabular}{lr}
@@ -308,10 +309,10 @@ terminal entropy. Removing punctuation does not.
 
 \subsection{Results}
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Punctuation Null Test results}
-\begin{tabular}{lrl}
+\begin{tabularx}{\textwidth}{lrX}
 \toprule
 Metric & Value & Interpretation \\
 \midrule
@@ -323,9 +324,9 @@ Terminal entropy \emph{with} P385    & 0.2812 bits & Highly constrained \\
 Terminal entropy \emph{without} P385 & 2.0471 bits & --- \\
 Entropy delta on removal & $\mathbf{+1.7659}$ \textbf{bits} & Suffix behaviour \\
 \midrule
-Verdict & \multicolumn{2}{l}{\textbf{SUFFIX-LIKE --- punctuation hypothesis ruled out}} \\
+Verdict & \multicolumn{2}{l}{\textbf{SUFFIX-LIKE: punctuation ruled out}} \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 A scribal period produces entropy delta $\approx 0$ on removal.
@@ -356,10 +357,10 @@ rate of 100\% is categorically incompatible with Sanskrit sandhi
 grammar regardless: a suffix never found internally in 41 seals
 cannot be a Sanskrit case ending.
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Typology Comparator --- composite fit scores for sign P385}
-\begin{tabular}{lrl}
+\begin{tabularx}{\textwidth}{lrX}
 \toprule
 Model & Score & Notes \\
 \midrule
@@ -367,9 +368,9 @@ Agglutinative (Proto-Dravidian / Old Tamil) & \textbf{0.6546} & Strong fit \\
 Inflectional (Sanskrit / Proto-Indo-Aryan)  & \textbf{0.0000} & No fit \\
 Margin & \textbf{$+$0.6546} & --- \\
 \midrule
-Verdict & \multicolumn{2}{l}{\textbf{AGGLUTINATIVE model preferred}} \\
+Verdict & \multicolumn{2}{l}{\textbf{Agglutinative model preferred}} \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 Weights in the agglutinative score: terminal invariance (0.50,
@@ -390,7 +391,7 @@ Publication No.\ 357. ISBN 978-81-977842-5-5.
 
 \subsection{Survey Statistics}
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Rajan \& Sivanantham (2025) survey statistics}
 \begin{tabular}{lr}
@@ -408,7 +409,7 @@ All graffiti marks with IVC parallels  & $>$90\% \\
 
 \subsection{Key Sign Parallels at Keeladi}
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{IVC--Tamil Nadu graffiti parallels for our two anchor signs}
 \begin{tabular}{lllr}
@@ -440,10 +441,10 @@ Megalithic contexts not yet available in machine-readable form.
 \label{sec:adversarial}
 % ============================================================
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Adversarial defenses}
-\begin{tabular}{p{2cm}p{4.5cm}p{5.5cm}}
+\begin{tabularx}{\textwidth}{p{2.2cm}X X}
 \toprule
 Defense & Critique & Result \\
 \midrule
@@ -457,7 +458,7 @@ P385 $=$ Sanskrit \textit{-as} &
 \addlinespace
 D3 Corpus integrity &
 Fragmentary seals inflate terminal counts &
-Pilot corpus 100\% intact; ICIT corpus uses erosion masking (radius = 2) \\
+Pilot corpus 100\% intact; ICIT uses erosion masking (radius = 2) \\
 \addlinespace
 D4 Repetition anomaly &
 A singular suffix should not double &
@@ -469,9 +470,9 @@ CV $= 0.86$; entropy delta $= +1.77$ bits (ruled out) \\
 \addlinespace
 D6 Subcorpus size &
 41 seals is insufficient &
-Proofs 1 \& 4 confirmed; scaling infrastructure ready for ICIT \\
+Proofs 1 \& 4 confirmed; scaling ready for ICIT \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 % ============================================================
@@ -484,22 +485,22 @@ Every phonetic reading carries an explicit confidence label.
 or DEDR \citep{Burrow1984}. \PREDICTED{} = our inference, labelled as testable
 hypothesis.
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Phonetic anchors with confidence labels (IAST transliteration)}
-\begin{tabular}{lllll}
+\begin{tabularx}{\textwidth}{llXll}
 \toprule
-Sign & Tamil (IAST) & Meaning & DEDR & Confidence \\
+Sign & IAST & Meaning & DEDR & Confidence \\
 \midrule
-P385 & -a\d{n}      & masc.\ nominal suffix & Krishnamurti 2003 \S3.5 & \SAFE \\
-P122 & m\={i}n      & fish / star           & DEDR-4889 & \SAFE \\
-P316 & v\={e}l      & spear                 & DEDR-5541 & \SAFE \\
-P060 & k\={o}       & king / lord           & DEDR-2178 & \SAFE \\
-P062 & malai        & mountain              & DEDR-4710 & \SAFE \\
-P091 & \={a}ru      & six / river           & DEDR-338  & \SAFE \\
-P311 & ku\d{d}am    & jar / vessel          & DEDR-1712 & \PREDICTED \\
+P385 & -a\d{n}   & masc.\ nominal suffix & Krishnamurti 2003 \S3.5 & \SAFE \\
+P122 & m\={i}n   & fish / star           & DEDR-4889 & \SAFE \\
+P316 & v\={e}l   & spear                 & DEDR-5541 & \SAFE \\
+P060 & k\={o}    & king / lord           & DEDR-2178 & \SAFE \\
+P062 & malai     & mountain              & DEDR-4710 & \SAFE \\
+P091 & \={a}ru   & six / river           & DEDR-338  & \SAFE \\
+P311 & ku\d{d}am & jar / vessel          & DEDR-1712 & \PREDICTED \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 This framework does not claim a full decipherment. It claims:
@@ -531,10 +532,10 @@ consistent with our results.
 \label{sec:limitations}
 % ============================================================
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Known limitations with current status}
-\begin{tabular}{p{5.5cm}p{6.5cm}}
+\begin{tabularx}{\textwidth}{p{5cm}X}
 \toprule
 Limitation & Status \\
 \midrule
@@ -549,7 +550,7 @@ Annotated \texttt{[SAFE]}/\texttt{[APPROX]} in \texttt{corpus\_loader.py} \\
 Keezhadi positional data &
 Per-sherd sequence data not yet published in machine-readable form \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 % ============================================================
@@ -563,8 +564,8 @@ All code is available at \url{https://github.com/gkarun876/IVS} (MIT License).
                    caption={Quick start}]
 pip install -r requirements.txt
 python indus_decode.py        # Proofs 1-4
-python typology_test.py       # Agglutinative vs Sanskrit + punctuation test
-python adversarial_defense.py # Adversarial defenses
+python typology_test.py       # Agglutinative vs Sanskrit
+python adversarial_defense.py # Defenses
 python keezhadi_compare.py    # Keezhadi comparison
 \end{lstlisting}
 
