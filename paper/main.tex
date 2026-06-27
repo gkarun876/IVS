@@ -171,9 +171,12 @@ criterion and is expected to decrease in the full erosion-containing corpus.
 
 \subsection{Sign Notation and Cross-System Correspondences}
 
+Table~\ref{tab:crosssys} lists the four independent sign catalogues used in this paper alongside the two anchor signs.
+
 \begin{table}[htbp]
 \centering
 \caption{Cross-system correspondences for the two anchor signs}
+\label{tab:crosssys}
 \begin{tabular}{lll}
 \toprule
 System & P385 (jar) & P122 (fish) \\
@@ -190,10 +193,9 @@ Tamil Nadu graffiti (2025) & Sign 11.0 (jar) & Sign 14.0 (fish) \\
 \subsection{Directionality Normalisation}
 
 Indus seals are carved in mirror-image; impressions read right-to-left (RTL).
-All sequences are stored in \emph{linguistic order} (initial morpheme first,
-terminal last) via a \texttt{linguistic\allowbreak\_seq()} function applied before every
-statistical computation. This addresses the directionality confound identified
-in \citet{Sproat2014}.
+All sequences are normalised to \emph{linguistic order} (initial morpheme first,
+terminal last) before every statistical computation, addressing the directionality
+confound identified in \citet{Sproat2014}.
 
 % ============================================================
 \section{Statistical Proofs}
