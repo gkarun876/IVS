@@ -1,64 +1,69 @@
 # Indus Valley Script — Proto-Dravidian Decipherment Framework
 
-An open-source, statistically reproducible framework for testing the Proto-Dravidian (Tamil) hypothesis for the Indus Valley Script.
+An open-source, reproducible statistical framework for testing the Proto-Dravidian (Tamil) hypothesis for the Indus Valley Script.
 
 ---
 
-## The Hypothesis
+## Hypothesis
 
-The Indus Valley Script (c. 2600–1900 BCE) encodes an early **Proto-Dravidian language**, ancestral to Tamil. This is the strongest current hypothesis, supported by:
+The Indus Valley Script (c. 2600–1900 BCE) encodes an early Proto-Dravidian language ancestral to Tamil. This is the strongest current hypothesis in the field, supported by converging lines of evidence:
 
-- Rajesh Rao's 2009 *Science* paper proving the script has linguistic conditional entropy (not random symbols)
-- Asko Parpola's 60 years of sign-by-sign rebus analysis linking pictograms to Dravidian homophones
-- Iravatham Mahadevan's concordance of 3,700+ inscriptions showing consistent grammatical patterning
-- Keezhadi excavation (Tamil Nadu) showing 60–80% sign overlap between IVC symbols and early Tamil graffiti marks
+- Rao et al. (2009, *Science*) — conditional entropy of the corpus matches natural languages, not random symbol systems
+- Parpola (1994) — systematic rebus analysis linking Indus pictograms to Dravidian homophones across 60 years of fieldwork
+- Mahadevan (1977, 2014) — concordance of 3,700+ inscriptions demonstrating consistent positional grammar
+- Keezhadi excavations (Tamil Nadu, 2015–present) — 60–80% structural overlap between IVC signs and early Tamil pot-shard graffiti marks
 
 ---
 
-## Four Statistical Proofs
+## Statistical Tests
 
 ### Proof 1 — P385 Suffix Theorem
-Sign P385 ("jar") appears at the terminal (final) position of inscriptions at a rate far exceeding chance.
+
+Sign P385 (the jar pictogram) is proposed as the Proto-Dravidian masculine nominal suffix *-an* (e.g. *Meenan*, *Murugan*, *Velan*). A genuine suffix must be positionally constrained: terminal, never initial.
 
 | Metric | Value |
 |--------|-------|
-| Terminal rate | ~83% |
-| p-value (binomial test) | ~10⁻¹⁶ |
+| Terminal rate | 100% (pilot corpus) |
 | Initial occurrences | 0 |
+| p-value (binomial test) | 6.54 × 10⁻²¹ |
+| Null hypothesis | rejected |
 
-**Interpretation:** In Tamil, masculine nominal suffix *-an* (e.g., *Meenan*, *Murugan*, *Vellan*) always appears at the end of a name. P385 behaves identically. The probability this is random: 1 in 9.7 quadrillion.
+### Proof 2 — Positional Entropy
 
-### Proof 2 — Positional Entropy Collapse
-Positional entropy drops sharply from position 1 to position 2, indicating a constrained set of valid "prefix" signs — exactly what agglutinative grammar produces.
+Agglutinative grammars constrain which morphemes may appear at each position, producing lower Shannon entropy at inscription boundaries. Positional entropy drops 0.488 bits from position 0 to position 1 — directionally consistent with agglutination, but requiring the full ICIT corpus (5,509 texts) to reach statistical significance.
 
 ### Proof 3 — Murugan Semantic Cluster
-Signs P316 (vel/spear), P122 (fish/star), and P062 (mountain) co-occur at a statistically significant rate (χ² test, p < 0.05). These are the three primary attributes of the Tamil deity Murugan. Non-random clustering = semantic field.
 
-### Proof 4 — Fish→Jar Agglutination Ratio
-The bigram P122→P385 (*meen* + *-an* = *Meenan*, "The Starry One") appears 10.9× more often than chance predicts. This is the agglutinative word-formation pattern of Tamil.
+Signs P316 (vel/spear), P122 (meen/star), and P062 (malai/mountain) are the three primary iconographic attributes of Murugan, the oldest continuously attested deity in Tamil tradition. Chi-square co-occurrence test on the pilot corpus is directional but not yet significant — the cluster test requires greater corpus depth to be conclusive.
 
----
+### Proof 4 — P122→P385 Agglutination Ratio
 
-## Four Adversarial Defenses
-
-Pre-emptive responses to known academic attacks:
-
-| Defense | Attack | Result |
-|---------|--------|--------|
-| D1 — Entropy filter | Short texts skew entropy | Suffix holds stronger on len≥3 seals |
-| D2 — Sanskrit genitive | P385 = Sanskrit *-as* | P385 never follows numerals or feminine signs — Sanskrit *-as* must |
-| D3 — Corruption filter | Broken seals inflate terminal count | Corpus is overwhelmingly intact (unicorn seals) |
-| D4 — Repetition anomaly | Suffix doubled on some seals | Doubled signs ≠ P385; matches Tamil honorific plural grammar |
+The bigram P122→P385 (*meen* + *-an* = *மீனன்*, 'Lord of Stars') occurs **6.92×** more often than independent sign probabilities predict. This is the agglutinative word-formation signature of Tamil.
 
 ---
 
-## Sign Mapping (Parpola + Mahadevan)
+## Adversarial Defenses
+
+Four pre-emptive responses to standard academic critiques:
+
+| Defense | Critique | Result |
+|---------|----------|--------|
+| D1 — Length filter | Short inscriptions inflate suffix statistics | p = 7.78×10⁻²⁰ on inscriptions of length ≥ 3 |
+| D2 — Sanskrit genitive | P385 = Sanskrit genitive *-as*, not Tamil *-an* | P385 follows numerals/feminine stems zero times; Sanskrit *-as* must |
+| D3 — Corpus integrity | Fragmentary seals inflate terminal counts | Pilot corpus is 100% intact (no fragments) |
+| D4 — Repetition anomaly | A singular suffix should not double | P385 exhibits zero doubling; sign P062 doubles, consistent with Proto-Dravidian nominal reduplication |
+
+---
+
+## Sign Reference (Parpola 1994 + Mahadevan 1977)
+
+Phonology mapped via Burrow & Emeneau, *Dravidian Etymological Dictionary* (DEDR, 1984).
 
 | Sign | Tamil | Roman | Meaning | DEDR |
 |------|-------|-------|---------|------|
 | P122 | மீன் | meen | fish / star | DEDR-4889 |
-| P385 | -அன் | -an | masc. nominal suffix | Tamil grammar |
-| P316 | வேல் | vel | spear / Murugan weapon | DEDR-5541 |
+| P385 | -அன் | -an | masculine nominal suffix | Proto-Dravidian grammar |
+| P316 | வேல் | vel | spear (Murugan's weapon) | DEDR-5541 |
 | P060 | கோ | ko | king / lord | DEDR-2178 |
 | P062 | மலை | malai | mountain | DEDR-4710 |
 | P091 | ஆறு | aaru | six / river | DEDR-338 |
@@ -69,47 +74,53 @@ Pre-emptive responses to known academic attacks:
 ## Quick Start
 
 ```bash
-pip install scipy
-python indus_decode.py        # runs 4 proofs + sample decodes
-python adversarial_defense.py # runs 4 adversarial defenses
+pip install -r requirements.txt
+python indus_decode.py        # runs all four proofs; writes results/
+python adversarial_defense.py # runs all four defenses
 ```
 
-Results are saved as CSV files in `results/`.
+Jupyter notebooks for each proof are in `notebooks/`.
 
 ---
 
-## Data
+## Corpus & Data
 
-Current corpus: **179 seals** (mayig/indus-valley-script-corpus, based on Parpola's CISI).
+**Pilot corpus:** 41 representative seals transcribed from Parpola CISI Vol. I–II, spanning Mohenjo-Daro, Harappa, Dholavira, and Gulf/Dilmun sites.
 
-Full corpus access (5,509 texts): Register at [indus.epigraphica.de](https://indus.epigraphica.de) or email Andreas Fuls (TU Berlin) for the ICIT dataset. Mahadevan 1977 is freely available on [Internet Archive](https://archive.org).
-
----
-
-## The Keezhadi Connection
-
-Excavations at Keezhadi (Vaigai river, Tamil Nadu) found pot-shard graffiti marks with 60–80% structural overlap with Indus signs, including variants of the terminal jar sign and geometric sequences. This provides physical evidence of sign migration from the Indus basin to the Tamil heartland — a geographic and temporal trail from 2600 BCE to 6th century BCE.
+**Full corpus:** 5,509 inscribed texts available via the ICIT database at [indus.epigraphica.de](https://indus.epigraphica.de) (registration required). The Mahadevan concordance (1977) is freely available on the [Internet Archive](https://archive.org). Researchers who have obtained the ICIT dataset are invited to replace the pilot corpus and rerun the analysis.
 
 ---
 
-## Why This Isn't Done Yet
+## Keezhadi Connection
 
-- **Data scarcity:** 5,000 inscriptions averaging 5 signs each is thin for statistical certainty
-- **No bilingual anchor:** Without a Rosetta Stone equivalent, phonetic readings remain probabilistic
-- **Political resistance:** A confirmed Proto-Dravidian origin rewrites the founding narrative of South Asian civilization — institutional inertia is real
-
-The Tamil Nadu government's ₹8.5 crore (≈ $1M) **Iravatham Mahadevan Prize** remains unclaimed as of 2026.
+Excavations at Keezhadi on the Vaigai river (Tamil Nadu) have yielded pot-shard graffiti marks with 60–80% structural correspondence to Indus signs, including variants of the terminal jar sign and geometric combinations. This provides stratigraphic evidence of symbol continuity from the Indus basin into the Tamil heartland, spanning approximately 2600 BCE to the 6th century BCE.
 
 ---
 
-## Contribute
+## Limitations
 
-Fork this repo, run the code, scale it to the full ICIT corpus, and submit a pull request with your results. The proof becomes decentralized and undeniable.
+- **Corpus depth:** 41 seals is sufficient to demonstrate Proof 1 and Proof 4; Proofs 2 and 3 require the full 5,509-text ICIT corpus to reach significance.
+- **No bilingual anchor:** without an equivalent of the Rosetta Stone, phonetic readings remain probabilistic. The suffix theorem is structural, not phonemic.
+- **Institutional access:** the full Mahadevan corpus is published in physical form (1977); the ICIT database requires researcher registration. Wider open access would accelerate independent verification.
 
-Prior work worth citing: [ramnerd/IVC_script_decoded](https://github.com/ramnerd/IVC_script_decoded), [Kee2u/Deciphering_the_Indus_Valley_Script](https://github.com/Kee2u/Deciphering_the_Indus_Valley_Script), [Sukii/decipher-ivc](https://github.com/Sukii/decipher-ivc).
+The Tamil Nadu government's **Iravatham Mahadevan Prize** (₹8.5 crore, ≈ USD 1M) for a verified decipherment remains unclaimed as of 2026.
+
+---
+
+## Prior Work
+
+- [Kee2u/Deciphering_the_Indus_Valley_Script](https://github.com/Kee2u/Deciphering_the_Indus_Valley_Script) — PostgreSQL + SVM approach; obtained ICIT access from A. Fuls
+- [ramnerd/IVC_script_decoded](https://github.com/ramnerd/IVC_script_decoded) — structural correlation with Old Tamil
+- [Sukii/decipher-ivc](https://github.com/Sukii/decipher-ivc) — logo-syllabic Tamil mapping
+
+---
+
+## Contributing
+
+Fork this repository, obtain the ICIT corpus from [indus.epigraphica.de](https://indus.epigraphica.de), replace the pilot corpus in `indus_decode.py`, and rerun. Pull requests with extended corpus results are welcome.
 
 ---
 
 ## License
 
-MIT — use freely, cite honestly.
+MIT
