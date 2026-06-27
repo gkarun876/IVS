@@ -1,2 +1,6 @@
 __pycache__/
 *.pyc
+results/
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+notebooks/*.png
