@@ -1,6 +1,5 @@
 \documentclass[12pt,a4paper]{article}
 
-% ---------- packages ----------
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -13,12 +12,9 @@
 \usepackage{listings}
 \usepackage{geometry}
 \usepackage{natbib}
-\usepackage[tamil,english]{babel}  % Tamil Unicode rendering
 \usepackage{setspace}
 \usepackage{caption}
-\usepackage{subcaption}
 \usepackage{array}
-\usepackage{multirow}
 \usepackage{url}
 
 \geometry{margin=1in}
@@ -34,176 +30,159 @@
 }
 
 \definecolor{safegreen}{RGB}{0,128,0}
-\definecolor{predorange}{RGB}{204,102,0}
+\definecolor{predorange}{RGB}{180,80,0}
 \newcommand{\SAFE}{\textcolor{safegreen}{\texttt{[SAFE]}}}
 \newcommand{\PREDICTED}{\textcolor{predorange}{\texttt{[PREDICTED]}}}
 
-% ---------- title ----------
+% Tamil transliteration macros (IAST-style, no special font needed)
+\newcommand{\an}{\textit{-a\d{n}}}          % -an suffix
+\newcommand{\meen}{\textit{m\={i}n}}        % fish/star
+\newcommand{\meenan}{\textit{M\={i}na\d{n}}} % Meenan
+\newcommand{\vel}{\textit{v\={e}l}}
+\newcommand{\malai}{\textit{malai}}
+\newcommand{\BCE}{\textsc{bce}}
+
 \title{%
     \textbf{Statistical Evidence for Proto-Dravidian Grammar\\
-    in the Indus Valley Script:}\\
+    in the Indus Valley Script:}\\[0.3em]
     \large Suffix Theorem, Agglutination Ratio, and Punctuation Null Test
 }
 
 \author{
-    Arun G K\\
+    Arun G K\\[0.3em]
     \small Independent Researcher\\
-    \small \texttt{gkarun876@gmail.com}\\[0.5em]
-    \small Repository: \url{https://github.com/gkarun876/IVS}
+    \small \href{mailto:gkarun876@gmail.com}{\texttt{gkarun876@gmail.com}}\\[0.4em]
+    \small Code: \url{https://github.com/gkarun876/IVS}
 }
 
-\date{June 2026 \\ \small Preprint — not yet peer reviewed}
+\date{June 2026\\[0.2em]
+\small\textit{Preprint --- not yet peer reviewed}}
 
 \begin{document}
 
 \maketitle
 \thispagestyle{empty}
 
-% ---------- abstract ----------
 \begin{abstract}
 We present four independent statistical tests on a pilot corpus of 41 intact
-unicorn and bovine seals from the Indus Valley Civilisation (c.\ 2600--1900 \textsc{bce}),
-testing the hypothesis that sign P385 (jar pictogram; Wells~520; ICIT label:~\textsc{tmk})
+unicorn and bovine seals from the Indus Valley Civilisation (c.\ 2600--1900 \BCE),
+testing the hypothesis that sign P385 (jar pictogram; Wells~520; ICIT label:~TMK)
 encodes the Proto-Dravidian masculine nominal suffix \textit{-a\d{n}}.
 
-The \textbf{Suffix Theorem} (Proof~1) shows P385 occupies the terminal
-position in 100\% of occurrences with zero initial appearances,
-yielding $p = 6.54 \times 10^{-21}$ under a one-tailed binomial test
-against a uniform positional null.
-The \textbf{Agglutination Ratio} (Proof~4) shows the bigram P122$\to$P385
-occurs 6.92$\times$ more often than independent sign probabilities predict,
+The \textbf{Suffix Theorem} shows P385 occupies the terminal position in
+100\% of occurrences with zero initial appearances, yielding
+$p = 6.54 \times 10^{-21}$ under a one-tailed binomial test against a
+uniform positional null.
+The \textbf{Agglutination Ratio} shows the bigram P122$\to$P385 occurs
+$6.92\times$ more often than independent sign probabilities predict,
 consistent with the Tamil agglutinative compound
-\textit{m\={\i}n} + \textit{-a\d{n}} = \textit{M\={\i}na\d{n}} (`Lord of Stars').
+\meen{} $+$ \an{} $=$ \meenan{} (`Lord of Stars').
 The \textbf{Punctuation Null Test} rules out the alternative hypothesis
-that P385 is a scribal period mark: removing P385 from all sequences
-releases $+1.77$ bits of terminal positional entropy, a signature
-punctuation does not produce but grammatical suffixes do.
+that P385 is a scribal period mark: removing P385 releases $+1.77$ bits
+of terminal positional entropy, a signature punctuation does not produce
+but grammatical suffixes do.
 A \textbf{Typology Comparator} scores the agglutinative (Proto-Dravidian)
 model at 0.655 and the inflectional (Sanskrit) model at 0.000 ($+0.655$ margin).
 
-The ICIT database \citep{Fuls2010} independently labels Wells~520 ($=$ P385) as
-\textsc{tmk} (Terminal Marker) without reference to any phonetic or linguistic
-theory, providing cross-system structural validation.
+The ICIT database \citep{Fuls2010} independently labels Wells~520 as
+TMK (Terminal Marker) without reference to any linguistic theory, providing
+cross-system structural validation.
 Archaeological ground truth from \citet{Rajan2025} documents 14,165
-graffiti-bearing sherds from 140 Tamil Nadu sites; the jar sign (graffiti
-sign~11.0 $=$ Mahadevan~137 $=$ P385) and the fish sign (graffiti sign~14.0
-$=$ Mahadevan~149 $=$ P122) appear at Keeladi (2,132 sherds), bridging
-the IVC--Iron~Age gap through the continuous Megalithic Black-and-Red Ware
-pottery tradition.
-
-All code is open-source and reproducible. Known limitations---pilot
-corpus depth, absence of a bilingual anchor, and the 1,300-year
-IVC--Keeladi temporal gap---are explicitly documented.
+graffiti-bearing sherds from 140 Tamil Nadu sites; both anchor signs
+appear at Keeladi (2,132 sherds), bridging the IVC--Iron Age gap through
+the Megalithic Black-and-Red Ware pottery tradition.
+All code is open-source and reproducible.
 \end{abstract}
 
 \noindent\textbf{Keywords:} Indus Valley Script, Proto-Dravidian, Tamil,
-computational linguistics, suffix grammar, agglutination, Keezhadi, decipherment
+agglutination, suffix, entropy, Keezhadi, decipherment
 
 \newpage
 \tableofcontents
 \newpage
 
-% ==========================================================================
+% ============================================================
 \section{Introduction}
-% ==========================================================================
+% ============================================================
 
 The Indus Valley Script (\textsc{ivs}) remains one of the world's last
-major undeciphered writing systems, comprising over 5,000 inscriptions
-from the mature Harappan phase (c.\ 2600--1900 \textsc{bce}).
+undeciphered writing systems, comprising over 5,000 inscriptions from the
+mature Harappan phase (c.\ 2600--1900 \BCE).
 The Proto-Dravidian hypothesis---that the script encodes an early ancestor
-of the modern Dravidian language family, ancestral to Tamil---is the
-strongest current hypothesis in the field, supported by converging lines
-of evidence:
+of the Dravidian language family ancestral to Tamil---is the strongest
+current hypothesis in the field, supported by:
 
 \begin{itemize}
-    \item \citet{Rao2009}: conditional entropy analysis places the
-          \textsc{ivs} corpus within the statistical range of natural
-          languages, not random symbol systems or administrative codes.
-    \item \citet{Parpola1994}: systematic rebus analysis linking Indus
-          pictograms to Dravidian homophones; the fish sign P122 encodes
-          \textit{m\={\i}n} (fish/star) in multiple sign compounds.
-    \item \citet{Mahadevan1977}: concordance of 3,700$+$ inscriptions
-          demonstrating consistent positional grammar across all major sites.
-    \item \citet{Rajan2025}: 14,165 graffiti-marked sherds from 140 Tamil
-          Nadu sites; $>$90\% of \textsc{ivc} sign parallels confirmed in
-          Tamil Nadu soil; key signs P385 and P122 both confirmed at Keeladi.
+    \item \citet{Rao2009}: conditional entropy analysis shows the \textsc{ivs}
+          matches natural language statistics, not random or administrative systems.
+    \item \citet{Parpola1994}: systematic rebus analysis; the fish sign P122 encodes
+          \meen{} (fish/star) in multiple sign compounds.
+    \item \citet{Mahadevan1977}: concordance of $3{,}700+$ inscriptions demonstrating
+          consistent positional grammar.
+    \item \citet{Rajan2025}: 14,165 graffiti-marked sherds from 140 Tamil Nadu sites;
+          $>$90\% of IVC sign parallels confirmed in Tamil Nadu soil.
 \end{itemize}
 
-The principal competing hypothesis---that the script is non-linguistic
-\citep{Farmer2004}---predicts that the corpus statistical profile can be
-reproduced by non-linguistic generators such as heraldic emblems or
-administrative coding systems. \citet{Nair2026} tested this directly
-on 1,916 deduplicated inscriptions from the ICIT database and found that
-no attested non-linguistic system reproduces the full Indus statistical
-profile, a result supportive of the linguistic hypothesis.
+The competing non-linguistic hypothesis \citep{Farmer2004} predicts that the
+corpus can be reproduced by heraldic or administrative generators.
+\citet{Nair2026} tested this on 1,916 ICIT inscriptions and found that no
+non-linguistic system reproduces the full Indus statistical profile---a result
+supportive of the linguistic hypothesis.
 
 This paper contributes three new tests not previously reported in the
 computational \textsc{ivs} literature:
+(1)~the Punctuation Null Test (Section~\ref{sec:punct});
+(2)~the Typology Comparator quantifying agglutinative vs.\ inflectional fit
+(Section~\ref{sec:typology});
+(3)~integration with the 2025 Rajan \& Sivanantham Tamil Nadu archaeological
+survey (Section~\ref{sec:keezhadi}).
 
-\begin{enumerate}
-    \item The \emph{Punctuation Null Test} (Section~\ref{sec:punct}),
-          distinguishing grammatical suffix from scribal punctuation via
-          terminal entropy delta.
-    \item The \emph{Typology Comparator} (Section~\ref{sec:typology}),
-          quantifying the agglutinative vs.\ inflectional fit for sign P385.
-    \item Integration with the 2025 Rajan \& Sivanantham archaeological
-          ground truth from Tamil Nadu (Section~\ref{sec:keezhadi}).
-\end{enumerate}
-
-% ==========================================================================
+% ============================================================
 \section{Corpus and Methods}
 \label{sec:corpus}
-% ==========================================================================
+% ============================================================
 
 \subsection{Pilot Corpus}
 
-The pilot corpus comprises $N = 41$ seals selected from \citet{Parpola1994},
-\textit{Corpus of Indus Seals and Inscriptions} (\textsc{cisi}), Vol.~I--II.
-Selection criteria are documented explicitly in the codebase
-(\texttt{indus\_decode.py}, lines 22--43) to prevent post-hoc cherry-pick
-critique:
+The pilot corpus comprises $N = 41$ seals from \citet{Parpola1994} CISI
+Vol.~I--II. Selection criteria are documented in the codebase to prevent
+cherry-pick critique (Table~\ref{tab:criteria}).
 
 \begin{table}[h]
 \centering
 \caption{Corpus selection criteria}
+\label{tab:criteria}
 \begin{tabular}{ll}
 \toprule
 Criterion & Rule \\
 \midrule
-Seal type & Unicorn or bovine only (most common, best documented) \\
-Condition & Intact inscription; no visible erosion gaps in photographic plate \\
-Sign count & $\geq 2$ signs (single-sign texts excluded) \\
-Site coverage & All four major excavation sites represented \\
-Excluded & Tablets, copper tablets, graffiti, miniature seals, uncertain direction \\
+Seal type   & Unicorn or bovine (most common, best documented) \\
+Condition   & Intact; no erosion gaps in photographic plate \\
+Sign count  & $\geq 2$ signs \\
+Site coverage & All four major excavation sites \\
+Excluded    & Tablets, copper tablets, miniature seals, uncertain direction \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 Site distribution: Mohenjo-Daro (25), Harappa (10), Dholavira (4),
-Gulf/Dilmun (2).
+Gulf/Dilmun (2). This is a \emph{clean control corpus}, not a random
+sample; the 100\% terminal rate of P385 reflects the intact-inscription
+criterion and is expected to decrease in the full erosion-containing corpus.
 
-This is a \emph{clean control corpus}, not a random sample. The 100\%
-terminal rate of P385 observed here reflects the intact-inscription
-selection criterion. This rate is expected to decrease in the full corpus
-containing eroded and fragmentary texts---a fact documented explicitly in
-the codebase and not used to over-claim.
-
-\subsection{Sign Notation}
-
-Signs follow Parpola's P-number system throughout. Cross-system
-correspondences for the two anchor signs are:
+\subsection{Sign Notation and Cross-System Correspondences}
 
 \begin{table}[h]
 \centering
-\caption{Cross-system sign correspondences}
+\caption{Cross-system correspondences for the two anchor signs}
 \begin{tabular}{lll}
 \toprule
-Notation system & P385 (jar) & P122 (fish) \\
+System & P385 (jar) & P122 (fish) \\
 \midrule
-Parpola (1994) & P385 & P122 \\
-Wells (2006) & 520 & 033 \\
-ICIT / Fuls (2010) & \textsc{tmk} (Terminal Marker) & --- \\
-Mahadevan (1977) & M137 & M149 \\
+Parpola (1994)          & P385 & P122 \\
+Wells (2006)            & 520  & 033  \\
+ICIT / Fuls (2010)      & TMK (Terminal Marker) & --- \\
+Mahadevan (1977)        & M137 & M149 \\
 Tamil Nadu graffiti (2025) & Sign 11.0 (jar) & Sign 14.0 (fish) \\
 \bottomrule
 \end{tabular}
@@ -211,48 +190,43 @@ Tamil Nadu graffiti (2025) & Sign 11.0 (jar) & Sign 14.0 (fish) \\
 
 \subsection{Directionality Normalisation}
 
-Indus seals are carved in mirror-image; impressions read right-to-left
-(\textsc{rtl}). All sequences are stored in \emph{linguistic order}
-(initial morpheme first, terminal last). A \texttt{linguistic\_seq()}
-function normalises direction before any statistical computation,
-preventing directionality from contaminating positional statistics.
-This addresses the \citet{Sproat2014} critique regarding \textsc{rtl}/\textsc{ltr}
-confusion in earlier \textsc{ivs} positional statistics.
+Indus seals are carved in mirror-image; impressions read right-to-left (RTL).
+All sequences are stored in \emph{linguistic order} (initial morpheme first,
+terminal last) via a \texttt{linguistic\_seq()} function applied before every
+statistical computation. This addresses the directionality confound identified
+in \citet{Sproat2014}.
 
-% ==========================================================================
+% ============================================================
 \section{Statistical Proofs}
 \label{sec:proofs}
-% ==========================================================================
+% ============================================================
 
-\subsection{Proof 1 --- P385 Suffix Theorem}
+\subsection{Proof 1 --- Suffix Theorem}
 \label{sec:proof1}
 
 \paragraph{Hypothesis.}
-If P385 encodes the Proto-Dravidian masculine nominal suffix
-\textit{-a\d{n}} (as in \textit{Murugan}, \textit{Vel\={a}n},
-\textit{M\={\i}na\d{n}}), it must be positionally constrained:
-always terminal, never initial.
+If P385 encodes the Proto-Dravidian masculine suffix \textit{-a\d{n}},
+it must be terminal-only: never initial.
 
 \paragraph{Test.}
-One-tailed binomial test.
-$H_0$: positional distribution of P385 is uniform;
-probability of terminal $= 1/\bar{L}$ where $\bar{L}$ is mean sequence length.
-$H_1$: P385 is preferentially terminal.
+One-tailed binomial test. $H_0$: positional distribution of P385 is
+uniform; $P(\text{terminal}) = 1/\bar{L}$ where $\bar{L}$ is mean sequence
+length. $H_1$: P385 is preferentially terminal.
 
 \begin{table}[h]
 \centering
-\caption{Proof 1 results --- P385 Suffix Theorem}
+\caption{Proof 1 --- Suffix Theorem results}
 \begin{tabular}{lr}
 \toprule
 Metric & Value \\
 \midrule
-Total occurrences of P385 & 37 \\
-Terminal occurrences & 37 \; (100\%) \\
-Initial occurrences & 0 \\
-Mean sequence length $\bar{L}$ & 3.20 signs \\
-Null probability $1/\bar{L}$ & 0.3125 \\
+Total P385 occurrences & 37 \\
+Terminal occurrences   & 37 \quad (100\%) \\
+Initial occurrences    & 0 \\
+Mean sequence length $\bar{L}$ & 3.20 \\
+Null probability $1/\bar{L}$   & 0.3125 \\
 Binomial $p$-value (one-tailed) & $\mathbf{6.54 \times 10^{-21}}$ \\
-Direction-normalised & Yes \\
+Direction-normalised            & Yes \\
 \midrule
 Verdict & $H_0$ \textbf{REJECTED} \\
 \bottomrule
@@ -260,99 +234,77 @@ Verdict & $H_0$ \textbf{REJECTED} \\
 \end{table}
 
 \paragraph{Independent validation.}
-The ICIT database \citep{Fuls2010} independently labels Wells sign~520
-($=$ P385) as \textsc{tmk}---Terminal Marker---purely from corpus-level
-frequency statistics, without reference to any phonetic or linguistic
-hypothesis. The convergence between our binomial proof ($p = 6.54 \times
-10^{-21}$) and ICIT's independent classification constitutes cross-system
-structural validation.
+ICIT \citep{Fuls2010} labels Wells~520 ($=$ P385) as TMK (Terminal Marker),
+assigned purely from frequency statistics without reference to any phonetic
+hypothesis. This constitutes cross-system structural validation.
 
-\subsection{Proof 2 --- Positional Entropy}
-\label{sec:proof2}
+\subsection{Proof 2 --- Positional Entropy \textnormal{[Pending Full Corpus]}}
 
 Shannon entropy drops 0.488 bits from position~0 to position~1,
 directionally consistent with agglutinative edge-constraint grammar.
-This result requires $\geq 500$ inscriptions for statistical significance.
-Pending ICIT full corpus (5,509 inscriptions; \citealt{Fuls2010}).
+Requires $\geq$500 inscriptions for significance. Pending ICIT corpus
+(5,509 inscriptions; \citealt{Fuls2010}).
 
-\subsection{Proof 3 --- CO\_OCCURRENCE\_CLUSTER\_A}
-\label{sec:proof3}
+\subsection{Proof 3 --- Co-occurrence Cluster \textnormal{[Pending Full Corpus]}}
 
 Signs P316, P122, and P062 co-occur at above-chance frequency
-(chi-square directional, $p = 0.82$ at pilot scale). Requires full
-corpus depth. The cultural annotation---that these signs correspond to
-Tamil \textit{v\=el} (spear), \textit{m\={\i}n} (fish), and
-\textit{malai} (mountain)---is kept strictly separate from the
-statistical test in the codebase.
+($\chi^2$ directional, $p = 0.82$ at pilot scale). Requires full corpus.
+Cultural annotation is kept strictly separate from the statistical test.
 
-\subsection{Proof 4 --- P122$\to$P385 Agglutination Ratio}
+\subsection{Proof 4 --- Agglutination Ratio}
 \label{sec:proof4}
 
 \paragraph{Hypothesis.}
-If P122 (\textit{m\={\i}n}) is an agglutinative root and P385
-(\textit{-a\d{n}}) is its suffix, the bigram P122$\to$P385 must
-occur significantly more often than independent sign probabilities predict.
-
-\paragraph{Test.}
-Observed bigram count vs.\ expected count under sign independence.
+If P122 (\meen) is an agglutinative root and P385 (\an) its suffix,
+the bigram P122$\to$P385 must exceed independence expectations.
 
 \begin{table}[h]
 \centering
-\caption{Proof 4 results --- P122$\to$P385 Agglutination Ratio}
+\caption{Proof 4 --- Agglutination Ratio results}
 \begin{tabular}{lr}
 \toprule
 Metric & Value \\
 \midrule
-Observed P122$\to$P385 bigrams & 18 \\
-Expected under independence & 2.60 \\
-Agglutination ratio & $\mathbf{6.92\times}$ \\
-Min.\ frequency threshold & 3 occurrences \\
-Tamil reading & \textit{m\={\i}n} + \textit{-a\d{n}} = \textit{M\={\i}na\d{n}} \\
+Observed P122$\to$P385 bigrams      & 18 \\
+Expected under independence          & 2.60 \\
+Agglutination ratio                  & $\mathbf{6.92\times}$ \\
+Min.\ frequency threshold            & 3 occurrences \\
+Tamil reading & \meen{} $+$ \an{} $=$ \meenan \\
 \midrule
-Verdict & \textbf{AGGLUTINATION\_CONFIRMED} \\
+Verdict & \textbf{AGGLUTINATION CONFIRMED} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The minimum frequency threshold ($\geq 3$ occurrences per sign, or 5\% of
-corpus size) eliminates frequency artifacts: a sign appearing once near P385
-produces an inflated ratio ($1/0.08 = 12.5\times$) that is noise, not
-signal. This threshold is documented explicitly in the codebase.
+The minimum frequency threshold eliminates single-occurrence frequency
+artifacts (e.g.\ signs producing inflated ratios from $1/0.08$ coincidences).
 
-% ==========================================================================
+% ============================================================
 \section{Punctuation Null Test}
 \label{sec:punct}
-% ==========================================================================
+% ============================================================
 
 \subsection{Threat Model}
 
-The most technically sophisticated attack on the suffix hypothesis is
-the \citet{Farmer2004} and \citet{Sproat2014} argument that P385 is not
-a grammatical element but a scribal period mark---a terminal delimiter
-that, by definition, produces 100\% terminal rate. Any terminal delimiter
-would show this; it does not distinguish suffix from punctuation.
+\citet{Farmer2004} and \citet{Sproat2014} argue P385 is a scribal period
+mark, not a suffix. Any terminal delimiter produces 100\% terminal rate by
+definition; this alone cannot distinguish suffix from punctuation.
 
 \subsection{Counter-Test}
 
-Punctuation attaches indiscriminately to all preceding signs with
-uniform probability. A grammatical suffix is \emph{selective}: it attaches
-preferentially to a specific subset of root signs and shows elevated
-bigram frequency with that subset but near-chance frequency with others.
-
-We measure \emph{selectivity} via the \textbf{Coefficient of Variation
-(CV)} of bigram elevations across all qualifying preceding signs:
-
+Punctuation attaches uniformly to all preceding signs.
+A grammatical suffix is \emph{selective}: elevated bigram frequency with
+specific roots, near-chance with others.
+We measure selectivity via the \textbf{Coefficient of Variation (CV)}
+of bigram elevations across all qualifying preceding signs:
 \[
-\text{CV} = \frac{\sigma_{\text{elevation}}}{\mu_{\text{elevation}}}
+\mathrm{CV} = \frac{\sigma_{\mathrm{elevation}}}{\mu_{\mathrm{elevation}}}
 \]
+High CV ($>0.5$) $\Rightarrow$ selective $\Rightarrow$ suffix-like.\\
+Low CV ($<0.3$) $\Rightarrow$ uniform $\Rightarrow$ punctuation-like.
 
-High CV ($> 0.5$) $\Rightarrow$ selective $\Rightarrow$ suffix-like.
-Low CV ($< 0.3$) $\Rightarrow$ uniform $\Rightarrow$ punctuation-like.
-
-Additionally: if P385 were punctuation, removing it from all sequences
-should not alter terminal entropy (other signs compete regardless).
-If it is a suffix, removing it \emph{releases} the terminal slot,
-causing terminal entropy to \emph{increase}.
+Additionally, removing a suffix releases the terminal slot, increasing
+terminal entropy. Removing punctuation does not.
 
 \subsection{Results}
 
@@ -363,82 +315,78 @@ causing terminal entropy to \emph{increase}.
 \toprule
 Metric & Value & Interpretation \\
 \midrule
-Signs evaluated ($\geq 3$ occ.) & 8 & --- \\
-Mean bigram elevation & $3.44\times$ & --- \\
-Std.\ dev.\ bigram elevation & $2.96\times$ & --- \\
-Selectivity Index (CV) & \textbf{0.8599} & High $\Rightarrow$ suffix-like \\
-Terminal entropy \emph{with} P385 & \textbf{0.2812 bits} & Highly constrained \\
-Terminal entropy \emph{without} P385 & \textbf{2.0471 bits} & --- \\
+Signs evaluated ($\geq$3 occ.) & 8 & --- \\
+Mean bigram elevation   & $3.44\times$ & --- \\
+Std.\ dev.\ elevation   & $2.96\times$ & --- \\
+Selectivity Index (CV)  & \textbf{0.8599} & High $\Rightarrow$ suffix-like \\
+Terminal entropy \emph{with} P385    & 0.2812 bits & Highly constrained \\
+Terminal entropy \emph{without} P385 & 2.0471 bits & --- \\
 Entropy delta on removal & $\mathbf{+1.7659}$ \textbf{bits} & Suffix behaviour \\
 \midrule
-Verdict & \multicolumn{2}{l}{\textbf{SUFFIX-LIKE: punctuation hypothesis ruled out}} \\
+Verdict & \multicolumn{2}{l}{\textbf{SUFFIX-LIKE --- punctuation hypothesis ruled out}} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 A scribal period produces entropy delta $\approx 0$ on removal.
-P385 produces $+1.77$ bits---it was actively suppressing competition
-for the terminal slot. This is the mathematical signature of a grammatical
-morpheme, not punctuation.
+P385 produces $+1.77$ bits, meaning it actively suppressed competition
+for the terminal slot --- the mathematical signature of a grammatical
+morpheme.
 
-% ==========================================================================
-\section{Typology Comparator: Agglutinative vs.\ Inflectional}
+% ============================================================
+\section{Typology Comparator}
 \label{sec:typology}
-% ==========================================================================
+% ============================================================
 
 \subsection{Competing Hypothesis}
 
-The Indo-Aryan school \citep{Witzel2006} proposes that P385 encodes the
-Sanskrit genitive suffix \textit{-as} / \textit{-asya}. Sanskrit genitive
-\textit{-as} makes specific falsifiable predictions:
-
+The Indo-Aryan school \citep{Witzel2006} proposes P385 encodes the
+Sanskrit genitive suffix \textit{-as}/\textit{-asya}, making predictions:
 \begin{itemize}
-    \item[S1.] Sanskrit \textit{-as} \emph{cannot} follow numerals
-          (numerals take a separate declension paradigm).
-    \item[S2.] Sanskrit \textit{-as} \emph{cannot} follow feminine nouns
-          (feminine genitive takes \textit{-\={a}y\={a}\d{h}}).
+    \item[S1.] Sanskrit \textit{-as} cannot follow numerals.
+    \item[S2.] Sanskrit \textit{-as} cannot follow feminine nouns.
     \item[S3.] Sanskrit \textit{-as} appears internally in sandhi compounds;
-          terminal rate need not be 100\%.
+               terminal rate need not be 100\%.
 \end{itemize}
 
 \subsection{Results}
 
+P385 follows numerals 0 times and feminines 0 times. However, the terminal
+rate of 100\% is categorically incompatible with Sanskrit sandhi
+grammar regardless: a suffix never found internally in 41 seals
+cannot be a Sanskrit case ending.
+
 \begin{table}[h]
 \centering
-\caption{Typology Comparator --- model fit scores for sign P385}
+\caption{Typology Comparator --- composite fit scores for sign P385}
 \begin{tabular}{lrl}
 \toprule
-Model & Fit Score & Notes \\
+Model & Score & Notes \\
 \midrule
 Agglutinative (Proto-Dravidian / Old Tamil) & \textbf{0.6546} & Strong fit \\
-Inflectional (Sanskrit / Proto-Indo-Aryan) & \textbf{0.0000} & No fit \\
-Margin (agglutinative $-$ inflectional) & \textbf{$+$0.6546} & --- \\
+Inflectional (Sanskrit / Proto-Indo-Aryan)  & \textbf{0.0000} & No fit \\
+Margin & \textbf{$+$0.6546} & --- \\
 \midrule
 Verdict & \multicolumn{2}{l}{\textbf{AGGLUTINATIVE model preferred}} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The inflectional score of exactly 0.000 arises because the 100\% terminal
-rate of P385 exceeds the penalty threshold in the inflectional model:
-a suffix never found internally in any of 41 seals is categorically
-incompatible with Sanskrit sandhi grammar, regardless of other features.
+Weights in the agglutinative score: terminal invariance (0.50,
+\citealt{Krishnamurti2003}), root diversity (0.25, \citealt{Comrie1989}),
+bigram elevation (0.25, \citealt{Rao2009}). Weights were not tuned against
+this corpus.
 
-Weights in the agglutinative composite score are drawn from the typology
-literature---terminal invariance (0.50): \citealt{Krishnamurti2003};
-root diversity (0.25): \citealt{Comrie1989}; bigram elevation (0.25):
-\citealt{Rao2009}---and were \emph{not} tuned against this corpus.
-
-% ==========================================================================
-\section{Archaeological Ground Truth: Keezhadi / Keeladi}
+% ============================================================
+\section{Archaeological Ground Truth: Keezhadi}
 \label{sec:keezhadi}
-% ==========================================================================
+% ============================================================
 
 \subsection{Source}
 
 \citet{Rajan2025}: \textit{Indus Signs and Graffiti Marks of Tamil Nadu:
-A Morphological Study.} Department of Archaeology, Government of Tamil Nadu.
-Publication No.~357. ISBN 978-81-977842-5-5.
+A Morphological Study}. Dept.\ of Archaeology, Govt.\ of Tamil Nadu.
+Publication No.\ 357. ISBN 978-81-977842-5-5.
 
 \subsection{Survey Statistics}
 
@@ -449,13 +397,11 @@ Publication No.~357. ISBN 978-81-977842-5-5.
 \toprule
 Metric & Value \\
 \midrule
-Tamil Nadu sites surveyed & 140 \\
-Total graffiti-bearing sherds & 14,165 \\
-Base signs documented & 42 \\
-Variants & 544 \\
-Composites & 1,521 \\
-Base signs with exact IVC parallels & $\sim$60\% (25 of 42) \\
-All graffiti marks with IVC parallels & $>$90\% \\
+Tamil Nadu sites surveyed              & 140 \\
+Total graffiti-bearing sherds          & 14,165 \\
+Base signs documented                  & 42 \\
+Base signs with exact IVC parallels    & $\sim$60\% \\
+All graffiti marks with IVC parallels  & $>$90\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -464,107 +410,94 @@ All graffiti marks with IVC parallels & $>$90\% \\
 
 \begin{table}[h]
 \centering
-\caption{IVC--Tamil Nadu graffiti sign parallels for our two anchor signs}
-\begin{tabular}{llllr}
+\caption{IVC--Tamil Nadu graffiti parallels for our two anchor signs}
+\begin{tabular}{lllr}
 \toprule
-TN Graffiti & Mahadevan & Parpola & Function & Keeladi sherds \\
+TN Graffiti & Mahadevan & Parpola & Keeladi sherds \\
 \midrule
-Sign 11.0 (jar) & M137 & \textbf{P385} & Proposed suffix \textit{-a\d{n}} & 2,132 \\
-Sign 14.0 (fish) & M149 & \textbf{P122} & Proposed root \textit{m\={\i}n} & 2,132 \\
+Sign 11.0 (jar)  & M137 & \textbf{P385} & 2,132 \\
+Sign 14.0 (fish) & M149 & \textbf{P122} & 2,132 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Both signs central to our statistical proofs are physically present in
-Tamil Nadu soil at Keeladi, the largest single-site excavation in the survey.
+Both signs central to our proofs are physically present in Tamil Nadu
+soil at Keeladi.
 
 \subsection{Temporal Gap --- Known Limitation}
 
-The IVC mature phase ended $\sim$1900 \textsc{bce}. Keeladi dates to
-$\sim$600 \textsc{bce}. This is a gap of approximately \textbf{1,300 years}.
-Morphological overlap does not by itself establish direct descent or cultural
-continuity across this gap.
-
-The Megalithic Black-and-Red Ware (\textsc{brw}) pottery tradition,
-documented continuously from c.\ 1200--300 \textsc{bce} at 140 Tamil Nadu
-sites in the Rajan \& Sivanantham survey, provides an unbroken domestic
-graffiti-mark tradition through the intermediate period.
-\citet[][pp.\ 13--14]{Rajan2025} explicitly argue the \textsc{brw} tradition
-bridges the Copper Age (IVC) and Iron Age (Keeladi) symbol systems.
-
-What remains to be established computationally is whether sign
-\emph{transition probabilities} (bigram/trigram patterns) are preserved
-across this gap---requiring dated graffiti sequence data from stratified
+The IVC ended $\sim$1900 \BCE; Keeladi dates to $\sim$600 \BCE:
+a gap of $\sim$1,300 years. Morphological overlap does not by itself
+establish direct descent. The Megalithic Black-and-Red Ware (BRW) pottery
+tradition provides an unbroken graffiti-mark record across this period
+\citep[][pp.\ 13--14]{Rajan2025}. What remains to be established
+computationally is whether sign \emph{transition probabilities} are
+preserved across the gap --- requiring dated sequence data from stratified
 Megalithic contexts not yet available in machine-readable form.
-This is a known open problem, not a flaw specific to this framework.
 
-% ==========================================================================
+% ============================================================
 \section{Adversarial Defenses}
 \label{sec:adversarial}
-% ==========================================================================
+% ============================================================
 
 \begin{table}[h]
 \centering
-\caption{Adversarial defenses against the six main attacks}
-\begin{tabular}{p{2.5cm}p{4.5cm}p{5cm}}
+\caption{Adversarial defenses}
+\begin{tabular}{p{2cm}p{4.5cm}p{5.5cm}}
 \toprule
 Defense & Critique & Result \\
 \midrule
 D1 Length filter &
 Short inscriptions inflate suffix statistics &
-$p = 7.78 \times 10^{-20}$ on sequences $\geq 3$ signs \\
+$p = 7.78 \times 10^{-20}$ on sequences $\geq$3 signs \\
 \addlinespace
 D2 Sanskrit genitive &
-P385 $=$ Sanskrit \textit{-as}, not Tamil \textit{-a\d{n}} &
-P385 follows numerals 0 times; terminal rate 100\% is categorically
-incompatible with Sanskrit sandhi \\
+P385 $=$ Sanskrit \textit{-as} &
+100\% terminal rate incompatible with sandhi; score 0.000 \\
 \addlinespace
 D3 Corpus integrity &
 Fragmentary seals inflate terminal counts &
-Pilot corpus 100\% intact by selection; ICIT corpus uses
-\texttt{apply\_erosion\_mask()} (radius = 2) \\
+Pilot corpus 100\% intact; ICIT corpus uses erosion masking (radius = 2) \\
 \addlinespace
 D4 Repetition anomaly &
 A singular suffix should not double &
-P385 doubles 0 times; P062 doubles (Dravidian nominal reduplication,
-\citealt{Zvelebil1970}) \\
+P385 doubles 0 times; P062 doubles (Dravidian reduplication, \citealt{Zvelebil1970}) \\
 \addlinespace
 D5 Punctuation attack &
-P385 is a scribal period, not a suffix &
-CV $= 0.86$ (selective); entropy delta $= +1.77$ bits (ruled out) \\
+P385 is a scribal period mark &
+CV $= 0.86$; entropy delta $= +1.77$ bits (ruled out) \\
 \addlinespace
 D6 Subcorpus size &
 41 seals is insufficient &
-Scaling infrastructure in place; Proofs 1 \& 4 confirmed at pilot scale;
-Proofs 2 \& 3 pending ICIT \\
+Proofs 1 \& 4 confirmed; scaling infrastructure ready for ICIT \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-% ==========================================================================
+% ============================================================
 \section{Phonetic Anchors and Epistemic Labelling}
 \label{sec:phonetics}
-% ==========================================================================
+% ============================================================
 
-Every phonetic reading in this framework carries an explicit confidence label:
+Every phonetic reading carries an explicit confidence label.
 \SAFE{} = independently confirmed in \citet{Parpola1994}, \citet{Mahadevan1977},
-or DEDR \citep{Burrow1984}; \PREDICTED{} = our inference, labelled as testable
+or DEDR \citep{Burrow1984}. \PREDICTED{} = our inference, labelled as testable
 hypothesis.
 
 \begin{table}[h]
 \centering
-\caption{Phonetic anchors with confidence labels}
+\caption{Phonetic anchors with confidence labels (IAST transliteration)}
 \begin{tabular}{lllll}
 \toprule
-Sign & Tamil & IPA & DEDR & Confidence \\
+Sign & Tamil (IAST) & Meaning & DEDR & Confidence \\
 \midrule
-P385 & -அன் & /a\d{n}/ & Krishnamurti 2003 §3.5; Zvelebil 1970 §2.3 & \SAFE \\
-P122 & மீன் & /mi\textlengthmark n/ & DEDR-4889 & \SAFE \\
-P316 & வேல் & /ve\textlengthmark l/ & DEDR-5541 & \SAFE \\
-P060 & கோ & /ko\textlengthmark/ & DEDR-2178 & \SAFE \\
-P062 & மலை & /mala\textsci/ & DEDR-4710 & \SAFE \\
-P091 & ஆறு & /a\textlengthmark ru/ & DEDR-338 & \SAFE \\
-P311 & குடம் & /ku\textrtaild am/ & DEDR-1712 & \PREDICTED \\
+P385 & -a\d{n}      & masc.\ nominal suffix & Krishnamurti 2003 \S3.5 & \SAFE \\
+P122 & m\={i}n      & fish / star           & DEDR-4889 & \SAFE \\
+P316 & v\={e}l      & spear                 & DEDR-5541 & \SAFE \\
+P060 & k\={o}       & king / lord           & DEDR-2178 & \SAFE \\
+P062 & malai        & mountain              & DEDR-4710 & \SAFE \\
+P091 & \={a}ru      & six / river           & DEDR-338  & \SAFE \\
+P311 & ku\d{d}am    & jar / vessel          & DEDR-1712 & \PREDICTED \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -573,126 +506,99 @@ This framework does not claim a full decipherment. It claims:
 (a)~the grammar is agglutinative, not inflectional;
 (b)~P385 is a grammatical suffix, not punctuation;
 (c)~the fish--jar bigram is an agglutinative compound;
-(d)~the jar and fish signs appear in Tamil Nadu soil from $\sim$600 \textsc{bce} onward.
+(d)~both signs appear in Tamil Nadu soil from $\sim$600 \BCE{} onward.
 
-% ==========================================================================
+% ============================================================
 \section{Relation to Concurrent Work}
 \label{sec:related}
-% ==========================================================================
+% ============================================================
 
 \paragraph{BitConcepts / Pierson (2026).}
-\citeauthor{Pierson2026} (\citeyear{Pierson2026}, Zenodo
-DOI:~10.5281/zenodo.20414696) present 185 Proto-Dravidian sign readings via
-simulated annealing and DEDR anchoring, claiming 90.96\% token coverage.
-Our framework differs in scope and strategy: we make no phoneme reading claims
-beyond 6 \SAFE{} anchors independently confirmed in prior literature; our
-primary claims are structural (grammar type, suffix position, entropy signature),
-not phonological; our adversarial defenses---particularly the Punctuation Null
-Test and the Sanskrit model scoring 0.000---are not present in that preprint;
-and we integrate the 2025 Rajan \& Sivanantham Tamil Nadu archaeological survey.
+\citeauthor{Pierson2026} (\citeyear{Pierson2026}) present 185 Proto-Dravidian
+readings via simulated annealing and DEDR anchoring.
+Our framework differs: we make no phoneme reading claims beyond 6 \SAFE{}
+anchors confirmed in prior literature; our claims are structural;
+our Punctuation Null Test and Sanskrit 0.000 score are not in that preprint;
+and we integrate the 2025 Rajan \& Sivanantham survey.
 
 \paragraph{Nair (2026).}
-\citeauthor{Nair2026} (\citeyear{Nair2026}, arXiv:2604.17828) show that no
-non-linguistic generator reproduces the full Indus statistical profile on 1,916
-ICIT inscriptions, supporting the linguistic hypothesis and consistent with our
-results.
+\citeauthor{Nair2026} (\citeyear{Nair2026}) show no non-linguistic generator
+reproduces the full Indus statistical profile on 1,916 ICIT inscriptions ---
+consistent with our results.
 
-% ==========================================================================
+% ============================================================
 \section{Known Limitations}
 \label{sec:limitations}
-% ==========================================================================
+% ============================================================
 
 \begin{table}[h]
 \centering
 \caption{Known limitations with current status}
-\begin{tabular}{p{5cm}p{7cm}}
+\begin{tabular}{p{5.5cm}p{6.5cm}}
 \toprule
 Limitation & Status \\
 \midrule
 Corpus depth (41 seals) &
 Proofs 1 \& 4 confirmed; Proofs 2 \& 3 pending ICIT (5,509 inscriptions) \\
 No bilingual anchor &
-Phonetic readings are probabilistic; none confirmed from bilingual text \\
+Phonetic readings probabilistic; none confirmed from bilingual text \\
 Temporal gap (IVC $\to$ Keeladi: 1,300 yr) &
-Acknowledged; Megalithic \textsc{brw} tradition as bridge; computational
-gap verification pending \\
+Acknowledged; BRW tradition as bridge; transition probability verification pending \\
 Mahadevan/Wells grouping bias &
 Annotated \texttt{[SAFE]}/\texttt{[APPROX]} in \texttt{corpus\_loader.py} \\
-Positional test for Keezhadi graffiti &
-Requires per-sherd sequence data not yet published \\
+Keezhadi positional data &
+Per-sherd sequence data not yet published in machine-readable form \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-% ==========================================================================
+% ============================================================
 \section{Reproducibility}
 \label{sec:repro}
-% ==========================================================================
+% ============================================================
 
 All code is available at \url{https://github.com/gkarun876/IVS} (MIT License).
 
-\begin{lstlisting}[language=bash, basicstyle=\small\ttfamily,
-                   frame=single, caption={Quick start}]
+\begin{lstlisting}[language=bash, basicstyle=\small\ttfamily, frame=single,
+                   caption={Quick start}]
 pip install -r requirements.txt
 python indus_decode.py        # Proofs 1-4
 python typology_test.py       # Agglutinative vs Sanskrit + punctuation test
-python adversarial_defense.py # 6 adversarial defenses
-python keezhadi_compare.py    # Keezhadi archaeological comparison
-python phonetic_anchors.py    # Phonetic bridge with [SAFE]/[PREDICTED] labels
+python adversarial_defense.py # Adversarial defenses
+python keezhadi_compare.py    # Keezhadi comparison
 \end{lstlisting}
 
-Full corpus scaling (pending ICIT access from \citealt{Fuls2010}):
-
-\begin{lstlisting}[language=python, basicstyle=\small\ttfamily,
-                   frame=single, caption={Scale to full ICIT corpus}]
-from corpus_scaler import load_rao_csv, scale_proofs
-corpus = load_rao_csv("icit_export.csv")  # erosion masking applied automatically
-scale_proofs(corpus)
-\end{lstlisting}
-
-% ==========================================================================
+% ============================================================
 \section{Conclusion}
 \label{sec:conclusion}
-% ==========================================================================
+% ============================================================
 
 We have presented a statistically armored, epistemically conservative case
-for Proto-Dravidian grammar in the Indus Valley Script. The case rests on
-four interlocking results:
+for Proto-Dravidian grammar in the Indus Valley Script, resting on four
+interlocking results:
 
 \begin{enumerate}
     \item \textbf{P385 is positionally constrained as a suffix}
-          ($p = 6.54 \times 10^{-21}$), independently confirmed by ICIT's
-          \textsc{tmk} label.
-    \item \textbf{P122$\to$P385 is an agglutinative compound} (6.92$\times$
-          above independence), consistent with Tamil
-          \textit{m\={\i}n} + \textit{-a\d{n}} = \textit{M\={\i}na\d{n}}.
-    \item \textbf{P385 is not punctuation} (entropy delta $+1.77$ bits on
-          removal; selectivity CV $= 0.86$).
-    \item \textbf{The agglutinative model fits (0.655); the Sanskrit
-          inflectional model does not (0.000)}.
+          ($p = 6.54 \times 10^{-21}$), independently confirmed by ICIT's TMK label.
+    \item \textbf{P122$\to$P385 is an agglutinative compound}
+          ($6.92\times$ above independence), consistent with Tamil
+          \meen{} $+$ \an{} $=$ \meenan.
+    \item \textbf{P385 is not punctuation}
+          (entropy delta $+1.77$ bits; selectivity CV $= 0.86$).
+    \item \textbf{The agglutinative model fits (0.655);
+          the Sanskrit inflectional model does not (0.000)}.
 \end{enumerate}
 
 Archaeological ground truth from \citet{Rajan2025} confirms morphological
 continuity of the jar and fish signs from the IVC to Iron Age Tamil Nadu.
-All limitations are explicitly documented. Scaling to the ICIT full corpus
-will test whether these pilot results hold---infrastructure is in place
-and ready.
+Scaling to the ICIT full corpus will test whether these pilot results hold;
+infrastructure is in place and ready.
 
-The framework is designed to survive peer review: every claim is tagged by
-confidence level, every known limitation is documented in the code, and
-every statistical test has a pre-registered alternative hypothesis.
-
-% ==========================================================================
 \section*{Acknowledgements}
-% ==========================================================================
 
-The author thanks Andreas Fuls (TU Berlin) for maintaining the ICIT database
-and making it available to researchers; I. Mahadevan for the 1977 concordance;
-and K. Rajan and R. Sivanantham for the 2025 Tamil Nadu graffiti survey.
-
-% ==========================================================================
-% Bibliography
-% ==========================================================================
+The author thanks Andreas Fuls (TU Berlin) for maintaining the ICIT database;
+I. Mahadevan for the 1977 concordance; and K. Rajan and R. Sivanantham for the
+2025 Tamil Nadu graffiti survey.
 
 \bibliographystyle{plainnat}
 \bibliography{references}
