@@ -38,6 +38,36 @@ To close this gap we need the raw per-sherd sign-sequence data from the
 Tamil Nadu Dept. of Archaeology excavation reports. That data has not been
 published in machine-readable form as of June 2026.
 
+TEMPORAL GAP — KNOWN LIMITATION
+---------------------------------
+The IVC mature phase ended ~1900 BCE. Keeladi (Keezhadi) dates to ~600 BCE.
+This is a gap of approximately 1,300 years. The morphological overlap documented
+in this module does NOT by itself establish direct descent or cultural continuity
+across this gap.
+
+What the 2025 Rajan & Sivanantham monograph does provide as a bridge:
+  - The gap is not archaeologically empty. It is filled by the South Indian
+    Megalithic period (ca. 1200–300 BCE), characterised by Black-and-Red Ware
+    (BRW) pottery traditions documented at Adichanallur, Kodumanal, Korkai, and
+    139 other Tamil Nadu sites in the survey.
+  - Graffiti marks appear continuously on BRW pottery throughout the Megalithic
+    period, providing an unbroken domestic/funerary mark tradition.
+  - Rajan & Sivanantham (2025:13–14) explicitly argue that the BRW tradition
+    bridges the Copper Age (IVC) and Iron Age (Keeladi) symbol systems.
+  - The monograph notes: "the current work claims that [existing] prevailing
+    perception [on Iron Age chronology] needs reassessment" citing iron finds
+    at Adichanallur, Sivagalai, Mayiladumparai dated earlier than assumed.
+
+What remains to be established computationally:
+  - Whether the sign transition probabilities (bigram/trigram patterns) are
+    preserved across the temporal gap, or whether the shapes persisted while
+    the grammar evolved.
+  - This requires dated graffiti sequence data from stratified Megalithic
+    contexts — not currently available in machine-readable form.
+
+This limitation is explicitly acknowledged. The temporal gap is a known
+open problem in the field, not a flaw specific to this framework.
+
 SIGN NUMBER MAPPING CAUTION
 -----------------------------
 Mahadevan (1977) collapsed many graphically similar variants into a single
