@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage[babel=false,tracking=false]{microtype}
+\usepackage[babel=false,tracking=false,expansion=false]{microtype}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
 \usepackage{graphicx}
@@ -191,7 +191,7 @@ Tamil Nadu graffiti (2025) & Sign 11.0 (jar) & Sign 14.0 (fish) \\
 
 Indus seals are carved in mirror-image; impressions read right-to-left (RTL).
 All sequences are stored in \emph{linguistic order} (initial morpheme first,
-terminal last) via a \texttt{linguistic\_seq()} function applied before every
+terminal last) via a \texttt{linguistic\allowbreak\_seq()} function applied before every
 statistical computation. This addresses the directionality confound identified
 in \citet{Sproat2014}.
 
