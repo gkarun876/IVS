@@ -39,7 +39,98 @@ pilot corpus and clearly labels all output as PILOT SCALE.
 
 import csv
 import os
-from indus_decode import CORPUS as PILOT_CORPUS, proof1_suffix_theorem
+from indus_decode import CORPUS as PILOT_CORPUS, proof1_suffix_theorem, linguistic_seq
+
+# Mahadevan notation for eroded / unreadable signs
+ERODED_TOKENS = {"P000", "000", "0", "?", "X"}
+
+
+# ---------------------------------------------------------------------------
+# Erosion Masking Filter
+#
+# In the Mahadevan (1977) and ICIT corpora, damaged or unreadable signs are
+# recorded as 000 (or P000 after conversion). When an eroded sign appears
+# within `radius` positions of a target anchor sign, the bigram or positional
+# count for that anchor is unreliable — we don't know what the eroded sign was,
+# so we can't know whether the anchor is truly in terminal position or is just
+# the last *surviving* sign on a broken seal.
+#
+# This filter removes such contaminated sequences before statistical analysis.
+# It is applied automatically by scale_proofs() and can be called manually.
+# ---------------------------------------------------------------------------
+
+def apply_erosion_mask(
+    corpus: list[dict],
+    anchors: set[str] | None = None,
+    radius: int = 2,
+    eroded_tokens: set[str] = ERODED_TOKENS,
+) -> tuple[list[dict], dict]:
+    """
+    Remove inscriptions where an eroded sign falls within `radius` positions
+    of any sign in `anchors`.
+
+    Parameters
+    ----------
+    corpus        : list of seal dicts with "seq" field
+    anchors       : signs to protect; defaults to {"P385", "P122"} (our key signs)
+    radius        : window size around each anchor to check for erosion
+    eroded_tokens : sign codes that represent damaged / unreadable signs
+
+    Returns
+    -------
+    (clean_corpus, report) where report is a dict with masking statistics.
+    """
+    if anchors is None:
+        anchors = {"P385", "P122"}
+
+    clean    = []
+    dropped  = []
+    reasons  = []
+
+    for seal in corpus:
+        seq = linguistic_seq(seal)
+
+        # Find positions of all eroded tokens
+        eroded_positions = {i for i, s in enumerate(seq) if s in eroded_tokens}
+
+        if not eroded_positions:
+            clean.append(seal)
+            continue
+
+        # Check if any eroded position is within `radius` of any anchor
+        anchor_positions = {i for i, s in enumerate(seq) if s in anchors}
+        contaminated = any(
+            abs(ep - ap) <= radius
+            for ep in eroded_positions
+            for ap in anchor_positions
+        )
+
+        if contaminated:
+            dropped.append(seal["id"])
+            reasons.append({
+                "id":              seal["id"],
+                "seq":             seq,
+                "eroded_at":       sorted(eroded_positions),
+                "anchor_at":       sorted(anchor_positions),
+            })
+        else:
+            # Eroded signs exist but not near anchors — keep, strip eroded tokens
+            clean_seq = [s for s in seq if s not in eroded_tokens]
+            if clean_seq:
+                patched = dict(seal)
+                patched["seq"] = clean_seq
+                clean.append(patched)
+
+    report = {
+        "input_count":   len(corpus),
+        "clean_count":   len(clean),
+        "dropped_count": len(dropped),
+        "drop_rate_pct": round(len(dropped) / len(corpus) * 100, 1) if corpus else 0,
+        "anchors":       sorted(anchors),
+        "radius":        radius,
+        "dropped_ids":   dropped[:20],   # first 20 for inspection
+    }
+    return clean, report
 
 
 # ---------------------------------------------------------------------------
@@ -129,9 +220,11 @@ def load_yadav_csv(filepath: str) -> list[dict]:
 # Proof runner — runs proof 1 at multiple corpus scales and reports
 # ---------------------------------------------------------------------------
 
-def scale_proofs(external_corpus: list[dict] | None = None) -> dict:
+def scale_proofs(external_corpus: list[dict] | None = None,
+                 apply_mask: bool = True) -> dict:
     """
     Run Proof 1 (suffix theorem) at pilot scale and, if provided, at full scale.
+    Erosion masking is applied automatically when apply_mask=True (default).
 
     This directly addresses the "small subcorpus" critique: if the p-value
     stays significant as corpus size grows, the critique is void. If it weakens,
@@ -143,37 +236,51 @@ def scale_proofs(external_corpus: list[dict] | None = None) -> dict:
 
     results = {}
 
-    # --- Pilot corpus ---
+    # --- Pilot corpus (no erosion in hand-transcribed pilot; mask is a no-op) ---
+    pilot_clean, pilot_mask_report = apply_erosion_mask(PILOT_CORPUS)
     pilot_result = proof1_suffix_theorem()
     results["pilot"] = {
         "n_seals":        len(PILOT_CORPUS),
+        "n_clean":        len(pilot_clean),
         "p_value":        pilot_result["p_value"],
         "terminal_pct":   pilot_result["terminal_pct"],
         "label":          "PILOT (41 seals)",
+        "erosion_masked": pilot_mask_report["dropped_count"],
         "verdict":        pilot_result["verdict"],
     }
 
     if external_corpus:
-        # Monkey-patch CORPUS and re-run proof 1
         import indus_decode as _id
         original = _id.CORPUS
-        _id.CORPUS = external_corpus
+
+        # Apply erosion mask to external corpus before running proofs
+        if apply_mask:
+            ext_clean, ext_mask_report = apply_erosion_mask(external_corpus)
+            print(f"Erosion mask: dropped {ext_mask_report['dropped_count']} / "
+                  f"{ext_mask_report['input_count']} inscriptions "
+                  f"({ext_mask_report['drop_rate_pct']}%)")
+        else:
+            ext_clean, ext_mask_report = external_corpus, {"dropped_count": 0}
+
+        _id.CORPUS = ext_clean
         try:
             ext_result = proof1_suffix_theorem()
         finally:
             _id.CORPUS = original
 
         results["full"] = {
-            "n_seals":      len(external_corpus),
-            "p_value":      ext_result["p_value"],
-            "terminal_pct": ext_result["terminal_pct"],
-            "label":        f"FULL ({len(external_corpus)} seals)",
-            "verdict":      ext_result["verdict"],
+            "n_seals":        len(external_corpus),
+            "n_clean":        len(ext_clean),
+            "p_value":        ext_result["p_value"],
+            "terminal_pct":   ext_result["terminal_pct"],
+            "label":          f"FULL ({len(ext_clean)} clean / {len(external_corpus)} total)",
+            "erosion_masked": ext_mask_report["dropped_count"],
+            "verdict":        ext_result["verdict"],
         }
 
-        # Combined
-        combined = PILOT_CORPUS + [
-            s for s in external_corpus if s["id"] not in {x["id"] for x in PILOT_CORPUS}
+        # Combined (pilot + deduplicated external, both masked)
+        combined = pilot_clean + [
+            s for s in ext_clean if s["id"] not in {x["id"] for x in PILOT_CORPUS}
         ]
         _id.CORPUS = combined
         try:
