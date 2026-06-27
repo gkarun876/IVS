@@ -1,6 +1,6 @@
 # Statistical Evidence for Proto-Dravidian Grammar in the Indus Valley Script: Suffix Theorem, Agglutination Ratio, and Punctuation Null Test
 
-**Author:** G. Karun  
+**Author:** Arun G K  
 **Repository:** https://github.com/gkarun876/IVS  
 **Date:** June 2026  
 **Status:** Preprint — not yet peer reviewed
