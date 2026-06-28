@@ -27,7 +27,7 @@
     linkcolor=blue!60!black,
     citecolor=blue!60!black,
     urlcolor=blue!60!black,
-    pdftitle={Statistical Evidence for Proto-Dravidian Grammar in the Indus Valley Script},
+    pdftitle={Statistical Evidence for Agglutinative Structure in the Indus Valley Script},
     pdfauthor={Arun G K},
 }
 
@@ -45,9 +45,9 @@
 \newcommand{\BCE}{\textsc{bce}}
 
 \title{%
-    \textbf{Statistical Evidence for Proto-Dravidian Grammar\\
+    \textbf{Statistical Evidence for Agglutinative Structure\\
     in the Indus Valley Script:}\\[0.3em]
-    \large Suffix Theorem, Agglutination Ratio, and Punctuation Null Test
+    \large A Computational Test of the Proto-Dravidian Hypothesis
 }
 
 \author{
@@ -73,8 +73,8 @@ unicorn and bovine seals from the Indus Valley Civilisation (c.\ 2600--1900 \BCE
 testing the hypothesis that sign P385 (jar pictogram; Wells~520; ICIT label:~TMK)
 encodes the Proto-Dravidian masculine nominal suffix \textit{-a\d{n}}.
 The \textbf{Suffix Theorem} shows P385 occupies the terminal position in
-100\% of occurrences with zero initial appearances ($p = 6.54 \times 10^{-21}$,
-one-tailed binomial test against a uniform positional null).
+100\% of occurrences within this intact-seal pilot corpus, with zero initial appearances
+($p = 6.54 \times 10^{-21}$, one-tailed binomial test; pilot-corpus local significance).
 The \textbf{Agglutination Ratio} shows the bigram P122$\to$P385 occurs
 $6.92\times$ more often than independent sign probabilities predict,
 consistent with the Tamil agglutinative compound
@@ -83,14 +83,14 @@ The \textbf{Punctuation Null Test} rules out the alternative hypothesis
 that P385 is a scribal period mark: removing P385 releases $+1.77$ bits
 of terminal positional entropy---a signature grammatical suffixes produce but punctuation does not.
 A \textbf{Typology Comparator} scores the agglutinative (Proto-Dravidian)
-model at 0.655 and the inflectional (Sanskrit) model at 0.000 ($+0.655$ margin).
+model at 0.655 and the fusional/inflectional (non-agglutinative) model at 0.000 ($+0.655$ margin).
 The ICIT database \citep{Fuls2010} independently labels Wells~520 as
 TMK (Terminal Marker) without reference to any linguistic theory, providing
 cross-system structural validation.
-Archaeological ground truth from \citet{Rajan2025} documents 14,165
+Archaeological correlation from \citet{Rajan2025} documents 14,165
 graffiti-bearing sherds from 140 Tamil Nadu sites; both anchor signs
-appear at Keeladi (2,132 sherds), bridging the IVC--Iron Age gap through
-the Megalithic Black-and-Red Ware pottery tradition.
+appear at Keeladi (2,132 sherds), offering a morphological continuity
+hypothesis via the Megalithic Black-and-Red Ware pottery tradition.
 All code is open-source and reproducible.
 \end{abstract}
 
@@ -227,7 +227,7 @@ Terminal occurrences   & 37 \quad (100\%) \\
 Initial occurrences    & 0 \\
 Mean sequence length $\bar{L}$ & 3.20 \\
 Null probability $1/\bar{L}$   & 0.3125 \\
-Binomial $p$-value (one-tailed) & $\mathbf{6.54 \times 10^{-21}}$ \\
+Binomial $p$-value (one-tailed, pilot corpus) & $\mathbf{6.54 \times 10^{-21}}$ \\
 Direction-normalised            & Yes \\
 \midrule
 Verdict & $H_0$ \textbf{REJECTED} \\
@@ -365,8 +365,8 @@ cannot be a Sanskrit case ending.
 \toprule
 Model & Score & Notes \\
 \midrule
-Agglutinative (Proto-Dravidian / Old Tamil) & \textbf{0.6546} & Strong fit \\
-Inflectional (Sanskrit / Proto-Indo-Aryan)  & \textbf{0.0000} & No fit \\
+Agglutinative (Proto-Dravidian / Old Tamil)      & \textbf{0.6546} & Strong fit \\
+Fusional/Inflectional (non-agglutinative model) & \textbf{0.0000} & No fit \\
 Margin & \textbf{$+$0.6546} & --- \\
 \midrule
 Verdict & \multicolumn{2}{l}{\textbf{Agglutinative model preferred}} \\
@@ -380,7 +380,7 @@ bigram elevation (0.25, \citealt{Rao2009}). Weights were not tuned against
 this corpus.
 
 % ============================================================
-\section{Archaeological Ground Truth: Keezhadi}
+\section{Archaeological Correlation: Keezhadi}
 \label{sec:keezhadi}
 % ============================================================
 
@@ -445,7 +445,7 @@ Megalithic contexts not yet available in machine-readable form.
 \label{sec:adversarial}
 % ============================================================
 
-We address six major objections raised against the suffix hypothesis.
+We address seven major objections raised against the suffix hypothesis.
 Table~\ref{tab:adversarial} summarises each critique and our rebuttal.
 
 \begin{table}[htbp]
@@ -479,6 +479,11 @@ CV $= 0.86$; entropy delta $= +1.77$ bits (ruled out) \\
 D6 Subcorpus size &
 41 seals is insufficient &
 Proofs 1 \& 4 confirmed; scaling ready for ICIT \\
+\addlinespace
+D7 Validation mark &
+P385 may be an administrative authority stamp, not a suffix &
+Partially addressed by CV $= 0.86$ (suffix-like selectivity); formal
+non-linguistic protocol baseline deferred to v2.0 with full corpus \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -491,7 +496,9 @@ Proofs 1 \& 4 confirmed; scaling ready for ICIT \\
 Every phonetic reading carries an explicit confidence label.
 \SAFE{} = independently confirmed in \citet{Parpola1994}, \citet{Mahadevan1977},
 or DEDR \citep{Burrow1984}. \PREDICTED{} = our inference, labelled as testable
-hypothesis.
+hypothesis. \textbf{The structural claims in Sections~3--5 do not depend on
+these phonetic readings}; they are listed for orientation only and can be
+removed without affecting any statistical result.
 
 \begin{table}[!ht]
 \centering
@@ -557,6 +564,10 @@ Mahadevan/Wells grouping bias &
 Annotated \texttt{[SAFE]}/\texttt{[APPROX]} in \texttt{corpus\_loader.py} \\
 Keezhadi positional data &
 Per-sherd sequence data not yet published in machine-readable form \\
+Validation mark alternative &
+CV $= 0.86$ partially distinguishes suffix from stamp; formal
+non-linguistic protocol baseline (guild marks, Mesopotamian sealings)
+not yet computed \\
 \bottomrule
 \end{tabularx}
 \end{table}
