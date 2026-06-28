@@ -1,0 +1,2 @@
+bigram,tamil_reading,observed_count,expected_count,agglutination_ratio,verdict
+P122→P385,"மீன் + -அன் = மீனன் (Meenan, 'Lord of Stars')",17,2.457,6.92,AGGLUTINATION_CONFIRMED

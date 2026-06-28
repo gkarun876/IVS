@@ -1,0 +1,2 @@
+total_occurrences,terminal_count,initial_count,terminal_pct,null_probability,p_value,direction_normalised,verdict
+39,39,0,100.0,0.3037,6.539633964972827e-21,True,H0 REJECTED

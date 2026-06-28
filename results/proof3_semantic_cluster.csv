@@ -1,0 +1,2 @@
+cluster_id,cultural_note,observed_count,expected_count,chi2_statistic,corpus_size,p_value,verdict
+CO_OCCURRENCE_CLUSTER_A,signs correspond to vel/meen/malai in one reading hypothesis,0,0.05,0.0504,41,0.822382011661181,PENDING_SCALE_UP (corpus < 500)
