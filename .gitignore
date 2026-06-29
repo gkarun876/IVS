@@ -4,3 +4,11 @@ results/
 .ipynb_checkpoints/
 notebooks/.ipynb_checkpoints/
 notebooks/*.png
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.pdf
+paper/full.log
