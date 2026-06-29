@@ -1,0 +1,126 @@
+========================================================================
+  PHONETIC MAPPER — DEDR ANCHOR CANDIDATES
+  HARD WALL: parser and mapper are separate. Phonetics never
+  influenced slot classification above.
+========================================================================
+
+CONFIRMED PHONETIC ANCHORS IN THIS CORPUS
+    Sign  Confidence    Reading               Role
+  ----------------------------------------------------------------
+  M342    [SAFE      ]  *kaṇam / -an          masculine nominal suffix (terminal)  (slot=AMBIGUOUS, n=1190)
+
+STRUCTURAL SIGNS (slot confirmed, phonetics unconfirmed)
+    Sign  Slot          Note
+  ----------------------------------------------------------------
+  M99     MEDIAL        MEDIAL connector (medial_rate=97.0%, phonetics unconfir  (n=534)
+  M267    INITIAL       INITIAL cluster sign (initial_rate=79.5%, phonetics unc  (n=312)
+  M87     AMBIGUOUS     MEDIAL/INITIAL mixed sign (phonetics unconfirmed)  (n=312)
+  M176    TERMINAL      TERMINAL sign (terminal_rate=87.5%, phonetics unconfirm  (n=312)
+  M328    TERMINAL      TERMINAL sign (terminal_rate=86.2%, phonetics unconfirm  (n=312)
+
+TOP SEQUENCE PHONETIC CANDIDATES
+  (Sequences sorted by weighted frequency; SAFE% = fraction
+   of signs with independently confirmed phonetic reading)
+
+  M342-M176                       raw= 160  wt=56.1083  slots=A-T  SAFE=50%
+    Reading: *kaṇam / -an + M176[?]
+
+  M48-M342                        raw= 105  wt=44.8992  slots=A-A  SAFE=50%
+    Reading: M48[?] + *kaṇam / -an
+
+  M347-M342                       raw=  89  wt=23.4252  slots=M-A  SAFE=50%
+    Reading: M347[?] + *kaṇam / -an
+
+  M8-M342                         raw=  78  wt=20.1742  slots=M-A  SAFE=50%
+    Reading: M8[?] + *kaṇam / -an
+
+  M342-M1                         raw=  73  wt=16.5762  slots=A-A  SAFE=50%
+    Reading: *kaṇam / -an + M1[?]
+
+  M244-M342                       raw=  31  wt=12.5028  slots=A-A  SAFE=50%
+    Reading: M244[?] + *kaṇam / -an
+
+  M87-M342                        raw=  40  wt=11.6595  slots=A-A  SAFE=50%
+    Reading: M87[?] + *kaṇam / -an
+
+  M296-M342                       raw=  31  wt=10.6190  slots=M-A  SAFE=50%
+    Reading: M296[?] + *kaṇam / -an
+
+  M59-M342                        raw=  36  wt=10.0472  slots=A-A  SAFE=50%
+    Reading: M59[?] + *kaṇam / -an
+
+  M169-M342                       raw=  42  wt= 9.8790  slots=A-A  SAFE=50%
+    Reading: M169[?] + *kaṇam / -an
+
+  M149-M342                       raw=  35  wt= 9.8222  slots=A-A  SAFE=50%
+    Reading: M149[?] + *kaṇam / -an
+
+  M326-M342                       raw=  19  wt= 9.3583  slots=A-A  SAFE=50%
+    Reading: M326[?] + *kaṇam / -an
+
+  M48-M342-M176                   raw=  46  wt=43.0000  slots=A-A-T  SAFE=33%
+    Reading: M48[?] + *kaṇam / -an + M176[?]
+
+  M103-M403-M342                  raw=  20  wt=16.4167  slots=I-A-A  SAFE=33%
+    Reading: M103[?] + M403[?] + *kaṇam / -an
+
+  M249-M169-M342                  raw=  40  wt=12.1234  slots=A-A-A  SAFE=33%
+    Reading: M249[?] + M169[?] + *kaṇam / -an
+
+  M403-M87-M342                   raw=  26  wt=11.1690  slots=A-A-A  SAFE=33%
+    Reading: M403[?] + M87[?] + *kaṇam / -an
+
+  M245-M358-M342                  raw=  20  wt= 9.8333  slots=A-M-A  SAFE=33%
+    Reading: M245[?] + M358[?] + *kaṇam / -an
+
+  M249-M162-M342                  raw=  30  wt= 9.3718  slots=A-A-A  SAFE=33%
+    Reading: M249[?] + M162[?] + *kaṇam / -an
+
+  M89-M328                        raw= 124  wt=114.1690  slots=A-T  SAFE=0%
+    Reading: M89[?] + M328[?]
+
+  M87-M328                        raw=  77  wt=74.9000  slots=A-T  SAFE=0%
+    Reading: M87[?] + M328[?]
+
+  M267-M99                        raw= 249  wt=65.3213  slots=I-M  SAFE=0%
+    Reading: M267[?] + M99[?]
+
+  M95-M328                        raw=  58  wt=52.8333  slots=I-T  SAFE=0%
+    Reading: M95[?] + M328[?]
+
+  M336-M89                        raw= 106  wt=22.6686  slots=A-A  SAFE=0%
+    Reading: M336[?] + M89[?]
+
+  M391-M99                        raw=  76  wt=18.5534  slots=A-M  SAFE=0%
+    Reading: M391[?] + M99[?]
+
+  M178-M389-M15                   raw=  26  wt=16.4429  slots=A-A-T  SAFE=0%
+    Reading: M178[?] + M389[?] + M15[?]
+
+  M59-M211                        raw=  51  wt=16.1167  slots=A-T  SAFE=0%
+    Reading: M59[?] + M211[?]
+
+  M171-M59                        raw=  65  wt=15.9246  slots=A-A  SAFE=0%
+    Reading: M171[?] + M59[?]
+
+  M171-M59-M211                   raw=  20  wt=14.3167  slots=A-A-T  SAFE=0%
+    Reading: M171[?] + M59[?] + M211[?]
+
+  M245-M245                       raw=  60  wt=14.1969  slots=A-A  SAFE=0%
+    Reading: M245[?] + M245[?]
+
+  M336-M89-M211                   raw=  42  wt=14.1036  slots=A-A-T  SAFE=0%
+    Reading: M336[?] + M89[?] + M211[?]
+
+
+HONEST ASSESSMENT
+  Fully confirmed (all tokens SAFE):    0 sequences
+  Partially confirmed (some SAFE):      18 sequences
+  No phonetic anchor available:         32 sequences
+
+  The low SAFE% reflects the honest state of the field.
+  M342 (-an suffix) is the only anchor confirmed by two independent
+  sources in this Mahadevan integer corpus. All other phonetic
+  readings require a verified Mahadevan-to-Parpola crosswalk
+  before they can be promoted from UNKNOWN to PREDICTED or SAFE.
+  This is not a failure — it is the correct boundary.

@@ -1,0 +1,62 @@
+==============================================================
+  SYNTACTIC PARSER SUMMARY
+  Corpus:  2742 inscriptions
+  Signs:   398 unique  (398 classified)
+==============================================================
+
+SLOT DISTRIBUTION
+  Slot           Signs   % of classified
+  INITIAL           14              3.5%
+  MEDIAL            32              8.0%
+  TERMINAL          13              3.3%
+  AMBIGUOUS        339             85.2%
+
+THRESHOLDS USED (empirical, from paper proof anchors)
+  INITIAL   >= 70% initial_rate
+  TERMINAL  >= 70% terminal_rate
+  MEDIAL    >= 80% medial_rate
+  AMBIGUOUS = all others or count < 10
+
+BROKEN-SEAL CONTROL
+  Full corpus  — terminal slot at inscription end: 992/2742 = 36.2%
+  Truncated 10% (n=274) — terminal at cut point: 6/274 = 2.2%
+  Rate drop: 34.0 pp — confirms terminal slot is inscription-final, not positional artifact
+
+TOP INITIAL SIGNS (initial_rate >= 70%, count >= 10)
+    Sign   Count    Init%    Term%    Medi%
+  M119        13   100.0%     0.0%     0.0%
+  M95         60    93.3%     0.0%     6.7%
+  M264        10    90.0%     0.0%    10.0%
+  M41         16    87.5%     0.0%    12.5%
+  M150        46    80.4%     2.2%    17.4%
+  M63         10    80.0%    80.0%     0.0%
+  M267       312    79.5%     3.2%    17.3%
+  M210        22    77.3%     4.5%    18.2%
+  M205        24    75.0%     0.0%    25.0%
+  M177        20    75.0%    15.0%    10.0%
+
+TOP TERMINAL SIGNS (terminal_rate >= 70%, count >= 10)
+    Sign   Count    Term%    Init%    Medi%
+  M139        13    92.3%    15.4%     0.0%
+  M176       312    87.5%     0.3%    12.2%
+  M328       312    86.2%     5.8%     8.0%
+  M242        21    85.7%    14.3%     0.0%
+  M12         68    85.3%     1.5%    13.2%
+  M254        67    85.1%     4.5%    10.4%
+  M14         13    84.6%     0.0%    15.4%
+  M321        13    84.6%     0.0%    15.4%
+  M211       209    81.8%     0.0%    18.2%
+  M93         10    80.0%     0.0%    20.0%
+
+TOP MEDIAL SIGNS (medial_rate >= 80%, count >= 10)
+    Sign   Count    Medi%    Init%    Term%
+  M358        29   100.0%     0.0%     0.0%
+  M62         10   100.0%     0.0%     0.0%
+  M209        12   100.0%     0.0%     0.0%
+  M304        10   100.0%     0.0%     0.0%
+  M347        93    98.9%     0.0%     1.1%
+  M123       159    98.1%     0.0%     1.9%
+  M8          85    97.7%     2.4%     0.0%
+  M407        39    97.4%     0.0%     2.6%
+  M99        534    97.0%     0.4%     2.6%
+  M97         79    96.2%     0.0%     3.8%
