@@ -17,6 +17,7 @@
 \usepackage{array}
 \usepackage{tabularx}
 \usepackage{url}
+\usepackage{float}
 
 \geometry{margin=1in}
 \onehalfspacing
@@ -476,11 +477,9 @@ From the full positional profile (initial rate, terminal rate, medial
 rate per sign across all occurrences), three empirical functional
 classes emerge with no linguistic labelling applied:
 
-\paragraph{Terminal-biased signs ($\geq$70\% terminal rate, $\geq$10 occurrences).}
-
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
-\caption{Terminal-biased signs (top 8 by terminal rate)}
+\caption{Terminal-biased signs ($\geq$70\% terminal rate, $\geq$10 occurrences; top 8)}
 \begin{tabular}{lrrr}
 \toprule
 Sign & Count & Terminal\% & Initial\% \\
@@ -496,11 +495,9 @@ M342 & 1,190 & 68.0\% & 0.1\% \\
 \end{tabular}
 \end{table}
 
-\paragraph{Initial-biased signs ($\geq$70\% initial rate, $\geq$10 occurrences).}
-
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
-\caption{Initial-biased signs (top 6 by initial rate)}
+\caption{Initial-biased signs ($\geq$70\% initial rate, $\geq$10 occurrences; top 6)}
 \begin{tabular}{lrrr}
 \toprule
 Sign & Count & Initial\% & Terminal\% \\
@@ -515,11 +512,9 @@ M267 & 312 &  79.5\% &  3.2\% \\
 \end{tabular}
 \end{table}
 
-\paragraph{Medial-locked signs ($\geq$80\% medial rate, $\geq$10 occurrences).}
-
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
-\caption{Medial-locked signs (top 6 by medial rate)}
+\caption{Medial-locked signs ($\geq$80\% medial rate, $\geq$10 occurrences; top 6)}
 \begin{tabular}{lrrr}
 \toprule
 Sign & Count & Medial\% & Terminal\% \\
@@ -912,19 +907,19 @@ should use M342 for the high-frequency terminal marker. \\
 All code is available at \url{https://github.com/gkarun876/IVS} (MIT License).
 
 \begin{lstlisting}[language=bash, basicstyle=\small\ttfamily, frame=single,
-                   caption={Quick start}]
+                   caption={Quick start}, breaklines=true]
 # Parse corpus
-python parse_mahadevan.py          # produces data/mahadevan_corpus.json
+python parse_mahadevan.py       # -> data/mahadevan_corpus.json
 
 # Run all 6 proofs
-python run_proofs_v2.py            # Proofs 1-4, results/v2/proof_results.txt
-python grammar_engine.py           # Proof 5, results/v2/grammar_summary.txt
-python validation_mark_test.py     # Proof 6, results/v2/cross_site_consistency.txt
+python run_proofs_v2.py         # Proofs 1-4, results/v2/
+python grammar_engine.py        # Proof 5, grammar_summary.txt
+python validation_mark_test.py  # Proof 6, cross_site_*.txt
 
 # Legacy pilot-corpus tests
-python indus_decode.py             # original 41-seal proofs
-python typology_test.py            # Agglutinative vs Sanskrit
-python adversarial_defense.py      # Defenses D1-D7
+python indus_decode.py          # original 41-seal proofs
+python typology_test.py         # Agglutinative vs Sanskrit
+python adversarial_defense.py   # Defenses D1-D7
 \end{lstlisting}
 
 % ============================================================
