@@ -254,6 +254,21 @@ M342 is the dominant high-frequency terminal sign confirmed by
 1,190 occurrences in this corpus.
 All analysis in this paper uses M342 consistently.
 
+\paragraph{Sign notation and bias invariance.}
+Sign notation is dictated entirely by data provenance: the
+machine-readable export natively encodes signs using Mahadevan (1977)
+integers.
+Translating to an alternate sign list (e.g., Wells 2006) prior to
+computation would introduce unnecessary crosswalk mapping errors.
+Because all statistical tests in this paper measure positional
+distributions and transition probabilities between integer states,
+the results are strictly invariant to sign-label nomenclature---relabelling
+M342 as Wells~520 or any other identifier leaves every entropy value,
+$p$-value, and $Z$-score unchanged.
+Cross-system validation is achieved by mapping final results to
+Wells/ICIT identifiers (Table~\ref{tab:crosssys}), not by
+preprocessing the corpus through a secondary sign list.
+
 % ============================================================
 \section{Proof 1 --- Suffix Theorem}
 \label{sec:proof1}
