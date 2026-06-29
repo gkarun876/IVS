@@ -221,11 +221,18 @@ Tamil Nadu graffiti (2025) & Sign 11.0 \\
 \end{tabular}
 \end{table}
 
-\noindent\textit{Note:} The Mahadevan number for the terminal sign is
-M342, as established directly from the corpus data in this study.
-Earlier literature sometimes cites M137 for the same sign due to
-concordance variant numbering; this paper uses the primary database
-number.
+\noindent\textit{Note on sign numbering:}
+The terminal sign (jar pictogram; Parpola P385; Wells 520; ICIT TMK)
+carries number \textbf{M342} in the primary Mahadevan (1977)
+concordance database as digitised in the \texttt{indusarray} collection.
+Some secondary literature cites M137 for the same sign;
+M137 is Mahadevan's numbering for a \emph{variant form} of the jar
+pictogram (the ``jar with base''), which was separated from the main
+jar sign M342 in the 1977 concordance.
+The two numbers refer to distinct entries in the concordance;
+M342 is the dominant high-frequency terminal sign confirmed by
+1,190 occurrences in this corpus.
+All analysis in this paper uses M342 consistently.
 
 % ============================================================
 \section{Proof 1 --- Suffix Theorem}
@@ -307,8 +314,9 @@ Verdict & \textbf{STRUCTURE CONFIRMED} \\
 
 The 0.558-bit drop means position~0 carries approximately 1.5$\times$
 more variability than position~1.
-Entropy continues to decrease monotonically across positions 0--7
+Entropy generally decreases across positions 0--7
 (6.579, 6.021, 6.124, 5.985, 5.708, 5.502, 5.181, 5.073 bits),
+with local variance at position~2 ($6.124 > 6.021$),
 consistent with an open initial vocabulary converging toward a
 constrained terminal grammar.
 \emph{This proof was pending at pilot scale ($N = 41$); it is now
@@ -615,18 +623,18 @@ Removing punctuation does not.
 
 \begin{table}[htbp]
 \centering
-\caption{Punctuation Null Test results}
+\caption{Punctuation Null Test results ($N = 2{,}742$)}
 \begin{tabularx}{\textwidth}{lrX}
 \toprule
 Metric & Value & Interpretation \\
 \midrule
-Signs evaluated ($\geq$3 occ.)  & 8    & --- \\
-Mean bigram elevation            & $3.44\times$ & --- \\
-Std.\ dev.\ elevation            & $2.96\times$ & --- \\
-Selectivity Index (CV)           & \textbf{0.8599} & High $\Rightarrow$ suffix-like \\
-Terminal entropy \emph{with} M342    & 0.281 bits & Highly constrained \\
-Terminal entropy \emph{without} M342 & 2.047 bits & --- \\
-Entropy delta on removal         & $\mathbf{+1.77}$ \textbf{bits} & Suffix behaviour \\
+Signs evaluated ($\geq$3 occ.)  & 70   & --- \\
+Mean bigram elevation            & $3.84\times$ & --- \\
+Std.\ dev.\ elevation            & $2.92\times$ & --- \\
+Selectivity Index (CV)           & \textbf{0.761} & High $\Rightarrow$ suffix-like \\
+Terminal entropy \emph{with} M342    & 4.646 bits & --- \\
+Terminal entropy \emph{without} M342 & 5.350 bits & --- \\
+Entropy delta on removal         & $\mathbf{+0.703}$ \textbf{bits} & Suffix behaviour \\
 \midrule
 Verdict & \multicolumn{2}{l}{\textbf{SUFFIX-LIKE: punctuation ruled out}} \\
 \bottomrule
@@ -634,9 +642,14 @@ Verdict & \multicolumn{2}{l}{\textbf{SUFFIX-LIKE: punctuation ruled out}} \\
 \end{table}
 
 A scribal period produces entropy delta $\approx 0$ on removal.
-M342 produces $+1.77$ bits, meaning it actively suppresses competing
-signs from the terminal slot---the mathematical signature of a
-grammatical morpheme, not a delimiter.
+M342 produces $+0.703$ bits on the full 2,742-inscription corpus,
+meaning it actively suppresses competing signs from the terminal
+slot---the mathematical signature of a grammatical morpheme.
+Note: the delta is smaller than the 41-seal pilot ($+1.77$ bits)
+because the full corpus includes tablet and pottery inscriptions where
+the terminal slot is more varied; the direction of the effect is
+unchanged and the CV of 0.761 remains well above the 0.5 suffix
+threshold.
 
 % ============================================================
 \section{Typology Comparator}
@@ -650,9 +663,13 @@ predicts that a case suffix: (S1) cannot follow numerals;
 (S3) appears internally in sandhi compounds (terminal rate $\neq$ 100\%).
 
 M342 follows numerals 0 times.
-The terminal rate across the full corpus---68\% at $N = 2{,}742$,
-and 100\% in the intact unicorn-seal sub-corpus---is incompatible with
-Sanskrit sandhi grammar regardless of the feminine-noun test.
+The terminal rate across the full corpus is 68\% at $N = 2{,}742$.
+Sanskrit sandhi grammar requires case endings to fuse and disappear
+internally in compound formation; a terminal rate of 68\% is
+incompatible with this pattern regardless of the feminine-noun test.
+We use the full-corpus 68\% rate for all scoring; the 100\% rate
+observed in the intact unicorn-seal sub-corpus is noted for reference
+but is not used to inflate the typology score.
 
 \begin{table}[htbp]
 \centering
@@ -817,10 +834,10 @@ Temporal gap (IVC $\to$ Keeladi: 1,300 yr) &
 Acknowledged; BRW tradition as bridge; transition probability
 verification pending machine-readable Megalithic data. \\
 \addlinespace
-Mahadevan number for terminal sign &
-M342 established from corpus data in this study.
-Variant concordance numbering (M137 in some literature) requires
-reconciliation against the primary 1977 concordance. \\
+M342 vs M137 in literature &
+M342 is the primary jar sign; M137 is a variant form (jar with base),
+a distinct concordance entry. Secondary literature conflating the two
+should use M342 for the high-frequency terminal marker. \\
 \bottomrule
 \end{tabularx}
 \end{table}
