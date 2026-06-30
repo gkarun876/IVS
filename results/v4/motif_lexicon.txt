@@ -125,3 +125,33 @@ KEY FINDINGS:
   Formula: [M267, M99, M113, M342] repeated 9 times on Lothal elephant seals
   M63: 792x enrichment on Rhino but only 2 unique sequences — frozen formula
   Elephant = Golden Middle Ground: 39 inscriptions, 31 unique sequences, 37.9x enrichment
+======================================================================
+  GEOGRAPHIC ANALYSIS
+======================================================================
+
+M113 SITE DISTRIBUTION:
+  Lothal formula:       [M267, M99, M113, M342]  — 9 inscriptions (identical)
+  Harappa formula:      [M263, M343, M113, M342]  — 3 inscriptions (identical)
+  Mohenjo-daro:         variable                  — 3 inscriptions
+
+  CORRECT INTERPRETATION: Both cities kept the same grammatical frame
+  (Opener + filler + M113 + Terminal). M113 is the stable elephant-domain
+  noun. The surrounding signs are city-specific administrative wrappers —
+  localized stamp variation, NOT linguistic dialect. N=3 for Harappa is
+  insufficient to claim dialect. Do not use that word in a paper.
+
+M172-M304 GEOGRAPHIC LOCK:
+  All 7 inscriptions: site=Kalibangan, identical formula
+  [M1, M1, M121, M121, M99, M172, M304, M307]
+  This is a hyper-localized administrative stamp — one city, one formula.
+  Proves sign compounds were not empire-wide but city-specific.
+
+UNICORN STANDARD vs VARIANT — no geographic split:
+  Both distributed Mohenjo-daro >> Harappa >> others empire-wide.
+  Variant unicorn is not a regional phenomenon.
+
+SUMMARY OF COMPLETED FINDINGS:
+  1. Grammar:   Z=50.12, directionally robust (p=1.03e-54)
+  2. Network:   M342 and M99 are hub signs
+  3. Lexicon:   M113 = elephant-domain MEDIAL noun (37.9x enrichment)
+  4. Geography: M172-M304 locked to Kalibangan; M113 stable across cities
