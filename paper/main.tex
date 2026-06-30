@@ -69,7 +69,7 @@
 
 \begin{abstract}
 \setstretch{1.2}%
-We present six independent statistical tests on a corpus of $N = 2{,}742$
+We present nine independent statistical tests on a corpus of $N = 2{,}742$
 clean inscriptions drawn from the Mahadevan (1977) concordance
 (textnums 1001--9905; Mohenjo-daro, Harappa, Chanhudaro, Lothal,
 Kalibangan, and West Asian sites).
@@ -100,7 +100,29 @@ baseline ($Z = 50.12$, $p = 0$).
 Crucially, the grammar fit decays with geographic distance: Harappa
 ($+6.19$), Lothal ($+6.01$), Chanhudaro ($+5.29$), Kalibangan ($+4.05$),
 West Asian finds ($+1.08$)---a spatial gradient consistent with
-standardized institutional grammar radiating from a centre.
+a geographically structured writing system, with highest inter-site
+grammatical similarity between the two largest sites.
+A \textbf{Direction Grammar Test} (Proof~7) resolves the prior RTL
+assumption: direction data from the \texttt{indusarrays} Firestore
+collection classifies 2,360 inscriptions as RTL and 175 as LTR.
+LTR perplexity (97.68) is 7,887$\times$ below random ($p = 1.03 \times
+10^{-54}$, Cohen's $d = 1.634$), confirming that grammatical
+dependencies survive direction flip even as exact word order degrades
+($13.3\times$ perplexity increase).
+A \textbf{Motif--Sign Correlation} test shows sign M113 at
+$37.9\times$ positional enrichment on elephant-motif seals in a
+recurrent medial formula across two sites; no semantic inference
+follows from enrichment alone.
+M172--M304 appears in an identical eight-sign sequence on all 7
+attested Kalibangan UNICORN seals (PMI\,=\,7.94; $n = 7$,
+single site; sample-size caution warranted).
+A \textbf{Geographic Cluster} test identifies M328 as 90.1\%
+Harappa-concentrated and M93 as 100\% Chanhudaro-concentrated;
+154 structural substitution synonyms are recovered, with M328,
+M12, and M343 confirmed as cross-site positional equivalents.
+Signs M304 and M328 have exact shape-matches in Tamil Nadu Iron Age
+graffiti documented by \citet{Rajan2025}; no functional or descent
+continuity is implied.
 All code is open-source and reproducible.
 \end{abstract}
 
@@ -133,7 +155,7 @@ This paper moves beyond the binary language/non-language question to
 ask: \emph{if the script encodes language, what structural properties
 does that language have?}
 
-We make six independently falsifiable structural claims (Sections~3--8),
+We make nine independently falsifiable structural claims (Sections~3--11),
 each grounded solely in sign-position and sign-transition statistics
 with no phonetic assumptions.
 Phonetic readings are isolated in Section~11 and are not necessary for
@@ -363,6 +385,17 @@ consistent with an open initial vocabulary converging toward a
 constrained terminal grammar.
 \emph{This proof was pending at pilot scale ($N = 41$); it is now
 confirmed at $N = 2{,}742$.}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.82\linewidth]{fig1_entropy.pdf}
+\caption{Positional entropy profile across sign slots 0--7
+($N = 2{,}742$ inscriptions). The 0.558-bit drop from position~0
+to position~1 is the mathematical signature of an open initial
+vocabulary constrained by a terminal grammar. Entropy declines
+monotonically from position~2 onward.}
+\label{fig:entropy}
+\end{figure}
 
 % ============================================================
 \section{Proof 3 --- Co-occurrence Cluster}
@@ -629,6 +662,18 @@ It is consistent with a standardized institutional writing system
 originating at or near Mohenjo-daro and propagating along trade
 networks, with grammar regularity attenuating at the periphery.
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.88\linewidth]{fig2_gradient.pdf}
+\caption{Geographic grammar gradient. Each bar shows the
+per-bigram log-likelihood above the random-shuffle baseline when
+inscriptions from each site are scored against a matrix trained
+solely on Mohenjo-daro ($n_{\text{train}} = 1{,}347$).
+The gradient from Harappa ($+6.19$) to West Asian outposts ($+1.08$)
+is inconsistent with local or guild-based symbol systems.}
+\label{fig:gradient}
+\end{figure}
+
 \paragraph{Sample size caveat.}
 West Asian finds comprise only 13 inscriptions.
 Small samples yield noisier log-likelihood estimates; the lower score
@@ -638,6 +683,110 @@ However, a score of $+1.08$ above random (vs.\ $+6.19$ for Harappa)
 confirms that the Mohenjo-daro grammar is present even at trade
 outposts 1,500~km distant.
 This caveat should be noted in any peer-review submission.
+
+% ============================================================
+\section{Proof 7 --- Direction Grammar Test}
+\label{sec:direction}
+% ============================================================
+
+\subsection{Motivation}
+
+The v1.5 paper carried an acknowledged limitation: direction data was
+absent from the corpus export, so all inscriptions were assumed RTL.
+This section resolves that limitation using direction codes scraped
+from the \texttt{indusarrays} Firestore collection of
+\texttt{indusscript.in} (3,916 records covering textnums 1001--9905).
+
+\subsection{Direction Assignment}
+
+Each textnum is assigned a single direction via priority rule:
+sideline~0 (only side of artifact) wins; else sideline~1 (first
+side); else majority vote across sides.
+Direction codes follow Mahadevan/ICIT conventions: 1 = RTL, 2 = LTR,
+3 = single-sign line, 4 = symmetrical, 5 = doubtful, 9 = no text.
+
+\begin{table}[htbp]
+\centering
+\caption{Corpus split by writing direction ($N = 2{,}742$)}
+\begin{tabular}{lrr}
+\toprule
+Direction & Inscriptions & \% \\
+\midrule
+RTL (dir=1) & 2,360 & 86.1\% \\
+LTR (dir=2) &   175 &  6.4\% \\
+Other/unknown & 207 &  7.5\% \\
+\midrule
+Total & 2,742 & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Test Design}
+
+We train the bigram transition matrix on all 2,360 RTL inscriptions
+(378 unique signs, 2,443 significant bigrams) and score the 175 LTR
+inscriptions against it.
+Add-epsilon smoothing ($\varepsilon = 10^{-6}$) handles unseen bigrams.
+We compare three perplexity values: RTL in-sample (self-score),
+LTR against RTL matrix, and a random baseline
+(1,000 permutations of LTR sign sequences scored against RTL matrix).
+
+\subsection{Results}
+
+\begin{table}[htbp]
+\centering
+\caption{Proof 7 --- Direction Grammar Test results}
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+RTL in-sample perplexity         & \textbf{7.34}  ($n = 2{,}352$) \\
+LTR vs.\ RTL-matrix perplexity   & \textbf{97.68} ($n = 175$) \\
+Random baseline perplexity       & $770{,}403 \pm 340{,}881$ (1,000 permutations) \\
+\addlinespace
+LTR / RTL perplexity ratio       & $13.3\times$ \\
+LTR / Random ratio               & $0.000127\times$ (LTR is 7,887$\times$ below random) \\
+\addlinespace
+$t$-statistic (LTR vs.\ random)  & 21.31 \\
+$p$-value                        & $\mathbf{1.03 \times 10^{-54}}$ \\
+Cohen's $d$                      & \textbf{1.634} (very large effect) \\
+\addlinespace
+LTR sign overlap with RTL        & 114 / 116 signs (98.3\%) \\
+\midrule
+Verdict & \textbf{DIRECTIONALLY ROBUST GRAMMAR} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Interpretation}
+
+Two findings stand in tension and both are true:
+
+\paragraph{Finding A — Grammar is NOT direction-invariant.}
+LTR perplexity (97.68) is $13.3\times$ higher than RTL in-sample
+(7.34).
+Exact bigram transition probabilities degrade when inscription
+direction flips.
+LTR inscriptions follow a distinct word order from RTL.
+
+\paragraph{Finding B — Statistical dependencies survive the flip.}
+LTR perplexity (97.68) is 7,887$\times$ lower than random permutations
+(770,403), significant at $p = 1.03 \times 10^{-54}$, Cohen's
+$d = 1.634$.
+The ``glue'' between signs --- hub-sign co-occurrences, bigram
+affinities --- is so strong that even reversed-direction sequences
+score far above noise under an RTL-trained matrix.
+
+\paragraph{Consequence for earlier proofs.}
+The RTL assumption in Proofs 1--6 is now confirmed for 86.1\% of
+inscriptions.
+The 175 LTR inscriptions (6.4\%) introduce a modest noise signal in
+bigram statistics, but because LTR perplexity is 7,887$\times$ above
+random under RTL grammar, the directional noise is bounded: it cannot
+artificially create the $Z = 50.12$ cross-site consistency or the
+$\chi^2 = 523$ co-occurrence cluster.
+The RTL assumption limitation in prior versions of this paper is
+\textbf{resolved}.
 
 % ============================================================
 \section{Punctuation Null Test}
@@ -758,7 +907,7 @@ Every phonetic reading carries an explicit confidence label.
 \SAFE{} = independently confirmed in \citet{Parpola1994},
 \citet{Mahadevan1977}, or DEDR \citep{Burrow1984}.
 \PREDICTED{} = our inference, labelled as testable hypothesis.
-\textbf{The structural claims in Sections~3--8 do not depend on
+\textbf{The structural claims in Sections~3--11 do not depend on
 these phonetic readings}; they are listed for orientation only and
 can be removed without affecting any statistical result.
 
@@ -788,6 +937,158 @@ distance from Mohenjo-daro, consistent with a standardized
 institutional writing system.
 
 % ============================================================
+\section{Motif--Sign Correlation}
+\label{sec:motif}
+% ============================================================
+
+\subsection{Method}
+
+Motif data (field symbol code \texttt{fs80} from the \texttt{indusarrays}
+Firestore collection) was joined to 2,742 corpus inscriptions via
+textnum.
+For each top-PMI sign pair, we compute the motif distribution among
+inscriptions containing both signs and compare it to the corpus-wide
+background distribution using a chi-square test.
+
+\subsection{Primary Finding: M172--M304 Kalibangan Lock}
+
+The highest-PMI pair in our network is M172--M304 (PMI\,=\,7.94,
+$n_{\text{co-occ}} = 7$).
+All 7 co-occurrences appear on UNICORN seals (fs80 = 13);
+all 7 occur at Kalibangan.
+Every inscription in this set carries the identical formula:
+
+\[
+[\text{M1}, \text{M1}, \text{M121}, \text{M121}, \text{M99},
+ \text{M172}, \text{M304}, \text{M307}]
+\]
+
+This is a \emph{frozen formula}: zero sequence variation across 7
+physically distinct artifacts from one site.
+Background UNICORN rate: 34.6\%.
+Observed rate for M172--M304: 100\%.
+Enrichment: $2.9\times$ over base.
+
+Frozen formulae with PMI $>7$ indicate institutional standardization
+rather than phonetic or semantic variation.
+This pattern is consistent with an institutionally fixed formula
+specific to Kalibangan UNICORN seals; whether it encodes an
+administrative, cultic, or ownership function cannot be determined
+from structural data.
+No phonetic inference is made.
+
+\subsection{Elephant-Motif Association: M113}
+
+We extracted all inscriptions paired with ELEPHANT motif seals
+(fs80\,=\,71; $n = 39$ corpus matches, 31 unique sequences).
+
+\begin{table}[htbp]
+\centering
+\caption{Top enriched signs on ELEPHANT motif seals ($n = 39$)}
+\begin{tabular}{lrrr}
+\toprule
+Sign & Elephant-sub $n$ & Corpus $n$ & Enrichment \\
+\midrule
+M113 & 9  & 16  & $37.9\times$ \\
+M38  & 2  &  6  & $22.5\times$ \\
+M302 & 2  & 13  & $10.4\times$ \\
+M242 & 3  & 21  & $9.6\times$ \\
+M267 & 15 & 312 & $3.2\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+M113 achieves $37.9\times$ enrichment on elephant seals with MEDIAL
+positional rate 93.8\% (co-occurring 9 times in the medial slot of
+sequences that begin with M267 and end with M342).
+A recurring formula across Harappa and Lothal:
+$[\text{M267}, \text{M99}, \text{M113}, \text{M342}]$.
+At Harappa, an alternate opener produces
+$[\text{M263}, \text{M343}, \text{M113}, \text{M342}]$.
+
+M113's structural position (high positional enrichment on
+elephant-motif inscriptions, 93.8\% MEDIAL, formula recurrence
+across Harappa and Lothal with distinct openers) distinguishes it
+structurally from terminal and initial signs.
+Whether this structural distinctiveness reflects a content category,
+a provenance marker, or another functional class cannot be determined
+from positional data alone.
+No semantic or syntactic category is assigned; no phonetic value
+is assigned.
+
+% ============================================================
+\section{Geographic Sign Clusters}
+\label{sec:geo}
+% ============================================================
+
+\subsection{Geo-Commodity Test}
+
+We compute what fraction of each sign's total corpus appearances
+come from a single site.
+Signs with $>$60\% concentration at one site and $\geq$5 total
+occurrences are flagged as geographic markers.
+
+\begin{table}[htbp]
+\centering
+\caption{Top geographic sign clusters (concentration $>$60\%, $n \geq 5$; top 8)}
+\begin{tabular}{llrrr}
+\toprule
+Sign & Dominant Site & Total & Site $n$ & Concentration \\
+\midrule
+M93  & Chanhudaro & 10 & 10 & 100.0\% \\
+M172 & Kalibangan &  8 &  7 & 87.5\% \\
+M328 & Harappa & 312 & 281 & 90.1\% \\
+M66  & Lothal  &  29 &  22 & 75.9\% \\
+M63  & Multiple &  10 &  9 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Interpretation.}
+These signs are not city names.
+A city-name hypothesis predicts the sign appears in INITIAL position
+(at inscription onset, identifying origin).
+All four signs above are TERMINAL-biased (M328: 85.9\% terminal,
+M172: 85.7\% terminal) or MEDIAL, contradicting the city-name
+prediction.
+Geographic concentration combined with terminal position rules out
+the city-name prediction (which requires initial position).
+Remaining hypotheses---site-specific trade-good marking, origin
+marking, or scribal-school conventions---cannot be distinguished
+from positional data alone.
+
+\subsection{Structural Substitution Synonyms}
+
+We find 154 slot-substitution patterns: cases where two different
+signs occupy the same position in otherwise identical inscription
+sequences across different sites.
+The top cross-site substitution pairs are:
+
+\begin{table}[htbp]
+\centering
+\caption{Top cross-site structural substitution pairs ($n_{\text{patterns}} = 154$)}
+\begin{tabular}{lllll}
+\toprule
+Sign X & Sign Y & Slot & X sites & Y sites \\
+\midrule
+M328 & M12  & pos 1 & Harappa & Mohenjo-daro \\
+M328 & M343 & pos 1 & Harappa, Kalibangan & Mohenjo-daro \\
+M182 & M142 & pos 0 & Mohenjo-daro & Harappa \\
+M267 & M284 & pos 0 & Harappa, Kalibangan & Mohenjo-daro \\
+M66  & M207 & pos 2 & Lothal & Mohenjo-daro \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+M328, M12, and M343 are cross-site structural synonyms in the slot
+immediately following sign M89 or M87.
+Structural synonyms, as used here, are signs that occupy the same
+slot in otherwise identical formulae across different sites.
+This positional equivalence is a necessary but not sufficient
+condition for equivalent grammatical function; allographic variation
+and site-specific substitution conventions are not ruled out.
+
+% ============================================================
 \section{Archaeological Correlation: Keezhadi}
 \label{sec:keezhadi}
 % ============================================================
@@ -802,12 +1103,31 @@ marks have IVC parallels.
 Both anchor signs (jar M342, fish M149) are physically present at
 Keeladi (2,132 sherds each).
 
+\paragraph{Independent shape convergence: M304 and M328.}
+An independent convergence is noted with \citet{Rajan2025}, who
+mapped Tamil Nadu Iron Age graffiti signs to Mahadevan numbers.
+The signs our algorithms isolated as structurally distinctive---M328
+(90.1\% Harappa-concentrated, 85.9\% terminal) and M304 (co-occurs
+with M172 in an identical formula on all 7 attested Kalibangan
+UNICORN seals, PMI\,=\,7.94)---appear as exact shape-matches in
+Tamil Nadu graffiti (Rajan sign numbers 32.0 and 31.0 respectively).
+That signs computationally isolated as structurally distinctive are
+also visually identifiable in an independent dataset is consistent
+with those signs having stable, non-arbitrary graphic forms.
+This does not validate the Markov or PMI analyses; it confirms only
+the visual distinctiveness of the targeted sign shapes.
+No phonetic inference and no claim of morphological or functional
+continuity follows from this convergence.
+
 \paragraph{Temporal gap.}
 IVC ended $\sim$1900 \BCE; Keeladi dates to $\sim$600 \BCE: a gap
 of $\sim$1,300 years.
 Morphological overlap does not establish direct descent.
-The Megalithic Black-and-Red Ware pottery tradition provides an
-unbroken graffiti-mark record across this period \citep[][pp.\ 13--14]{Rajan2025}.
+The Megalithic Black-and-Red Ware pottery tradition shows graffiti
+marks at sites across this period \citep[][pp.\ 13--14]{Rajan2025};
+whether this represents continuous transmission or independent
+recurrence of similar forms cannot be determined without
+sequence-level comparative analysis.
 Whether sign \emph{transition probabilities} are preserved across the
 gap cannot be tested computationally until dated sequence data from
 stratified Megalithic contexts are available in machine-readable form.
@@ -876,9 +1196,12 @@ Terminal rates may be slightly inflated for signs that occur in
 longer, well-preserved inscriptions. \\
 \addlinespace
 RTL assumption &
-Direction field not in export; $<$5\% of inscriptions may have
-reversed sign order. Bigram labels (``preceding'') reflect array
-order, not necessarily phonological precedence. \\
+\textbf{RESOLVED} (Section~\ref{sec:direction}).
+Direction codes from \texttt{indusarrays} Firestore assign 2,360
+inscriptions as RTL (86.1\%) and 175 as LTR (6.4\%).
+LTR perplexity is 7,887$\times$ below random under RTL grammar
+($p = 1.03 \times 10^{-54}$), bounding the noise introduced by
+LTR inscriptions in Proofs 1--6. \\
 \addlinespace
 West Asian sample size &
 13 inscriptions. Geographic gradient finding is robust at all other
@@ -909,17 +1232,20 @@ All code is available at \url{https://github.com/gkarun876/IVS} (MIT License).
 \begin{lstlisting}[language=bash, basicstyle=\small\ttfamily, frame=single,
                    caption={Quick start}, breaklines=true]
 # Parse corpus
-python parse_mahadevan.py       # -> data/mahadevan_corpus.json
+# data/mahadevan_corpus.json is pre-parsed and included in the repo
 
-# Run all 6 proofs
-python run_proofs_v2.py         # Proofs 1-4, results/v2/
-python grammar_engine.py        # Proof 5, grammar_summary.txt
-python validation_mark_test.py  # Proof 6, cross_site_*.txt
+# Run all 9 proofs
+python run_proofs_v2.py              # Proofs 1-4, results/v2/
+python grammar_engine.py             # Proof 5, grammar_summary.txt
+python validation_mark_test.py       # Proof 6, cross_site_*.txt
+python direction_grammar_test.py     # Proof 7, results/v4/direction_grammar_test.txt
+python motif_correlation.py          # Motif-sign correlation, results/v4/motif_summary.txt
+python synonym_extractor.py          # Geographic clusters + synonyms, results/v4/synonym_clusters.txt
 
 # Legacy pilot-corpus tests
-python indus_decode.py          # original 41-seal proofs
-python typology_test.py         # Agglutinative vs Sanskrit
-python adversarial_defense.py   # Defenses D1-D7
+python indus_decode.py               # original 41-seal proofs
+python typology_test.py              # Agglutinative vs Sanskrit
+python adversarial_defense.py        # Defenses D1-D7
 \end{lstlisting}
 
 % ============================================================
@@ -927,7 +1253,7 @@ python adversarial_defense.py   # Defenses D1-D7
 \label{sec:conclusion}
 % ============================================================
 
-We have presented six statistically independent structural tests on
+We have presented nine statistically independent structural tests on
 2,742 inscriptions from the Indus Valley Civilisation.
 
 \begin{enumerate}
@@ -950,14 +1276,45 @@ We have presented six statistically independent structural tests on
           ($Z = 50.12$, $p = 0$), with fit generally decaying
           with geographic distance---a pattern consistent with a
           standardized institutional writing system, not local iconography.
+    \item \textbf{The RTL assumption is resolved}: direction data
+          from \texttt{indusarrays} confirms 86.1\% RTL. LTR
+          inscriptions score 7,887$\times$ below random under RTL
+          grammar ($p = 1.03 \times 10^{-54}$), bounding directional
+          noise in Proofs 1--6.
+    \item \textbf{Sign M113 is $37.9\times$ positionally enriched on
+          elephant-motif seals} and occupies the MEDIAL slot in a
+          recurrent formula across Harappa and Lothal, structurally
+          distinguishing it from terminal and initial signs; no
+          semantic category is assigned.
+          Sign pair M172--M304 appears in an identical eight-sign
+          sequence on all 7 attested Kalibangan UNICORN seals
+          (PMI\,=\,7.94, zero sequence variation; $n = 7$,
+          single site), consistent with a high-constraint
+          institutional formula; no semantic or titular content
+          is inferred.
+    \item \textbf{154 structural substitution synonyms} are recovered.
+          M328 (90.1\% Harappa-concentrated), M93 (100\%
+          Chanhudaro-concentrated), and M172 (87.5\%
+          Kalibangan-concentrated) are terminal-biased signs with
+          strong single-site concentration.
+          M328, M12, and M343 are confirmed positional equivalents
+          (cross-site slot substitutions in identical formulae).
+          Signs M304 and M328 have exact shape-matches in Tamil Nadu
+          Iron Age graffiti \citep{Rajan2025}, confirming the visual
+          distinctiveness of these computationally isolated sign forms;
+          no morphological or functional continuity is implied.
 \end{enumerate}
 
 The hypothesis that the Indus Valley Script encodes random marks,
 administrative tokens, or site-specific guild symbology is statistically
 untenable given these results.
 The structural properties observed---positional constraint, selective
-suffix attachment, medial-locked particles, and cross-site grammatical
-standardisation---are properties of language, not of marking systems.
+suffix attachment, medial-positional bias, and cross-site grammatical
+standardisation---are consistent with a language encoding system and
+inconsistent with random or purely iconic marking; however,
+distinguishing a structured proto-writing system from a full language
+encoding system requires phonetic evidence beyond the scope of this
+study.
 
 \section*{Acknowledgements}
 

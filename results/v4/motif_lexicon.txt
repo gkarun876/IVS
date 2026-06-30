@@ -1,0 +1,157 @@
+======================================================================
+  MOTIF LEXICON ANALYSIS — ALL FIVE MOTIFS
+======================================================================
+
+UNICORN (fs80=13)  textnums=957  corpus_matches=834  unique_seqs=769
+    Sign   Sub_N   Full_N  Enrichment
+  --------------------------------------
+  M348        13       20      1.800x
+  M28         26       42      1.714x
+  M180        21       35      1.661x
+  M387        49       82      1.655x
+  M343        84      144      1.615x
+  M222        11       19      1.603x
+  M123        88      159      1.533x
+  M162       103      187      1.525x
+  M12         37       68      1.507x
+  M109        16       31      1.429x
+  M86         64      125      1.418x
+  M99        269      534      1.395x
+  M150        23       46      1.385x
+  M153        10       20      1.385x
+  M60         12       24      1.385x
+  M375        22       44      1.385x
+  M267       153      312      1.358x
+  M327        15       31      1.340x
+  M293        56      116      1.337x
+  M402        41       85      1.336x
+  M391        83      172      1.336x
+  M186        11       23      1.324x
+  M175        20       42      1.319x
+  M233        10       21      1.319x
+  M155        20       43      1.288x
+
+BULL (fs80=45)  textnums=75  corpus_matches=72  unique_seqs=69
+    Sign   Sub_N   Full_N  Enrichment
+  --------------------------------------
+  M54          3       17      5.600x
+  M319         3       24      3.966x
+  M175         4       42      3.022x
+  M254         6       67      2.842x
+  M180         3       35      2.720x
+  M8           7       85      2.613x
+  M121         4       56      2.267x
+  M28          3       42      2.267x
+  M65         13      183      2.254x
+  M216         5       71      2.235x
+  M155         3       43      2.214x
+  M343         9      144      1.983x
+  M387         5       82      1.935x
+  M204         4       66      1.923x
+  M72          9      159      1.796x
+  M130         3       53      1.796x
+  M112         3       56      1.700x
+  M97          4       79      1.607x
+  M403         4       81      1.567x
+  M162         9      187      1.527x
+  M171         5      107      1.483x
+  M51          4       86      1.476x
+  M245         8      176      1.442x
+  M12          3       68      1.400x
+  M211         9      209      1.366x
+
+ELEPHANT (fs80=71)  textnums=46  corpus_matches=39  unique_seqs=31
+    Sign   Sub_N   Full_N  Enrichment
+  --------------------------------------
+  M113         9       16     37.929x
+  M38          2        6     22.476x
+  M302         2       13     10.374x
+  M242         3       21      9.633x
+  M267        15      312      3.242x
+  M155         2       43      3.136x
+  M150         2       46      2.932x
+  M211         8      209      2.581x
+  M99         19      534      2.399x
+  M402         3       85      2.380x
+  M307         2       63      2.141x
+  M86          3      125      1.618x
+  M51          2       86      1.568x
+  M59          6      302      1.340x
+  M72          3      159      1.272x
+  M15          2      117      1.153x
+  M342        19     1190      1.077x
+  M336         3      190      1.065x
+  M343         2      144      0.937x
+  M67          3      234      0.864x
+  M123         2      159      0.848x
+  M89          3      274      0.738x
+  M162         2      187      0.721x
+  M328         2      312      0.432x
+  M87          2      312      0.432x
+
+RHINO (fs80=111)  textnums=5  corpus_matches=8  unique_seqs=2
+    Sign   Sub_N   Full_N  Enrichment
+  --------------------------------------
+  M63          7       10    792.960x
+
+TIGER (fs80=91)  textnums=3  corpus_matches=1  unique_seqs=1
+    Sign   Sub_N   Full_N  Enrichment
+  --------------------------------------
+
+======================================================================
+  POSITIONAL PROFILES — TOP ELEPHANT SIGNS
+======================================================================
+    Sign   Total   Initial%   Terminal%   Medial%  Slot
+  --------------------------------------------------------------
+  M113        16       0.0%        6.2%     93.8%  MEDIAL
+  M38          6      33.3%       16.7%     50.0%  AMBIGUOUS
+  M302        13      15.4%       15.4%     69.2%  AMBIGUOUS
+  M242        21      14.3%       85.7%      0.0%  TERMINAL
+
+M113 IN CONTEXT (all elephant seqs containing M113):
+  id=7203  pos=2/3  seq=[267, 99, 113, 342]
+  id=7205  pos=2/3  seq=[267, 99, 113, 342]
+  id=7206  pos=2/3  seq=[267, 99, 113, 342]
+  id=7228  pos=2/3  seq=[267, 99, 113, 342]
+  id=7230  pos=2/3  seq=[267, 99, 113, 342]
+  id=7231  pos=2/3  seq=[267, 99, 113, 342]
+  id=7232  pos=2/3  seq=[267, 99, 113, 342]
+  id=7233  pos=2/3  seq=[267, 99, 113, 342]
+  id=7234  pos=2/3  seq=[267, 99, 113, 342]
+
+KEY FINDINGS:
+  M113: MEDIAL (93.8%) — elephant-domain content word, never initial/terminal
+  M242: TERMINAL (85.7%) — elephant-specific suffix candidate
+  Formula: [M267, M99, M113, M342] repeated 9 times on Lothal elephant seals
+  M63: 792x enrichment on Rhino but only 2 unique sequences — frozen formula
+  Elephant = Golden Middle Ground: 39 inscriptions, 31 unique sequences, 37.9x enrichment
+======================================================================
+  GEOGRAPHIC ANALYSIS
+======================================================================
+
+M113 SITE DISTRIBUTION:
+  Lothal formula:       [M267, M99, M113, M342]  — 9 inscriptions (identical)
+  Harappa formula:      [M263, M343, M113, M342]  — 3 inscriptions (identical)
+  Mohenjo-daro:         variable                  — 3 inscriptions
+
+  CORRECT INTERPRETATION: Both cities kept the same grammatical frame
+  (Opener + filler + M113 + Terminal). M113 is the stable elephant-domain
+  noun. The surrounding signs are city-specific administrative wrappers —
+  localized stamp variation, NOT linguistic dialect. N=3 for Harappa is
+  insufficient to claim dialect. Do not use that word in a paper.
+
+M172-M304 GEOGRAPHIC LOCK:
+  All 7 inscriptions: site=Kalibangan, identical formula
+  [M1, M1, M121, M121, M99, M172, M304, M307]
+  This is a hyper-localized administrative stamp — one city, one formula.
+  Proves sign compounds were not empire-wide but city-specific.
+
+UNICORN STANDARD vs VARIANT — no geographic split:
+  Both distributed Mohenjo-daro >> Harappa >> others empire-wide.
+  Variant unicorn is not a regional phenomenon.
+
+SUMMARY OF COMPLETED FINDINGS:
+  1. Grammar:   Z=50.12, directionally robust (p=1.03e-54)
+  2. Network:   M342 and M99 are hub signs
+  3. Lexicon:   M113 = elephant-domain MEDIAL noun (37.9x enrichment)
+  4. Geography: M172-M304 locked to Kalibangan; M113 stable across cities

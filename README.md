@@ -1,141 +1,82 @@
-# Indus Valley Script — Proto-Dravidian Decipherment Framework
+# Indus Valley Script — Computational Statistical Analysis
 
-An open-source, reproducible statistical framework for testing the Proto-Dravidian (Tamil) hypothesis for the Indus Valley Script. Built to survive peer review: every claim is tagged `[SAFE]` (independently confirmed) or `[PREDICTED]` (testable hypothesis), and every known limitation is explicitly documented in the code.
+An open-source, reproducible statistical framework for analysing the structural
+properties of the Indus Valley Script (IVS). Built to survive peer review: every
+claim is tagged `[SAFE]` (independently confirmed) or `[PREDICTED]` (testable
+hypothesis), and every known limitation is explicitly documented.
+
+**Paper:** `paper/main.tex` — *Statistical Evidence for Agglutinative Structure in
+the Indus Valley Script: A Computational Analysis of 2,742 Inscriptions*
 
 ---
 
-## Hypothesis
+## What This Is
 
-The Indus Valley Script (c. 2600–1900 BCE) encodes an early Proto-Dravidian language ancestral to Tamil. This is the strongest current hypothesis in the field, supported by converging lines of evidence:
+We do not claim to decipher the script. We ask: *if the script encodes language,
+what structural properties does that language have?*
 
-- Rao et al. (2009, *PNAS*) — conditional entropy of the corpus matches natural languages, not random symbol systems
-- Parpola (1994) — systematic rebus analysis linking Indus pictograms to Dravidian homophones
-- Mahadevan (1977, 2014) — concordance of 3,700+ inscriptions demonstrating consistent positional grammar
-- Rajan & Sivanantham (2025, Tamil Nadu Dept. of Archaeology) — 14,165 graffiti sherds from 140 Tamil Nadu sites; >90% have IVC parallels; key signs P385 and P122 confirmed archaeologically at Keeladi (2,132 sherds)
-- ICIT database (Fuls 2010) — Wells sign 520 independently labelled TMK (Terminal Marker), confirming P385's terminal function without reference to linguistic theory
+Nine independently falsifiable statistical tests on a corpus of **N = 2,742 clean
+inscriptions** (Mahadevan 1977 concordance, textnums 1001–9905, Mohenjo-daro through
+West Asian finds) answer this question without any phonetic assumptions.
 
 ---
 
 ## Repository Structure
 
 ```
-indus_decode.py          — 4 statistical proofs on the pilot corpus
-adversarial_defense.py   — 4 pre-emptive academic rebuttals
-corpus_loader.py         — Wells/ICIT ↔ Parpola P-number bridge
-corpus_scaler.py         — Erosion masking + multi-scale proof runner
-typology_test.py         — Agglutinative vs. inflectional model comparator
-                           + punctuation null model test
-phonetic_anchors.py      — DEDR phonetic bridge ([SAFE] / [PREDICTED] labels)
-keezhadi_compare.py      — Rajan & Sivanantham 2025 archaeological ground truth
+# Core pipeline — full corpus (N = 2,742)
+run_proofs_v2.py             — Proofs 1–4 (suffix, entropy, cluster, agglutination)
+grammar_engine.py            — Proof 5 (bigram transition matrix, functional classes)
+validation_mark_test.py      — Proof 6 (cross-site Markov consistency)
+direction_grammar_test.py    — Proof 7 (RTL vs LTR direction grammar test)
+motif_correlation.py         — Motif–sign correlation (M113 elephant, M172-M304 Kalibangan)
+synonym_extractor.py         — Geographic sign clusters + structural substitution synonyms
+mi_network.py                — PMI co-occurrence network (produces results/v4/mi_edges.csv)
 
-notebooks/
-  01_suffix_theorem.ipynb
-  02_positional_entropy.ipynb
-  03_murugan_cluster.ipynb
-  04_agglutination.ipynb
-  05_adversarial_defense.ipynb
-  06_keezhadi_comparison.ipynb
+# Legacy pilot tests (N = 41 seals)
+indus_decode.py              — Original 4 proofs on pilot corpus
+typology_test.py             — Agglutinative vs. Sanskrit model comparator
+adversarial_defense.py       — Pre-emptive academic defenses D1–D7
+phonetic_anchors.py          — DEDR phonetic bridge ([SAFE] / [PREDICTED] labels)
+
+# Data
+data/mahadevan_corpus.json   — 2,742 clean inscriptions (pre-parsed, included)
+data/motif_data.json         — 3,916 Firestore records (fs80, dir, inscobj per textnum)
+data/codebook.py             — Mahadevan codebook: fs80 → motif, dir → direction, etc.
+
+# Results
+results/v4/mi_edges.csv             — PMI network edges (required by motif_correlation.py
+                                      and synonym_extractor.py)
+results/v4/direction_grammar_test.txt
+results/v4/motif_lexicon.txt
+results/v4/motif_summary.txt
+results/v4/synonym_clusters.txt
+
+# Paper
+paper/main.tex               — LaTeX source (24 pages)
+paper/fig1_entropy.pdf       — Positional entropy profile (Figure 1)
+paper/fig2_gradient.pdf      — Geographic grammar gradient (Figure 2)
+paper/make_figures.py        — Generates both figures from corpus data
+paper/references.bib         — Bibliography
 ```
 
 ---
 
-## Statistical Proofs
+## Nine Statistical Tests
 
-### Proof 1 — P385 Suffix Theorem `[CONFIRMED AT PILOT SCALE]`
+All tests use Mahadevan (1977) sign numbering (M1–M417).
 
-Sign P385 (the jar pictogram) is proposed as the Proto-Dravidian masculine nominal suffix *-an* (e.g. *Meenan*, *Murugan*, *Velan*). A genuine suffix must be positionally constrained: terminal, never initial.
-
-| Metric | Value |
-|--------|-------|
-| Terminal rate | 100% (pilot corpus, intact seals only) |
-| Initial occurrences | 0 |
-| p-value (binomial, direction-normalised) | **6.54 × 10⁻²¹** |
-| Null hypothesis | rejected |
-| Erosion masking | applied |
-
-**Independent validation:** ICIT database labels Wells sign 520 (= P385) as TMK — Terminal Marker. This functional label was assigned independently by German engineer Andreas Fuls (TU Berlin) without reference to this framework.
-
-### Proof 2 — Positional Entropy `[PENDING FULL CORPUS]`
-
-Agglutinative grammars produce lower Shannon entropy at inscription boundaries. Entropy drops 0.488 bits from position 0 to position 1 — directionally correct, but requires ≥ 500 inscriptions for significance.
-
-### Proof 3 — CO_OCCURRENCE_CLUSTER_A `[PENDING FULL CORPUS]`
-
-Signs P316, P122, P062 co-occur at above-chance frequency (chi-square directional, p = 0.82 at pilot scale). Cluster labelled structurally neutral in code; cultural annotation stored separately. Requires full corpus depth.
-
-### Proof 4 — P122→P385 Agglutination Ratio `[CONFIRMED AT PILOT SCALE]`
-
-The bigram P122→P385 occurs **6.92×** more often than independent sign probabilities predict (frequency-filtered, min 3 occurrences per sign). This is the agglutinative word-formation signature of Tamil.
-
----
-
-## Typology Tests
-
-### Agglutinative vs. Inflectional (Sanskrit) Model
-
-```
-Agglutinative fit score:   0.65
-Inflectional fit score:    0.00
-```
-
-Sanskrit genitive *-as* predicts mid-compound occurrences (sandhi constructions) and exclusion from numeral/feminine contexts. P385 appears at terminal position 100% of the time with zero exclusions — incompatible with Sanskrit paradigmatic expectations.
-
-### Punctuation Null Model Test
-
-Addresses the Sproat/Farmer attack: "P385 is just a scribal period mark."
-
-| Metric | Value | Interpretation |
-|--------|-------|----------------|
-| Selectivity index (CV) | 0.86 | High = suffix-like (punctuation ≈ 0) |
-| Terminal entropy WITH P385 | 0.28 bits | Highly constrained terminal slot |
-| Terminal entropy WITHOUT P385 | 2.05 bits | +1.77 bits — competition released |
-| Verdict | **SUFFIX-LIKE** | |
-
-A scribal period produces entropy delta ≈ 0 on removal. P385 produces +1.77 bits — meaning it was actively suppressing competition for the terminal slot. Punctuation does not do this; grammatical suffixes do.
-
----
-
-## Adversarial Defenses
-
-| Defense | Critique | Result |
-|---------|----------|--------|
-| D1 — Length filter | Short inscriptions inflate suffix statistics | p = 7.78×10⁻²⁰ on length ≥ 3 |
-| D2 — Sanskrit genitive | P385 = Sanskrit *-as*, not Tamil *-an* | P385 follows numerals/feminines zero times; Sanskrit *-as* must |
-| D3 — Corpus integrity | Fragmentary seals inflate terminal counts | Pilot corpus = 100% intact by selection criterion |
-| D4 — Repetition anomaly | A singular suffix should not double | P385 doubles zero times; P062 doubles (Proto-Dravidian nominal reduplication) |
-
----
-
-## Phonetic Anchors
-
-Every phonetic reading is explicitly labelled:
-
-| Sign | Tamil | IPA | DEDR | Confidence |
-|------|-------|-----|------|------------|
-| P385 | -அன் | — | Krishnamurti 2003 §3.5; Zvelebil 1970 §2.3 | `[SAFE]` |
-| P122 | மீன் | /miːn/ | DEDR-4889 | `[SAFE]` |
-| P316 | வேல் | /veːl/ | DEDR-5541 | `[SAFE]` |
-| P060 | கோ | /koː/ | DEDR-2178 | `[SAFE]` |
-| P062 | மலை | /malaɪ/ | DEDR-4710 | `[SAFE]` |
-| P091 | ஆறு | /aːru/ | DEDR-338 | `[SAFE]` |
-| P311 | குடம் | /kuɖam/ | DEDR-1712 | `[PREDICTED]` |
-
-`[SAFE]` = independently confirmed in Parpola (1994), Mahadevan (1977), or DEDR.
-`[PREDICTED]` = our inference; labelled as testable hypothesis.
-
----
-
-## Keezhadi Archaeological Ground Truth
-
-**Source:** K. Rajan & R. Sivanantham (2025). *Indus Signs and Graffiti Marks of Tamil Nadu: A Morphological Study.* Dept. of Archaeology, Govt. of Tamil Nadu. Publication No. 357. ISBN 978-81-977842-5-5.
-
-- 140 Tamil Nadu sites, 14,165 sherds, 42 base signs documented
-- **~60%** of base signs have exact IVC parallels; **>90%** of graffiti marks have IVC parallels
-- Keeladi: **2,132 documented sherds** — largest single excavation in the survey
-- Graffiti sign 11.0 (jar) = Mahadevan 137 = **P385** — our terminal marker, in Tamil Nadu soil
-- Graffiti sign 14.0 (fish) = Mahadevan 149 = **P122** — our agglutination root, in Tamil Nadu soil
-
-**Temporal gap:** IVC ended ~1900 BCE; Keeladi dates to ~600 BCE (~1,300 year gap). The Megalithic Black-and-Red Ware tradition provides continuous graffiti mark documentation across this period. Structural continuity of sign sequences across the gap has not yet been established computationally — acknowledged as an open problem in `keezhadi_compare.py`.
+| # | Test | Key Result |
+|---|------|-----------|
+| 1 | **Suffix Theorem** | M342 terminal 68.0%, p = 1.70×10⁻²²² |
+| 2 | **Positional Entropy** | −0.558 bits drop pos 0→1 |
+| 3 | **Co-occurrence Cluster** | M267+M99+M342 at 5.5×, χ²=523, p≈0 |
+| 4 | **Agglutination Ratio** | M48→M342 at 8.97× above independence |
+| 5 | **Grammar Engine** | 398 signs, 598 transitions, 3 functional classes |
+| 6 | **Cross-Site Markov** | Z=50.12, p=0; grammar decays with geographic distance |
+| 7 | **Direction Grammar** | LTR 7,887× below random, p=1.03×10⁻⁵⁴; RTL limitation resolved |
+| 8 | **Motif Correlation** | M113 at 37.9× on elephant seals; M172-M304 frozen Kalibangan formula |
+| 9 | **Geographic Clusters** | M328=90.1% Harappa, M93=100% Chanhudaro; 154 structural synonyms |
 
 ---
 
@@ -143,35 +84,59 @@ Every phonetic reading is explicitly labelled:
 
 ```bash
 pip install -r requirements.txt
-python indus_decode.py          # 4 proofs — results written to results/
-python adversarial_defense.py   # 4 academic defenses
-python typology_test.py         # agglutinative vs. Sanskrit + punctuation test
-python keezhadi_compare.py      # Keezhadi archaeological comparison
-python phonetic_anchors.py      # phonetic bridge with confidence labels
+
+# data/mahadevan_corpus.json is pre-parsed and included in the repo
+
+# Run all 9 tests
+python run_proofs_v2.py              # Proofs 1-4, results/v2/
+python grammar_engine.py             # Proof 5, grammar_summary.txt
+python validation_mark_test.py       # Proof 6, cross_site_*.txt
+python direction_grammar_test.py     # Proof 7, results/v4/direction_grammar_test.txt
+python motif_correlation.py          # Proof 8, results/v4/motif_summary.txt
+python synonym_extractor.py          # Proof 9, results/v4/synonym_clusters.txt
+
+# Generate paper figures
+cd paper && python make_figures.py   # fig1_entropy.pdf, fig2_gradient.pdf
+
+# Compile paper
+cd paper && pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex
 ```
 
-Jupyter notebooks for each proof are in `notebooks/`.
+**Note:** `motif_correlation.py` and `synonym_extractor.py` require
+`results/v4/mi_edges.csv` (produced by `mi_network.py`). This file is
+included in the repository.
 
 ---
 
-## Scaling to the Full Corpus
+## Phonetic Anchors
 
-The pilot corpus (41 seals) is a clean control environment. To run all proofs at scale:
+Phonetic readings are isolated and do not affect any structural result.
+Every reading carries an explicit confidence label.
 
-```python
-from corpus_scaler import load_rao_csv, load_yadav_csv, scale_proofs
+| Sign | IAST | Meaning | DEDR | Confidence |
+|------|------|---------|------|-----------|
+| M342 | *-aṇ* | masc. nominal suffix | Krishnamurti 2003 §3.5 | `[SAFE]` |
+| M149 | *mīn* | fish / star | DEDR-4889 | `[SAFE]` |
+| M316 | *vēl* | spear | DEDR-5541 | `[SAFE]` |
+| M60  | *kō* | king / lord | DEDR-2178 | `[SAFE]` |
+| M62  | *malai* | mountain | DEDR-4710 | `[SAFE]` |
+| M91  | *āru* | six / river | DEDR-338 | `[SAFE]` |
 
-# Yadav et al. 2010 (PLoS ONE) — 1,548 inscriptions
-corpus = load_yadav_csv("yadav_corpus.csv")
+`[SAFE]` = confirmed in Parpola (1994), Mahadevan (1977), or DEDR (Burrow & Emeneau 1984).
+`[PREDICTED]` = testable hypothesis; none currently listed.
 
-# Or ICIT export from Andreas Fuls (fuls@mailbox.tu-berlin.de)
-corpus = load_rao_csv("icit_export.csv")
+---
 
-# Erosion masking applied automatically
-scale_proofs(corpus)
-```
+## Archaeological Validation
 
-Erosion masking (`apply_erosion_mask()`) automatically removes inscriptions where a damaged sign falls within 2 positions of P385 or P122 before any statistical calculation.
+**Rajan & Sivanantham (2025).** *Indus Signs and Graffiti Marks of Tamil Nadu:
+A Morphological Study.* Dept. of Archaeology, Govt. of Tamil Nadu. Pub. No. 357.
+
+- 14,165 graffiti-bearing sherds from 140 Tamil Nadu sites
+- Signs M304 (Rajan sign 31.0) and M328 (Rajan sign 32.0) — independently
+  isolated by our PMI/positional algorithms as highly localized markers —
+  confirmed as exact shape-matches in Tamil Nadu Iron Age graffiti
+- This is morphological corroboration only; no phonetic inference follows
 
 ---
 
@@ -179,35 +144,31 @@ Erosion masking (`apply_erosion_mask()`) automatically removes inscriptions wher
 
 | Limitation | Status |
 |-----------|--------|
-| Corpus depth (41 seals) | Proofs 1 & 4 confirmed; Proofs 2 & 3 pending full corpus |
-| No bilingual anchor | Phonetic readings are probabilistic, not certain |
-| Temporal gap (IVC → Keeladi: 1,300 yr) | Acknowledged; Megalithic BRW tradition as bridge |
-| Mahadevan/Wells grouping bias | Annotated `[SAFE]`/`[APPROX]` in `corpus_loader.py` |
-| Positional test for Keezhadi graffiti | Requires per-sherd sequence data not yet published |
+| RTL direction assumption | **RESOLVED** — direction data from indusarrays Firestore; 86.1% RTL confirmed; LTR 7,887× below random under RTL grammar |
+| Erosion bias | 703 inscriptions dropped; clean corpus skews slightly toward longer texts |
+| West Asian sample size | n=13; geographic gradient finding robust at all other sites |
+| No bilingual anchor | Phonetic readings probabilistic; none confirmed from bilingual text |
+| Temporal gap (IVC → Keeladi: 1,300 yr) | Acknowledged; BRW tradition as bridge; transition probability verification pending |
 
 ---
 
-## Corpus & Data
+## Corpus
 
-**Pilot corpus:** 41 intact unicorn/bovine seals from Parpola CISI Vol. I–II (Mohenjo-Daro, Harappa, Dholavira, Gulf/Dilmun). Selection criteria documented in `indus_decode.py`.
+**Source:** Mahadevan (1977) concordance, as made available via the
+`indusarray` collection at [indusscript.in](https://indusscript.in).
+Textnums 1001–9905 covering Mohenjo-daro, Harappa, Chanhudaro, Lothal,
+Kalibangan, Other Sites, and West Asian finds.
 
-**Full corpus:** 5,509 texts via ICIT database ([indus.epigraphica.de](https://indus.epigraphica.de), registration required). Mahadevan (1977) concordance on [Internet Archive](https://archive.org). Yadav et al. (2010) dataset available from authors on request.
-
----
-
-## Prior Work
-
-- [Kee2u/Deciphering_the_Indus_Valley_Script](https://github.com/Kee2u/Deciphering_the_Indus_Valley_Script) — PostgreSQL + SVM; obtained ICIT access from A. Fuls
-- [ramnerd/IVC_script_decoded](https://github.com/ramnerd/IVC_script_decoded) — structural correlation with Old Tamil
-- Rao et al. (2009) PNAS — Markov model establishing linguistic nature of corpus
-- Parpola (1994) — foundational rebus analysis
-- Rajan & Sivanantham (2025) — Tamil Nadu archaeological survey
-
----
-
-## Contributing
-
-Fork, obtain the ICIT corpus from [indus.epigraphica.de](https://indus.epigraphica.de), drop the CSV into `load_rao_csv()`, run `scale_proofs()`. Pull requests with full-corpus results are welcome.
+| Site | Inscriptions |
+|------|-------------|
+| Mohenjo-daro | 1,347 |
+| Harappa | 1,103 |
+| Lothal | 112 |
+| Kalibangan | 80 |
+| Chanhudaro | 58 |
+| Other Sites | 29 |
+| West Asian | 13 |
+| **Total** | **2,742** |
 
 ---
 
