@@ -31,15 +31,22 @@
   INTERPRETATION (data only — no linguistic claims)
 =================================================================
 
-  VERDICT: DIRECTION-INVARIANT GRAMMAR
+  VERDICT: DIRECTIONALLY ROBUST GRAMMAR
 
   LTR perplexity (97.68) is significantly lower than random
   baseline (770403.87) when scored against the RTL matrix.
   p=1.0325e-54 < 0.05. Cohen's d=1.634.
 
-  The RTL transition matrix predicts LTR sequences better than
-  chance. Both directions share the same bigram grammar structure.
-  The v1.5 paper's RTL assumption does not invalidate the proofs.
+  NOTE: LTR perplexity (97.68) is 13.3x higher than
+  RTL in-sample (7.34). The grammar is NOT direction-invariant —
+  exact word-order rules degrade when direction flips.
+
+  What is proven: the underlying statistical dependencies (hub sign
+  co-occurrences, bigram affinities) are strong enough to score LTR
+  sequences 7887x better than random permutations.
+  The 'glue' between signs survives directional flip even when exact
+  order does not. The v1.5 paper's RTL assumption does not invalidate
+  the proofs — but LTR inscriptions follow a distinct word order.
 
 =================================================================
   SIGN OVERLAP ANALYSIS

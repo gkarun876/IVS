@@ -255,14 +255,20 @@ def main():
     out.append(f"{'='*65}")
 
     if p_val < 0.05 and ltr_ppl < rand_mean:
-        verdict = "DIRECTION-INVARIANT GRAMMAR"
+        verdict = "DIRECTIONALLY ROBUST GRAMMAR"
         interp = (
             f"  LTR perplexity ({ltr_ppl:.2f}) is significantly lower than random\n"
             f"  baseline ({rand_mean:.2f}) when scored against the RTL matrix.\n"
             f"  p={p_val:.4e} < 0.05. Cohen's d={cohens_d:.3f}.\n\n"
-            f"  The RTL transition matrix predicts LTR sequences better than\n"
-            f"  chance. Both directions share the same bigram grammar structure.\n"
-            f"  The v1.5 paper's RTL assumption does not invalidate the proofs."
+            f"  NOTE: LTR perplexity ({ltr_ppl:.2f}) is {ltr_ppl/rtl_ppl:.1f}x higher than\n"
+            f"  RTL in-sample ({rtl_ppl:.2f}). The grammar is NOT direction-invariant —\n"
+            f"  exact word-order rules degrade when direction flips.\n\n"
+            f"  What is proven: the underlying statistical dependencies (hub sign\n"
+            f"  co-occurrences, bigram affinities) are strong enough to score LTR\n"
+            f"  sequences {rand_mean/ltr_ppl:.0f}x better than random permutations.\n"
+            f"  The 'glue' between signs survives directional flip even when exact\n"
+            f"  order does not. The v1.5 paper's RTL assumption does not invalidate\n"
+            f"  the proofs — but LTR inscriptions follow a distinct word order."
         )
     elif p_val < 0.05 and ltr_ppl > rand_mean:
         verdict = "DIRECTIONAL SYNTAX DETECTED"
