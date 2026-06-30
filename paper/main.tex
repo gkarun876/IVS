@@ -18,6 +18,7 @@
 \usepackage{tabularx}
 \usepackage{url}
 \usepackage{float}
+\usepackage{needspace}
 
 \geometry{margin=1in}
 \onehalfspacing
@@ -46,8 +47,8 @@
 \newcommand{\BCE}{\textsc{bce}}
 
 \title{%
-    \textbf{Statistical Evidence for Agglutinative Structure\\
-    in the Indus Valley Script:}\\[0.3em]
+    \textbf{Statistical Evidence for Agglutinative Structure
+    in the Indus Valley Script}\\[0.3em]
     \large A Computational Analysis of 2,742 Inscriptions
 }
 
@@ -416,7 +417,7 @@ constrained terminal grammar.
 \emph{This proof was pending at pilot scale ($N = 41$); it is now
 confirmed at $N = 2{,}742$.}
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.82\linewidth]{fig1_entropy.pdf}
 \caption{Positional entropy profile across sign slots 0--7
@@ -1187,6 +1188,7 @@ CV $= 0.761$ distinguishes suffix from stamp; Cross-Site Consistency
 \end{table}
 
 % ============================================================
+\needspace{6\baselineskip}
 \section{Known Limitations}
 \label{sec:limitations}
 % ============================================================
@@ -1240,6 +1242,7 @@ should use M342 for the high-frequency terminal marker. \\
 \end{table}
 
 % ============================================================
+\needspace{6\baselineskip}
 \section{Reproducibility}
 \label{sec:repro}
 % ============================================================
@@ -1247,22 +1250,21 @@ should use M342 for the high-frequency terminal marker. \\
 All code is available at \url{https://github.com/gkarun876/IVS} (MIT License).
 
 \begin{lstlisting}[language=bash, basicstyle=\small\ttfamily, frame=single,
-                   caption={Quick start}, breaklines=true]
-# Parse corpus
+                   caption={Quick start}, breaklines=false]
 # data/mahadevan_corpus.json is pre-parsed and included in the repo
 
-# Run all 9 proofs
-python run_proofs_v2.py              # Analyses 1-4, results/v2/
-python grammar_engine.py             # Analysis 5, grammar_summary.txt
-python validation_mark_test.py       # Analysis 6, cross_site_*.txt
-python direction_grammar_test.py     # Analysis 7, results/v4/direction_grammar_test.txt
-python motif_correlation.py          # Motif-sign correlation, results/v4/motif_summary.txt
-python synonym_extractor.py          # Geographic clusters + synonyms, results/v4/synonym_clusters.txt
+# Run all 9 analyses
+python run_proofs_v2.py          # Analyses 1-4  (results/v2/)
+python grammar_engine.py         # Analysis 5    (grammar_summary.txt)
+python validation_mark_test.py   # Analysis 6    (cross_site_*.txt)
+python direction_grammar_test.py # Analysis 7    (results/v4/)
+python motif_correlation.py      # Analysis 8    (results/v4/)
+python synonym_extractor.py      # Analysis 9    (results/v4/)
 
-# Legacy pilot-corpus tests
-python indus_decode.py               # original 41-seal proofs
-python typology_test.py              # Agglutinative vs Sanskrit
-python adversarial_defense.py        # Defenses D1-D7
+# Legacy pilot-corpus scripts
+python indus_decode.py           # 41-seal pilot proofs
+python typology_test.py          # Agglutinative vs Sanskrit
+python adversarial_defense.py    # Defenses D1-D7
 \end{lstlisting}
 
 % ============================================================
