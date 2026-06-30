@@ -194,6 +194,10 @@ that artificially inflates bigram variances.
 The $2{,}742$-inscription clean corpus represents the largest purely
 intact structural dataset analysed in the Indus computational
 literature to date.
+Given the extreme magnitude of the observed effect sizes (e.g., $Z = 50.12$ for
+cross-site consistency, CV $= 0.761$ for suffix selectivity), standard
+multiple-comparison corrections (e.g., Bonferroni) do not alter the statistical
+interpretation of the results.
 Notably, this study uses Fuls' independent terminal-marker labelling
 (TMK for M342, assigned from frequency statistics without phonetic
 assumptions) as an external validation anchor for Analysis~1---confirming
@@ -865,11 +869,10 @@ bigram elevations across all qualifying preceding signs:
 \[
 \mathrm{CV} = \frac{\sigma_{\mathrm{elevation}}}{\mu_{\mathrm{elevation}}}
 \]
-A CV well above the range typical of uniform delimiters (empirically
-$<0.3$ in analogous symbol systems) indicates selective attachment
-inconsistent with punctuation behavior; a high CV ($>0.7$) is the
-signature of a grammatical suffix that bonds preferentially with
-specific roots.
+A high CV indicates selective attachment inconsistent with uniform punctuation
+behavior, which would exhibit near-zero variance in attachment rates.
+A CV of 0.761 is consistent with a grammatical morpheme that bonds
+preferentially with specific roots.
 
 Additionally, removing a suffix releases the terminal slot, increasing
 terminal entropy.
@@ -1184,6 +1187,14 @@ D7 Validation mark &
 M342 may be an administrative authority stamp &
 CV $= 0.761$ distinguishes suffix from stamp; Cross-Site Consistency
 ($Z = 50$) is inconsistent with a stamp applied independently at each site \\
+\addlinespace
+D8 Commodity ledger &
+M342 is a standardised commodity tag &
+Commodity tags attach uniformly to all goods (low CV).
+M342 exhibits CV $= 0.761$, indicating selective bonding with specific signs.
+Furthermore, a commodity-ledger model does not explain the existence of strictly
+medial-locked signs (e.g., M99 at 100\% medial for $L \geq 5$), which have no
+analogous function in inventory tracking. \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -1238,6 +1249,19 @@ M342 vs M137 in literature &
 M342 is the primary jar sign; M137 is a variant form (jar with base),
 a distinct concordance entry. Secondary literature conflating the two
 should use M342 for the high-frequency terminal marker. \\
+\addlinespace
+Sign list granularity (Allography) &
+The 398-sign inventory derives from Mahadevan (1977), which separates signs based
+on minor visual variants. If some signs are allographs (scribe-specific variants
+of the same sign), the true sign inventory is smaller. This would increase bigram
+frequencies and likely strengthen the observed transition constraints, but may
+alter the exact boundary thresholds of the functional classes in Analysis~5. \\
+\addlinespace
+Segmentation error &
+The machine-readable corpus relies on Mahadevan's manual segmentation of crowded
+seal impressions. Undetected segmentation errors (e.g., splitting one sign into
+two, or merging two adjacent signs) introduce noise into the bigram transition
+matrix. \\
 \bottomrule
 \end{tabularx}
 \end{table}
