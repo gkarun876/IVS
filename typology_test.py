@@ -1,4 +1,7 @@
 """
+LEGACY PILOT SCRIPT — section deleted from paper (v2.0). The fusional model
+scored 0.0000, rendering the comparison a strawman. Kept for audit trail only.
+----------------------------------------------------------------------
 Typology Comparator — Agglutinative vs. Inflectional Language Models
 =====================================================================
 Tests whether the Indus corpus suffix behaviour is better explained by

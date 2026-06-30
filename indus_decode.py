@@ -1,4 +1,8 @@
 """
+LEGACY PILOT SCRIPT — superseded by run_proofs_v2.py (full N=2,742 corpus).
+This file ran Analyses 1-4 on a 41-seal pilot corpus (P-notation signs).
+Kept for reproducibility of the pilot phase only; do not use for new analysis.
+----------------------------------------------------------------------
 Indus Valley Script — Proto-Dravidian Decipherment Framework
 =============================================================
 Statistical tests for the Proto-Dravidian (Tamil) hypothesis.

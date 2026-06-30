@@ -1,4 +1,8 @@
 """
+LEGACY PILOT SCRIPT — defenses D1-D7 from pilot phase. The paper (main.tex)
+now integrates all counter-arguments inline in Known Limitations. Kept for
+audit trail only; not part of the active v2/v4 pipeline.
+----------------------------------------------------------------------
 Adversarial Defense Module — Pre-emptive Responses to Known Academic Critiques
 ===============================================================================
 Designed to be run prior to any publication submission. Addresses the four

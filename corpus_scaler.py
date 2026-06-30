@@ -1,4 +1,8 @@
 """
+LEGACY — written to bridge pilot corpus (41 seals) to full corpus. Superseded
+by run_proofs_v2.py which loads data/mahadevan_corpus.json natively.
+Kept for audit trail only.
+----------------------------------------------------------------------
 Corpus Scaler — Scaling Proofs to the Full Mahadevan / ICIT Corpus
 ===================================================================
 The pilot corpus in indus_decode.py has 41 seals. That is sufficient for

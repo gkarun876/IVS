@@ -1,4 +1,8 @@
 """
+NOTE: Hardcoded input path is /root/.claude/uploads/indusarray_raw.txt — change
+before re-running. Output is data/mahadevan_corpus.json (already committed).
+This script need only be re-run if the raw Firestore dump is re-scraped.
+----------------------------------------------------------------------
 Mahadevan corpus parser — indusarray_raw.txt → clean corpus JSON
 ================================================================
 Input format (tab-separated):

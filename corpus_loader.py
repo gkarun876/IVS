@@ -1,4 +1,8 @@
 """
+LEGACY — written for the planned ICIT corpus (Fuls dataset, never received).
+Active pipeline loads data/mahadevan_corpus.json directly (parse_mahadevan.py).
+Kept in case an ICIT-format dataset is received in future.
+----------------------------------------------------------------------
 ICIT Corpus Loader — Wells/Fuls Sign System Bridge
 ====================================================
 Converts between the ICIT sign notation (Wells 3-digit codes) and the

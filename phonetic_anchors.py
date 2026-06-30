@@ -1,4 +1,8 @@
 """
+SUPPLEMENTARY — phonetic readings isolated from all structural proofs.
+No result in paper/main.tex depends on this file. The 6 [LIT.ANCHOR] readings
+in Section 12 are drawn from published DEDR and Parpola (1994) sources.
+----------------------------------------------------------------------
 Phonetic Anchor Mapping Layer — Proto-Dravidian Rebus Bridge
 =============================================================
 Bridges the purely mathematical framework (positional entropy, suffix theorem)
