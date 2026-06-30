@@ -382,6 +382,17 @@ constrained terminal grammar.
 \emph{This proof was pending at pilot scale ($N = 41$); it is now
 confirmed at $N = 2{,}742$.}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.82\linewidth]{fig1_entropy.pdf}
+\caption{Positional entropy profile across sign slots 0--7
+($N = 2{,}742$ inscriptions). The 0.558-bit drop from position~0
+to position~1 is the mathematical signature of an open initial
+vocabulary constrained by a terminal grammar. Entropy declines
+monotonically from position~2 onward.}
+\label{fig:entropy}
+\end{figure}
+
 % ============================================================
 \section{Proof 3 --- Co-occurrence Cluster}
 \label{sec:proof3}
@@ -646,6 +657,18 @@ local guild symbology, which would produce site-independent scores.
 It is consistent with a standardized institutional writing system
 originating at or near Mohenjo-daro and propagating along trade
 networks, with grammar regularity attenuating at the periphery.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.88\linewidth]{fig2_gradient.pdf}
+\caption{Geographic grammar gradient. Each bar shows the
+per-bigram log-likelihood above the random-shuffle baseline when
+inscriptions from each site are scored against a matrix trained
+solely on Mohenjo-daro ($n_{\text{train}} = 1{,}347$).
+The gradient from Harappa ($+6.19$) to West Asian outposts ($+1.08$)
+is inconsistent with local or guild-based symbol systems.}
+\label{fig:gradient}
+\end{figure}
 
 \paragraph{Sample size caveat.}
 West Asian finds comprise only 13 inscriptions.
