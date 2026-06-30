@@ -1,0 +1,34 @@
+==============================================================
+  INDUS VALLEY SCRIPT — FULL CORPUS PROOFS (v2.0)
+  Corpus: 2742 clean inscriptions (Mahadevan)
+  Terminal sign: M342
+==============================================================
+
+PROOF 1 — Suffix Theorem
+  occurrences          1190
+  terminal_count       809
+  terminal_rate        0.6798319327731093
+  null_prob            0.24205508474576273
+  p_value              1.703842313769721e-222
+  verdict              H0 REJECTED
+
+PROOF 2 — Positional Entropy
+  entropy_pos0         6.579
+  entropy_pos1         6.021
+  entropy_drop         0.558
+  verdict              STRUCTURE_CONFIRMED
+
+PROOF 3 — Co-occurrence Cluster
+  cluster              [267, 99, 342]
+  observed             142
+  expected             25.8
+  chi2                 523.3462
+  p_value              0.0
+  verdict              CLUSTER_CONFIRMED
+
+PROOF 4 — Agglutination Ratio
+  top_predecessor      48
+  observed             105
+  expected             11.7
+  ratio                8.97
+  verdict              AGGLUTINATION_CONFIRMED

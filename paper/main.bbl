@@ -1,0 +1,74 @@
+\begin{thebibliography}{11}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Burrow and Emeneau(1984)]{Burrow1984}
+T.~Burrow and M.~B. Emeneau.
+\newblock \emph{A Dravidian Etymological Dictionary}.
+\newblock Clarendon Press, Oxford, 2nd edition, 1984.
+
+\bibitem[Farmer et~al.(2004)Farmer, Sproat, and Witzel]{Farmer2004}
+Steve Farmer, Richard Sproat, and Michael Witzel.
+\newblock The collapse of the indus-script thesis: The myth of a literate
+  harappan civilization.
+\newblock \emph{Electronic Journal of Vedic Studies}, 11\penalty0 (2):\penalty0
+  19--57, 2004.
+
+\bibitem[Fuls(2010)]{Fuls2010}
+Andreas Fuls.
+\newblock {ICIT}: Indus corpus and indus text database.
+\newblock \url{https://indus.epigraphica.de}, 2010.
+
+\bibitem[Krishnamurti(2003)]{Krishnamurti2003}
+Bhadriraju Krishnamurti.
+\newblock \emph{The Dravidian Languages}.
+\newblock Cambridge University Press, Cambridge, 2003.
+
+\bibitem[Mahadevan(1977)]{Mahadevan1977}
+Iravatham Mahadevan.
+\newblock \emph{The Indus Script: Texts, Concordance and Tables}.
+\newblock Archaeological Survey of India, New Delhi, 1977.
+
+\bibitem[Mahadevan and {Roja Muthiah Research Library}(2021)]{IndusScript2021}
+Iravatham Mahadevan and {Roja Muthiah Research Library}.
+\newblock The indus script web application ({IM77}/{IDF80}).
+\newblock \url{https://indusscript.in}, 2021.
+
+\bibitem[Nair(2026)]{Nair2026}
+Ashish Nair.
+\newblock How non-linguistic is the indus sign system? {A} synthetic-baseline
+  scorecard.
+\newblock arXiv:2604.17828, 2026.
+\newblock URL \url{https://arxiv.org/abs/2604.17828}.
+
+\bibitem[Parpola(1994)]{Parpola1994}
+Asko Parpola.
+\newblock \emph{Deciphering the Indus Script}.
+\newblock Cambridge University Press, Cambridge, 1994.
+
+\bibitem[Rajan and Sivanantham(2025)]{Rajan2025}
+K.~Rajan and R.~Sivanantham.
+\newblock \emph{Indus Signs and Graffiti Marks of {Tamil Nadu}: A Morphological
+  Study}, volume 357 of \emph{Publication}.
+\newblock Department of Archaeology, Government of Tamil Nadu, Chennai, 2025.
+\newblock ISBN 978-81-977842-5-5.
+
+\bibitem[Rao et~al.(2009)Rao, Yadav, Vahia, Joglekar, Adhikari, and
+  Mahadevan]{Rao2009}
+Rajesh P.~N. Rao, Nisha Yadav, Mayank~N. Vahia, Hrishikesh Joglekar,
+  R.~Adhikari, and Iravatham Mahadevan.
+\newblock A {Markov} model of the {Indus} script.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 106\penalty0
+  (33):\penalty0 13685--13690, 2009.
+\newblock \doi{10.1073/pnas.0906077106}.
+
+\bibitem[Sproat(2014)]{Sproat2014}
+Richard Sproat.
+\newblock A statistical comparison of written language and nonlinguistic symbol
+  systems.
+\newblock \emph{Language}, 90\penalty0 (2):\penalty0 457--481, 2014.
+
+\end{thebibliography}

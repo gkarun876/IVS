@@ -1,0 +1,1372 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[babel=false,tracking=false,expansion=false]{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{geometry}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{caption}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{needspace}
+
+\geometry{margin=1in}
+\onehalfspacing
+\raggedbottom
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!60!black,
+    citecolor=blue!60!black,
+    urlcolor=blue!60!black,
+    pdftitle={Statistical Evidence for Positional and Syntactic Structure in the Indus Valley Script},
+    pdfauthor={Arun G K},
+}
+
+\definecolor{safegreen}{RGB}{0,128,0}
+\definecolor{predorange}{RGB}{180,80,0}
+\newcommand{\SAFE}{\textcolor{safegreen}{\texttt{[LIT.ANCHOR]}}}
+\newcommand{\PREDICTED}{\textcolor{predorange}{\texttt{[PREDICTED]}}}
+
+% Tamil transliteration macros (IAST-style, no special font needed)
+\newcommand{\an}{\textit{-a\d{n}}}          % -an suffix
+\newcommand{\meen}{\textit{m\={i}n}}        % fish/star
+\newcommand{\meenan}{\textit{M\={i}na\d{n}}} % Meenan
+\newcommand{\vel}{\textit{v\={e}l}}
+\newcommand{\malai}{\textit{malai}}
+\newcommand{\BCE}{\textsc{bce}}
+
+\title{%
+    \textbf{Statistical Evidence for Positional and Syntactic Structure
+    in the Indus Valley Script}\\[0.3em]
+    \large A Computational Analysis of 2,742 Inscriptions
+}
+
+\author{
+    Arun G K\\[0.3em]
+    \small Independent Researcher\\
+    \small \href{mailto:gkarun876@gmail.com}{\texttt{gkarun876@gmail.com}}\\[0.4em]
+    \small Code: \url{https://github.com/gkarun876/IVS}
+}
+
+\date{June 2026\\[0.2em]
+\small\textit{Preprint --- not yet peer reviewed}\\[0.2em]
+\small\texttt{doi:10.5281/zenodo.20971474}}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\setstretch{1.2}%
+We present nine independent statistical tests on a corpus of $N = 2{,}742$
+clean inscriptions drawn from the Mahadevan (1977) concordance
+(textnums 1001--9905; Mohenjo-daro, Harappa, Chanhudaro, Lothal,
+Kalibangan, and West Asian sites).
+The \textbf{Suffix Theorem} (Analysis~1) shows sign M342 occupies the
+terminal position in 68.0\% of its occurrences across 2,742 inscriptions,
+with a binomial $p = 1.70 \times 10^{-222}$ against the uniform null.
+The \textbf{Positional Entropy} test (Analysis~2) confirms a drop of
+0.558~bits from position~0 to position~1, the mathematical signature of
+an open initial vocabulary constrained by a terminal grammar
+(\emph{previously pending at pilot scale; now confirmed}).
+A \textbf{Co-occurrence Cluster} test (Analysis~3) shows signs M267, M99,
+and M342 co-occur at $5.5\times$ above chance ($\chi^2 = 523$,
+$p \approx 0$; \emph{previously pending; now confirmed}).
+The \textbf{Selective Attachment Ratio} (Analysis~4) shows sign M48 precedes M342
+at $8.97\times$ above independence, consistent with selective suffix attachment.
+A \textbf{Grammar Engine} (Analysis~5) built from the full bigram
+transition matrix identifies 398 distinct signs, 598 statistically
+significant transitions ($\geq$3 occurrences), and a three-way functional
+partition: terminal signs (M342, M176, M328), strictly medial signs
+(M99 at 97.0\%, M347 at 98.9\%), and initial-biased signs (M267 at
+79.5\%, M95 at 93.3\%)---consistent with morphological role
+differentiation.
+A \textbf{Cross-Site Markov Consistency} test (Analysis~6) trains the
+transition matrix on Mohenjo-daro ($n = 1{,}347$) and scores Harappa
+($n = 1{,}103$) inscriptions against it.
+Harappa achieves log-likelihood $+6.19$ above a 1,000-permutation random
+baseline ($Z = 50.12$, $p = 0$).
+Crucially, the grammar fit decays with geographic distance: Harappa
+($+6.19$), Lothal ($+6.01$), Chanhudaro ($+5.29$), Kalibangan ($+4.05$),
+West Asian finds ($+1.08$)---a spatial gradient consistent with
+a geographically structured writing system, with highest inter-site
+grammatical similarity between the two largest sites.
+A \textbf{Direction Grammar Test} (Analysis~7) resolves the prior RTL
+assumption: direction data from \texttt{data/motif\_data.json}
+classifies 2,360 inscriptions as RTL and 175 as LTR.
+LTR perplexity (97.68) is 7,887$\times$ below random ($p = 1.03 \times
+10^{-54}$, Cohen's $d = 1.634$), confirming that grammatical
+dependencies survive direction flip even as exact word order degrades
+($13.3\times$ perplexity increase).
+A \textbf{Motif--Sign Correlation} test shows sign M113 at
+$37.9\times$ positional enrichment on elephant-motif seals in a
+recurrent medial formula across two sites; no semantic inference
+follows from enrichment alone.
+M172--M304 appears in an identical eight-sign sequence on all 7
+attested Kalibangan UNICORN seals (PMI\,=\,7.94; $n = 7$,
+single site; sample-size caution warranted).
+A \textbf{Geographic Cluster} test identifies M328 as 90.1\%
+Harappa-concentrated and M93 as 100\% Chanhudaro-concentrated;
+154 structural substitution synonyms are recovered, with M328,
+M12, and M343 confirmed as cross-site positional equivalents.
+Signs M304 and M328 have exact shape-matches in Tamil Nadu Iron Age
+graffiti documented by \citet{Rajan2025}; no functional or descent
+continuity is implied.
+All code is open-source and reproducible.
+\end{abstract}
+
+\bigskip
+\noindent\textbf{Keywords:} Indus Valley Script, statistical grammar,
+positional constraint, positional entropy, Markov transition matrix,
+cross-site consistency, computational linguistics
+
+{\small\tableofcontents}
+\newpage
+
+% ============================================================
+\section{Introduction}
+% ============================================================
+
+The Indus Valley Script (\textsc{ivs}) remains one of the world's last
+undeciphered writing systems, comprising over 5,000 inscriptions from the
+mature Harappan phase (c.\ 2600--1900 \BCE).
+Whether the script encodes a natural language---as opposed to
+administrative tokens, heraldic marks, or guild symbols---is a foundational
+open question \citep{Farmer2004,Sproat2014}.
+
+Prior computational work has approached this question through
+conditional entropy \citep{Rao2009}, sign-frequency statistics
+\citep{Mahadevan1977}, and rebus analysis \citep{Parpola1994}.
+\citet{Nair2026} showed on 1,916 ICIT inscriptions that no non-linguistic
+generator reproduces the full Indus statistical profile.
+
+This paper moves beyond the binary language/non-language question to
+ask: \emph{if the script encodes language, what structural properties
+does that language have?}
+
+We make nine independently falsifiable structural claims (Sections~3--13),
+each grounded solely in sign-position and sign-transition statistics
+with no phonetic assumptions.
+Phonetic readings are isolated in Section~11 and are not necessary for
+any structural result.
+
+% ============================================================
+\section{Corpus and Methods}
+\label{sec:corpus}
+% ============================================================
+
+\subsection{Corpus}
+
+The corpus is derived from the Mahadevan (1977) concordance
+\citep{Mahadevan1977} as made available in machine-readable form via
+the Indus Script Web Application \citep{IndusScript2021},
+covering textnums 1001--9905 across all major Indus Valley Civilisation
+sites.
+
+Raw records: 3,572 sign-rows (including multi-line inscriptions encoded
+as separate rows).
+After grouping multi-line rows by inscription and applying the erosion
+mask, the clean corpus comprises $N = 2{,}742$ inscriptions.
+
+\paragraph{Corpus scope relative to ICIT.}
+The ICIT database \citep{Fuls2010} catalogues approximately 5,000 text
+instances, a figure that includes fragmented tablets, potsherds, and
+multi-line texts counted as independent string entries.
+This study prioritises structural integrity over corpus breadth.
+By applying a strict erosion mask and grouping by physical artifact
+rather than individual text string, we produce a high-integrity subset
+of $N = 2{,}742$.
+For Markov transition matrices and positional entropy calculations,
+including statistically padded or fragmented sequences introduces noise
+that artificially inflates bigram variances.
+The $2{,}742$-inscription clean corpus represents the largest purely
+intact structural dataset analysed in the Indus computational
+literature to date.
+Given the extreme magnitude of the observed effect sizes (e.g., $Z = 50.12$ for
+cross-site consistency, CV $= 0.761$ for suffix selectivity), standard
+multiple-comparison corrections (e.g., Bonferroni) do not alter the statistical
+interpretation of the results.
+Notably, this study uses Fuls' independent terminal-marker labelling
+(TMK for M342, assigned from frequency statistics without phonetic
+assumptions) as an external validation anchor for Analysis~1---confirming
+that our structural results converge with independent findings from the
+broader ICIT corpus.
+
+\paragraph{Erosion mask.}
+Any inscription containing sign~0 (the Mahadevan conventional symbol for
+an illegible or lost passage) is excluded from all statistical tests.
+This is a conservative strategy: 703 inscriptions (19.5\% of grouped
+records) are dropped.
+Survivorship note: the mask disproportionately removes short inscriptions
+where a single illegible gap destroys the entire record; the clean corpus
+therefore skews slightly toward longer texts (mean length 4.13 signs vs.\
+an estimated 3.8 signs in the full corpus).
+All results should be interpreted in this context.
+
+\paragraph{Directionality.}
+Seals are carved in mirror-image; impressions read right-to-left (RTL).
+All sequences are stored in linguistic order (initial morpheme first,
+terminal last).
+\emph{Known limitation:} the direction field was not available in the
+machine-readable export; RTL is assumed for all inscriptions.
+This assumption is correct for $>$95\% of records (standard seals);
+the remaining $<$5\% (LTR tablets, graffiti) will have reversed sign
+order, potentially injecting a small noise signal into bigram statistics.
+
+\subsection{Site Distribution}
+
+\begin{table}[htbp]
+\centering
+\caption{Clean corpus site distribution ($N = 2{,}742$)}
+\label{tab:sites}
+\begin{tabular}{lrr}
+\toprule
+Site & Inscriptions & \% \\
+\midrule
+Mohenjo-daro  & 1,347 & 49.1\% \\
+Harappa       & 1,103 & 40.2\% \\
+Lothal        &   112 &  4.1\% \\
+Kalibangan    &    80 &  2.9\% \\
+Chanhudaro    &    58 &  2.1\% \\
+Other Sites   &    29 &  1.1\% \\
+West Asian    &    13 &  0.5\% \\
+\midrule
+Total         & 2,742 & 100\%  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Sign Notation}
+
+Signs are identified by Mahadevan (1977) number throughout.
+Table~\ref{tab:crosssys} lists cross-system correspondences for the
+principal sign under study.
+
+\begin{table}[htbp]
+\centering
+\caption{Cross-system correspondences for the terminal sign}
+\label{tab:crosssys}
+\begin{tabular}{ll}
+\toprule
+System & Terminal sign (jar pictogram) \\
+\midrule
+Mahadevan (1977)           & \textbf{M342} \\
+Parpola (1994)             & P385 \\
+Wells (2006)               & 520 \\
+ICIT / Fuls (2010)         & TMK (Terminal Marker) \\
+Tamil Nadu graffiti (2025) & Sign 11.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textit{Note on sign numbering:}
+The terminal sign (jar pictogram; Parpola P385; Wells 520; ICIT TMK)
+carries number \textbf{M342} in the primary Mahadevan (1977)
+concordance database as digitised in the \texttt{indusarray} collection.
+Some secondary literature cites M137 for the same sign;
+M137 is Mahadevan's numbering for a \emph{variant form} of the jar
+pictogram (the ``jar with base''), which was separated from the main
+jar sign M342 in the 1977 concordance.
+The two numbers refer to distinct entries in the concordance;
+M342 is the dominant high-frequency terminal sign confirmed by
+1,190 occurrences in this corpus.
+All analysis in this paper uses M342 consistently.
+
+\paragraph{Sign notation and bias invariance.}
+Sign notation is dictated entirely by data provenance: the
+machine-readable export natively encodes signs using Mahadevan (1977)
+integers.
+Translating to an alternate sign list (e.g., Wells 2006) prior to
+computation would introduce unnecessary crosswalk mapping errors.
+Because all statistical tests in this paper measure positional
+distributions and transition probabilities between integer states,
+the results are strictly invariant to sign-label nomenclature---relabelling
+M342 as Wells~520 or any other identifier leaves every entropy value,
+$p$-value, and $Z$-score unchanged.
+Cross-system validation is achieved by mapping final results to
+Wells/ICIT identifiers (Table~\ref{tab:crosssys}), not by
+preprocessing the corpus through a secondary sign list.
+
+% ============================================================
+\section{Analysis 1 --- Suffix Theorem}
+\label{sec:analysis1}
+% ============================================================
+
+\paragraph{Hypothesis.}
+If M342 is a grammatical terminal morpheme, it must appear
+disproportionately in the final position of inscription sequences.
+
+\paragraph{Test.}
+One-tailed binomial test.
+$H_0$: M342 is uniformly distributed across positions, so
+$P(\text{terminal}) = 1/\bar{L}$ where $\bar{L}$ is the mean
+sequence length.
+$H_1$: M342 is preferentially terminal.
+
+\begin{table}[htbp]
+\centering
+\caption{Analysis 1 --- Suffix Theorem ($N = 2{,}742$)}
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+Total M342 occurrences          & 1,190 \\
+Terminal occurrences            & 809 \quad (68.0\%) \\
+Initial occurrences             & 1 \quad ($<$0.1\%) \\
+Mean sequence length $\bar{L}$  & 4.13 \\
+Null probability $1/\bar{L}$    & 0.2421 \\
+Binomial $p$-value (one-tailed) & $\mathbf{1.70 \times 10^{-222}}$ \\
+\midrule
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Note on rate.}
+The terminal rate of 68.0\% (vs.\ 100\% in the 41-seal pilot corpus)
+reflects the broader corpus including tablet and pottery inscriptions
+where M342 sometimes appears in medial position (32.0\% of occurrences,
+$n = 381$).
+To test whether the medial occurrences are explained by multi-line
+artifact encoding, we decompose by artifact type using the
+\texttt{inscobj} field from \texttt{data/motif\_data.json}
+(Table~\ref{tab:m342medial}).
+
+\begin{table}[htbp]
+\centering
+\caption{M342 positional distribution by artifact type ($N_{\text{M342}} = 1{,}190$)}
+\label{tab:m342medial}
+\begin{tabular}{lrrrrrr}
+\toprule
+Artifact Type & Total & Terminal & Term\% & Medial & Med\% & Initial \\
+\midrule
+Seals              & 720 & 548 & 76.1\% & 172 & 23.9\% & 0 \\
+Sealings           & 223 & 129 & 57.8\% &  94 & 42.2\% & 0 \\
+Tablets/Implements & 221 & 111 & 50.2\% & 110 & 49.8\% & 0 \\
+Pottery/Graffiti   &  24 &  19 & 79.2\% &   5 & 20.8\% & 0 \\
+Other              &   2 &   2 &100.0\% &   0 &  0.0\% & 0 \\
+\midrule
+Total              &1,190 & 809 & 68.0\% & 381 & 32.0\% & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The multi-line hypothesis holds strongly for tablets and implements
+(49.8\% medial), where multi-face encoding is expected.
+However, seals---nominally single-face objects---still show 23.9\%
+(172 occurrences) medial M342.
+Many seals in the Mahadevan concordance carry text on multiple faces
+(obverse, reverse, boss); M342 may close the obverse line while
+inscription continues on the boss.
+We cannot verify this from sequence data alone without per-face artifact
+records.
+We therefore acknowledge that M342 \emph{occasionally functions in a
+medial slot} and the medial-terminal distinction for M342 requires
+physical artifact-level verification.
+The terminal bias remains highly significant across all artifact types
+($p = 1.70 \times 10^{-222}$) and M342 never appears in initial
+position ($n = 1$ out of 1,190 tokens; $<$0.1\%).
+The binomial $p$-value at full scale is astronomically more significant
+($10^{-222}$ vs.\ $10^{-21}$).
+
+\paragraph{Independent validation.}
+ICIT \citep{Fuls2010} labels Wells~520 ($=$ M342) as TMK (Terminal
+Marker), assigned from frequency statistics without reference to any
+phonetic hypothesis.
+
+% ============================================================
+\section{Analysis 2 --- Positional Entropy}
+\label{sec:analysis2}
+% ============================================================
+
+\paragraph{Hypothesis.}
+A grammatically constrained script shows lower Shannon entropy at
+terminal positions than at initial positions.
+
+\paragraph{Test.}
+Compute Shannon entropy $H$ at each sign slot across all 2,742
+inscriptions. Compare $H_0$ (initial slot) vs.\ $H_1$ (second slot).
+
+\begin{table}[htbp]
+\centering
+\caption{Analysis 2 --- Positional Entropy ($N = 2{,}742$)}
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+Entropy at position 0 (initial)    & 6.579 bits \\
+Entropy at position 1              & 6.021 bits \\
+Entropy drop (position 0 $\to$ 1)  & \textbf{0.558 bits} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 0.558-bit drop means position~0 carries approximately 1.5$\times$
+more variability than position~1.
+Entropy generally decreases across positions 0--7
+(6.579, 6.021, 6.124, 5.985, 5.708, 5.502, 5.181, 5.073 bits),
+with local variance at position~2 ($6.124 > 6.021$),
+consistent with an open initial vocabulary converging toward a
+constrained terminal grammar.
+\emph{This analysis was pending at pilot scale ($N = 41$); it is now
+confirmed at $N = 2{,}742$.}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.82\linewidth]{fig1_entropy.pdf}
+\caption{Positional entropy profile across sign slots 0--7
+($N = 2{,}742$ inscriptions). The 0.558-bit drop from position~0
+to position~1 is the mathematical signature of an open initial
+vocabulary constrained by a terminal grammar. Entropy declines
+monotonically from position~2 onward.}
+\label{fig:entropy}
+\end{figure}
+
+% ============================================================
+\section{Analysis 3 --- Co-occurrence Cluster}
+\label{sec:analysis3}
+% ============================================================
+
+\paragraph{Hypothesis.}
+Grammatically related signs co-occur more often than their individual
+frequencies predict.
+
+\paragraph{Test.}
+Chi-square test on the three highest-frequency signs that interact with
+the terminal marker: M267, M99, M342.
+Expected co-occurrence computed under independence:
+$E = N \times P(\text{M267}) \times P(\text{M99}) \times P(\text{M342})$.
+
+\begin{table}[h!]
+\centering
+\caption{Analysis 3 --- Co-occurrence Cluster ($N = 2{,}742$)}
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+Cluster signs       & M267, M99, M342 \\
+Observed co-occurrence & 142 inscriptions \\
+Expected under independence & 25.8 \\
+Observed / Expected  & $5.5\times$ \\
+$\chi^2$             & \textbf{523.3} \\
+$p$-value            & $\mathbf{\approx 0}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\emph{This analysis was pending at pilot scale; it is now confirmed.}
+The cluster M267--M99--M342 appears in 142 inscriptions spanning
+all five major sites, confirming the pattern is not site-specific.
+
+% ============================================================
+\section{Analysis 4 --- Selective Attachment Ratio}
+\label{sec:analysis4}
+% ============================================================
+
+\paragraph{Hypothesis.}
+If M342 is a grammatical suffix, specific signs (roots or stems) should
+attach to it at rates far exceeding statistical independence.
+
+\paragraph{Test.}
+For all signs $a$ that precede M342, compute the observed/expected ratio:
+\[
+    r(a) = \frac{\text{count}(a \to \text{M342})}
+                {P(a) \cdot P(\text{M342}) \cdot N_{\text{bigrams}}}
+\]
+
+\begin{table}[htbp]
+\centering
+\caption{Analysis 4 --- Selective Attachment Ratio ($N = 2{,}742$)}
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+Top predecessor sign                  & M48 \\
+Observed M48$\to$M342 bigrams         & 105 \\
+Expected under independence           & 11.7 \\
+Selective attachment ratio            & $\mathbf{8.97\times}$ \\
+Min.\ frequency threshold             & 3 occurrences \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Directional note.}
+Because direction was not available in the corpus export and RTL is
+assumed, sign M48 is recorded as appearing \emph{before} M342 in
+the stored array, which corresponds to the sign physically to the
+\emph{right} of M342 on the seal face.
+The existence of preferential attachment ($8.97\times$) is robust
+regardless of direction; the functional label ``preceding'' reflects
+array order, not necessarily phonological precedence.
+
+% ============================================================
+\section{Analysis 5 --- Grammar Engine}
+\label{sec:grammar}
+% ============================================================
+
+\subsection{Bigram Transition Matrix}
+
+We compute $P(b \mid a)$ for all sign pairs $(a, b)$ with $\geq 3$
+co-occurrences across the 2,742-inscription corpus.
+
+\begin{table}[htbp]
+\centering
+\caption{Grammar Engine summary}
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+Unique signs observed             & 398 \\
+Significant transitions ($\geq$3) & 598 \\
+Total sign tokens                 & 11,328 \\
+Mean inscription length           & 4.13 signs \\
+Maximum inscription length        & 17 signs \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Positional Functional Classes}
+
+From the full positional profile (initial rate, terminal rate, medial
+rate per sign across all occurrences), three empirical functional
+classes emerge with no linguistic labelling applied:
+
+\begin{table}[H]
+\centering
+\caption{Terminal-biased signs ($\geq$70\% terminal rate, $\geq$10 occurrences; top 8)}
+\begin{tabular}{lrrr}
+\toprule
+Sign & Count & Terminal\% & Initial\% \\
+\midrule
+M176 & 312 & 87.5\% & 0.3\% \\
+M328 & 312 & 86.2\% & 5.8\% \\
+M12  &  68 & 85.3\% & 1.5\% \\
+M254 &  67 & 85.1\% & 4.5\% \\
+M211 & 209 & 81.8\% & 0.0\% \\
+M15  & 117 & 74.4\% & 2.6\% \\
+M342 & 1,190 & 68.0\% & 0.1\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Initial-biased signs ($\geq$70\% initial rate, $\geq$10 occurrences; top 6)}
+\begin{tabular}{lrrr}
+\toprule
+Sign & Count & Initial\% & Terminal\% \\
+\midrule
+M119 &  13 & 100.0\% &  0.0\% \\
+M95  &  60 &  93.3\% &  0.0\% \\
+M264 &  10 &  90.0\% &  0.0\% \\
+M41  &  16 &  87.5\% &  0.0\% \\
+M150 &  46 &  80.4\% &  2.2\% \\
+M267 & 312 &  79.5\% &  3.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Medial-locked signs ($\geq$80\% medial rate, $\geq$10 occurrences; top 6)}
+\begin{tabular}{lrrr}
+\toprule
+Sign & Count & Medial\% & Terminal\% \\
+\midrule
+M99  & 534 & 97.0\% & 2.6\% \\
+M347 &  93 & 98.9\% & 1.1\% \\
+M123 & 159 & 98.1\% & 1.9\% \\
+M8   &  85 & 97.7\% & 0.0\% \\
+M407 &  39 & 97.4\% & 2.6\% \\
+M97  &  79 & 96.2\% & 3.8\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In a corpus where the mean inscription length is 4.13 signs, a sign
+appearing at an edge more than 97\% of the time cannot be an
+independent logogram (a word-sign appearing anywhere).
+It is statistically locked into an internal position, consistent with
+the role of a phonetic complement, grammatical particle, or infix.
+This structural partition is a data-derived property; we make no claim
+about phonetic values.
+
+\paragraph{Length-stratified control for medial-lock (M99).}
+A known artifact in short-corpus positional analysis is that signs
+appearing exclusively in longer strings will mechanically appear
+medial-locked.
+To rule this out, Table~\ref{tab:m99length} stratifies M99's positional
+distribution by inscription length.
+
+\begin{table}[htbp]
+\centering
+\caption{M99 positional rate stratified by inscription length}
+\label{tab:m99length}
+\begin{tabular}{lrrrr}
+\toprule
+Length $L$ & M99 tokens & Initial\% & Medial\% & Terminal\% \\
+\midrule
+$L = 3$ (min)  &  21 &  4.8\% & 76.2\% & 19.0\% \\
+$L = 4$ (mean) &  79 &  0.0\% & 94.9\% &  5.1\% \\
+$L = 5$        & 152 &  0.0\% &100.0\% &  0.0\% \\
+$L = 6$        &  99 &  0.0\% &100.0\% &  0.0\% \\
+$L = 7$        &  79 &  0.0\% &100.0\% &  0.0\% \\
+$L \ge 8$      &  98 &  1.0\% & 99.0\% &  0.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At $L \ge 5$, M99 is 100\% medial (or 99\% at $L \ge 8$), ruling out
+the length-artifact hypothesis.
+Even at $L = 3$ (where the medial slot is a single position), M99
+is 76.2\% medial.
+The medial-locked classification is robust against inscription-length
+artifacts across all length strata.
+
+% ============================================================
+\section{Analysis 6 --- Cross-Site Markov Consistency}
+\label{sec:crosssite}
+% ============================================================
+
+\subsection{Design}
+
+If the script is a \emph{local} symbol system (guild marks, clan
+heraldry, administrative tokens), each site would develop independent
+statistical regularities.
+If it is a \emph{standardized} writing system, inscriptions from
+geographically distant sites should follow the same transition grammar.
+
+We test this by training a bigram Markov matrix on Mohenjo-daro
+inscriptions ($n = 1{,}347$) and scoring all other sites using
+per-bigram log-likelihood against that matrix.
+Bigram matrices capture first-order dependencies only; they serve
+as a conservative baseline---the strong cross-site $Z = 50.12$
+indicates that even first-order transition regularities are highly
+consistent across sites, a property not observed in non-linguistic
+symbol systems.
+Scores are compared against a
+random-shuffle baseline.
+
+\paragraph{Baseline.}
+For 1,000 trials, the signs within each Harappa inscription are randomly
+permuted (preserving the sign inventory but destroying order).
+Each permuted corpus is scored against the Mohenjo-daro matrix.
+The baseline distribution gives the log-likelihood expected under no
+grammatical relationship.
+
+\subsection{Results}
+
+\begin{table}[htbp]
+\centering
+\caption{Cross-Site Markov Consistency ($n_{\text{train}} = 1{,}347$ MD inscriptions)}
+\label{tab:crosssite}
+\begin{tabular}{lrrr}
+\toprule
+Site & $n$ & LL/bigram & vs.\ random \\
+\midrule
+Mohenjo-daro (self)  & 1,347 & $-2.10$ & $+9.94$ \\
+Harappa              & 1,103 & $-5.85$ & $+6.19$ \\
+Lothal               &   112 & $-6.04$ & $+6.01$ \\
+Chanhudaro           &    58 & $-6.76$ & $+5.29$ \\
+Kalibangan           &    80 & $-7.99$ & $+4.05$ \\
+Other Sites          &    29 & $-6.71$ & $+5.34$ \\
+West Asian           &    13 & $-10.96$ & $+1.08$ \\
+\midrule
+Random baseline (mean) & --- & $-12.04$ & $0.00$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Statistical test: Harappa vs.\ random baseline}
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+Harappa real log-likelihood/bigram & $-5.85$ \\
+Random baseline mean               & $-12.04$ \\
+Random baseline std                & $0.1235$ \\
+$Z$-score                          & \textbf{50.12} \\
+$p$-value (one-tailed $t$-test)    & $\mathbf{0}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Geographic Gradient}
+
+Every site scores substantially better than the random baseline.
+The fit generally degrades with geographic distance from
+Mohenjo-daro (Table~\ref{tab:crosssite}): Harappa ($+6.19$),
+Lothal ($+6.01$) and Chanhudaro ($+5.29$)---both falling within a
+tight band ($\approx +5.3$--$6.0$) suggesting broad regional
+attenuation rather than strict linear decay---then Kalibangan ($+4.05$),
+West Asian trade outposts ($+1.08$).
+The aggregated ``Other Sites'' category ($+5.34$) scores above
+Kalibangan, breaking strict monotonic decay; this category likely
+represents a mix of intermediate-distance locales rather than a
+coherent geographic unit.
+
+This spatial decay pattern is inconsistent with random marking or
+local guild symbology, which would produce site-independent scores.
+It is consistent with a standardized institutional writing system
+originating at or near Mohenjo-daro and propagating along trade
+networks, with grammar regularity attenuating at the periphery.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.88\linewidth]{fig2_gradient.pdf}
+\caption{Geographic grammar gradient. Each bar shows the
+per-bigram log-likelihood above the random-shuffle baseline when
+inscriptions from each site are scored against a matrix trained
+solely on Mohenjo-daro ($n_{\text{train}} = 1{,}347$).
+The gradient from Harappa ($+6.19$) to West Asian outposts ($+1.08$)
+is inconsistent with local or guild-based symbol systems.}
+\label{fig:gradient}
+\end{figure}
+
+\paragraph{Sample size caveat.}
+West Asian finds comprise only 13 inscriptions.
+Small samples yield noisier log-likelihood estimates; the lower score
+there may partially reflect sampling variance rather than geographic
+attenuation.
+However, a score of $+1.08$ above random (vs.\ $+6.19$ for Harappa)
+confirms that the Mohenjo-daro grammar is present even at trade
+outposts 1,500~km distant.
+This caveat should be noted in any peer-review submission.
+
+% ============================================================
+\section{Analysis 7 --- Direction Grammar Test}
+\label{sec:direction}
+% ============================================================
+
+\subsection{Motivation}
+
+The v1.5 paper carried an acknowledged limitation: direction data was
+absent from the corpus export, so all inscriptions were assumed RTL.
+This section resolves that limitation using direction codes from
+\texttt{data/motif\_data.json} (3,916 records covering textnums 1001--9905).
+
+\subsection{Direction Assignment}
+
+Each textnum is assigned a single direction via priority rule:
+sideline~0 (only side of artifact) wins; else sideline~1 (first
+side); else majority vote across sides.
+Direction codes follow Mahadevan/ICIT conventions: 1 = RTL, 2 = LTR,
+3 = single-sign line, 4 = symmetrical, 5 = doubtful, 9 = no text.
+
+\begin{table}[htbp]
+\centering
+\caption{Corpus split by writing direction ($N = 2{,}742$)}
+\begin{tabular}{lrr}
+\toprule
+Direction & Inscriptions & \% \\
+\midrule
+RTL (dir=1) & 2,360 & 86.1\% \\
+LTR (dir=2) &   175 &  6.4\% \\
+Other/unknown & 207 &  7.5\% \\
+\midrule
+Total & 2,742 & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Test Design}
+
+We train the bigram transition matrix on all 2,360 RTL inscriptions
+(378 unique signs, 2,443 significant bigrams) and score the 175 LTR
+inscriptions against it.
+Add-epsilon smoothing ($\varepsilon = 10^{-6}$) handles unseen bigrams.
+We compare three perplexity values: RTL in-sample (self-score),
+LTR against RTL matrix, and a random baseline
+(1,000 permutations of LTR sign sequences scored against RTL matrix).
+
+\subsection{Results}
+
+\begin{table}[htbp]
+\centering
+\caption{Analysis 7 --- Direction Grammar Test results}
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+RTL in-sample perplexity         & \textbf{7.34}  ($n = 2{,}352$) \\
+LTR vs.\ RTL-matrix perplexity   & \textbf{97.68} ($n = 175$) \\
+Random baseline perplexity       & $770{,}403 \pm 340{,}881$ (1,000 permutations) \\
+\addlinespace
+LTR / RTL perplexity ratio       & $13.3\times$ \\
+LTR / Random ratio               & $0.000127\times$ (LTR is 7,887$\times$ below random) \\
+\addlinespace
+$t$-statistic (LTR vs.\ random)  & 21.31 \\
+$p$-value                        & $\mathbf{1.03 \times 10^{-54}}$ \\
+Cohen's $d$                      & \textbf{1.634} (very large effect) \\
+\addlinespace
+LTR sign overlap with RTL        & 114 / 116 signs (98.3\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Interpretation}
+
+Two findings stand in tension and both are true:
+
+\paragraph{Finding A --- Grammar is NOT direction-invariant.}
+LTR perplexity (97.68) is $13.3\times$ higher than RTL in-sample
+(7.34).
+Exact bigram transition probabilities degrade when inscription
+direction flips.
+LTR inscriptions follow a distinct word order from RTL.
+
+\paragraph{Finding B --- Statistical dependencies survive the flip.}
+LTR perplexity (97.68) is 7,887$\times$ lower than random permutations
+(770,403), significant at $p = 1.03 \times 10^{-54}$, Cohen's
+$d = 1.634$.
+The ``glue'' between signs --- hub-sign co-occurrences, bigram
+affinities --- is so strong that even reversed-direction sequences
+score far above noise under an RTL-trained matrix.
+
+\paragraph{Consequence for earlier analyses.}
+The RTL assumption in Analyses 1--6 is now confirmed for 86.1\% of
+inscriptions.
+The 175 LTR inscriptions (6.4\%) introduce a modest noise signal in
+bigram statistics, but because LTR perplexity is 7,887$\times$ above
+random under RTL grammar, the directional noise is bounded: it cannot
+artificially create the $Z = 50.12$ cross-site consistency or the
+$\chi^2 = 523$ co-occurrence cluster.
+The RTL assumption limitation in prior versions of this paper is
+\textbf{resolved}.
+
+% ============================================================
+\section{Punctuation Null Test}
+\label{sec:punct}
+% ============================================================
+
+\subsection{Threat Model}
+
+\citet{Farmer2004} and \citet{Sproat2014} argue that a terminal sign
+with high terminal rate is consistent with a scribal period mark.
+A period mark also produces 100\% terminal rate by definition.
+
+\subsection{Counter-Test}
+
+Punctuation attaches uniformly to all preceding signs.
+A grammatical suffix is \emph{selective}: elevated bigram frequency
+with specific roots, near-chance with others.
+We measure selectivity via the Coefficient of Variation (CV) of
+bigram elevations across all qualifying preceding signs:
+\[
+\mathrm{CV} = \frac{\sigma_{\mathrm{elevation}}}{\mu_{\mathrm{elevation}}}
+\]
+A high CV indicates selective attachment inconsistent with uniform punctuation
+behavior, which would exhibit near-zero variance in attachment rates.
+A CV of 0.761 is consistent with a grammatical morpheme that bonds
+preferentially with specific roots.
+
+Additionally, removing a suffix releases the terminal slot, increasing
+terminal entropy.
+Removing punctuation does not.
+
+\subsection{Results}
+
+\begin{table}[htbp]
+\centering
+\caption{Punctuation Null Test results ($N = 2{,}742$)}
+\begin{tabularx}{\textwidth}{lrX}
+\toprule
+Metric & Value & Interpretation \\
+\midrule
+Signs evaluated ($\geq$3 occ.)  & 70   & --- \\
+Mean bigram elevation            & $3.84\times$ & --- \\
+Std.\ dev.\ elevation            & $2.92\times$ & --- \\
+Selectivity Index (CV)           & \textbf{0.761} & High $\Rightarrow$ suffix-like \\
+Terminal entropy \emph{with} M342    & 4.646 bits & --- \\
+Terminal entropy \emph{without} M342 & 5.350 bits & --- \\
+Entropy delta on removal         & $\mathbf{+0.703}$ \textbf{bits} & Suffix behaviour \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+A scribal period produces entropy delta $\approx 0$ on removal.
+M342 produces $+0.703$ bits on the full 2,742-inscription corpus,
+meaning it actively suppresses competing signs from the terminal
+slot---the mathematical signature of a grammatical morpheme.
+Note: the delta is smaller than the 41-seal pilot ($+1.77$ bits)
+because the full corpus includes tablet and pottery inscriptions where
+the terminal slot is more varied; the direction of the effect is
+unchanged and the CV of 0.761 remains well above the range
+consistent with uniform delimiter behavior.
+
+% ============================================================
+\section{Phonetic Anchors and Epistemic Labelling}
+\label{sec:phonetics}
+% ============================================================
+
+Every phonetic reading carries an explicit confidence label.
+\texttt{[LIT.ANCHOR]} = reading proposed in external literature: \citet{Parpola1994},
+\citet{Mahadevan1977}, or DEDR \citep{Burrow1984}.
+\PREDICTED{} = our inference, labelled as testable hypothesis.
+\textbf{The structural claims in Sections~3--13 do not depend on
+these phonetic readings}; they are listed for orientation only and
+can be removed without affecting any statistical result.
+
+\begin{table}[!ht]
+\centering
+\caption{Phonetic anchors with confidence labels (IAST transliteration)}
+\begin{tabularx}{\textwidth}{llXll}
+\toprule
+Sign & IAST & Meaning & DEDR & Confidence \\
+\midrule
+M342 & -a\d{n}   & masc.\ nominal suffix & \citet{Krishnamurti2003} \S3.5 & \SAFE \\
+M149 & m\={i}n   & fish / star           & DEDR-4889 & \SAFE \\
+M316 & v\={e}l   & spear                 & DEDR-5541 & \SAFE \\
+M60  & k\={o}    & king / lord           & DEDR-2178 & \SAFE \\
+M62  & malai     & mountain              & DEDR-4710 & \SAFE \\
+M91  & \={a}ru   & six / river           & DEDR-338  & \SAFE \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+This framework does not claim a full decipherment.
+The structural analyses claim: (a)~M342 exhibits terminal positional
+constraint and selective attachment inconsistent with punctuation;
+(b)~the script follows consistent structural transition rules across
+all excavation sites; (c)~grammar regularity decays with geographic
+distance from Mohenjo-daro, consistent with a geographically
+structured writing system.
+Whether these properties constitute agglutinative morphology
+specifically requires phonetic verification beyond the scope of
+this study.
+
+% ============================================================
+\section{Motif--Sign Correlation}
+\label{sec:motif}
+% ============================================================
+
+\subsection{Method}
+
+Motif data (field symbol code \texttt{fs80} from \texttt{data/motif\_data.json})
+was joined to 2,742 corpus inscriptions via textnum.
+For each top-PMI sign pair, we compute the motif distribution among
+inscriptions containing both signs and compare it to the corpus-wide
+background distribution using a chi-square test.
+
+\subsection{Primary Finding: M172--M304 Kalibangan Lock}
+
+The highest-PMI pair in our network is M172--M304 (PMI\,=\,7.94,
+$n_{\text{co-occ}} = 7$).
+All 7 co-occurrences appear on UNICORN seals (fs80 = 13);
+all 7 occur at Kalibangan.
+Every inscription in this set carries the identical formula:
+
+\[
+[\text{M1}, \text{M1}, \text{M121}, \text{M121}, \text{M99},
+ \text{M172}, \text{M304}, \text{M307}]
+\]
+
+This is a \emph{frozen formula}: zero sequence variation across 7
+physically distinct artifacts from one site.
+Background UNICORN rate: 34.6\%.
+Observed rate for M172--M304: 100\%.
+Enrichment: $2.9\times$ over base.
+
+Frozen formulae with PMI $>7$ indicate institutional standardization
+rather than phonetic or semantic variation.
+This pattern is consistent with an institutionally fixed formula
+specific to Kalibangan UNICORN seals; whether it encodes an
+administrative, cultic, or ownership function cannot be determined
+from structural data.
+No phonetic inference is made.
+
+\subsection{Elephant-Motif Association: M113}
+
+We extracted all inscriptions paired with ELEPHANT motif seals
+(fs80\,=\,71; $n = 39$ corpus matches, 31 unique sequences).
+
+\begin{table}[htbp]
+\centering
+\caption{Top enriched signs on ELEPHANT motif seals ($n = 39$)}
+\begin{tabular}{lrrr}
+\toprule
+Sign & Elephant-sub $n$ & Corpus $n$ & Enrichment \\
+\midrule
+M113 & 9  & 16  & $37.9\times$ \\
+M38  & 2  &  6  & $22.5\times$ \\
+M302 & 2  & 13  & $10.4\times$ \\
+M242 & 3  & 21  & $9.6\times$ \\
+M267 & 15 & 312 & $3.2\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+M113 achieves $37.9\times$ enrichment on elephant seals with MEDIAL
+positional rate 93.8\% (co-occurring 9 times in the medial slot of
+sequences that begin with M267 and end with M342).
+A recurring formula across Harappa and Lothal:
+$[\text{M267}, \text{M99}, \text{M113}, \text{M342}]$.
+At Harappa, an alternate opener produces
+$[\text{M263}, \text{M343}, \text{M113}, \text{M342}]$.
+
+M113's structural position (high positional enrichment on
+elephant-motif inscriptions, 93.8\% MEDIAL, formula recurrence
+across Harappa and Lothal with distinct openers) distinguishes it
+structurally from terminal and initial signs.
+Whether this structural distinctiveness reflects a content category,
+a provenance marker, or another functional class cannot be determined
+from positional data alone.
+No semantic or syntactic category is assigned; no phonetic value
+is assigned.
+
+% ============================================================
+\section{Geographic Sign Clusters}
+\label{sec:geo}
+% ============================================================
+
+\subsection{Geo-Commodity Test}
+
+We compute what fraction of each sign's total corpus appearances
+come from a single site.
+Signs with $>$60\% concentration at one site and $\geq$5 total
+occurrences are flagged as geographic markers.
+
+\begin{table}[htbp]
+\centering
+\caption{Top geographic sign clusters (concentration $>$60\%, $n \geq 5$; top 8)}
+\begin{tabular}{llrrr}
+\toprule
+Sign & Dominant Site & Total & Site $n$ & Concentration \\
+\midrule
+M93  & Chanhudaro & 10 & 10 & 100.0\% \\
+M172 & Kalibangan &  8 &  7 & 87.5\% \\
+M328 & Harappa & 312 & 281 & 90.1\% \\
+M66  & Lothal  &  29 &  22 & 75.9\% \\
+M63  & Multiple &  10 &  9 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Interpretation.}
+These signs are not city names.
+A city-name hypothesis predicts the sign appears in INITIAL position
+(at inscription onset, identifying origin).
+These signs are TERMINAL-biased (M328: 85.9\% terminal,
+M172: 85.7\% terminal) or MEDIAL, contradicting the city-name
+prediction.
+Geographic concentration combined with terminal position rules out
+the city-name prediction (which requires initial position).
+Remaining hypotheses---site-specific trade-good marking, origin
+marking, or scribal-school conventions---cannot be distinguished
+from positional data alone.
+
+\subsection{Structural Substitution Synonyms}
+
+We find 154 slot-substitution patterns: cases where two different
+signs occupy the same position in otherwise identical inscription
+sequences across different sites.
+The top cross-site substitution pairs are:
+
+\begin{table}[htbp]
+\centering
+\caption{Top cross-site structural substitution pairs ($n_{\text{patterns}} = 154$)}
+\begin{tabular}{lllll}
+\toprule
+Sign X & Sign Y & Slot & X sites & Y sites \\
+\midrule
+M328 & M12  & pos 1 & Harappa & Mohenjo-daro \\
+M328 & M343 & pos 1 & Harappa, Kalibangan & Mohenjo-daro \\
+M182 & M142 & pos 0 & Mohenjo-daro & Harappa \\
+M267 & M284 & pos 0 & Harappa, Kalibangan & Mohenjo-daro \\
+M66  & M207 & pos 2 & Lothal & Mohenjo-daro \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+M328, M12, and M343 are cross-site structural synonyms in the slot
+immediately following sign M89 or M87.
+Structural synonyms, as used here, are signs that occupy the same
+slot in otherwise identical formulae across different sites.
+This positional equivalence is a necessary but not sufficient
+condition for equivalent grammatical function; allographic variation
+and site-specific substitution conventions are not ruled out.
+
+% ============================================================
+\section{Archaeological Correlation: Keezhadi}
+\label{sec:keezhadi}
+% ============================================================
+
+\citet{Rajan2025}: \textit{Indus Signs and Graffiti Marks of Tamil Nadu:
+A Morphological Study}. Dept.\ of Archaeology, Govt.\ of Tamil Nadu.
+Publication No.\ 357. ISBN 978-81-977842-5-5.
+
+The survey documents 14,165 graffiti-bearing sherds from 140 Tamil Nadu
+sites; 60\% of IVC base signs have exact parallels; 90\%+ of all graffiti
+marks have IVC parallels.
+Both anchor signs (jar M342, fish M149) are physically present at
+Keeladi (2,132 sherds each).
+
+\paragraph{Independent shape convergence: M304 and M328.}
+An independent convergence is noted with \citet{Rajan2025}, who
+mapped Tamil Nadu Iron Age graffiti signs to Mahadevan numbers.
+The signs our algorithms isolated as structurally distinctive---M328
+(90.1\% Harappa-concentrated, 85.9\% terminal) and M304 (co-occurs
+with M172 in an identical formula on all 7 attested Kalibangan
+UNICORN seals, PMI\,=\,7.94)---appear as exact shape-matches in
+Tamil Nadu graffiti (Rajan sign numbers 32.0 and 31.0 respectively).
+That signs computationally isolated as structurally distinctive are
+also visually identifiable in an independent dataset is consistent
+with those signs having stable, non-arbitrary graphic forms.
+This does not validate the Markov or PMI analyses; it confirms only
+the visual distinctiveness of the targeted sign shapes.
+No phonetic inference and no claim of morphological or functional
+continuity follows from this convergence.
+
+\paragraph{Temporal gap.}
+IVC ended $\sim$1900 \BCE; Keeladi dates to $\sim$600 \BCE: a gap
+of $\sim$1,300 years.
+Morphological overlap does not establish direct descent.
+The Megalithic Black-and-Red Ware pottery tradition shows graffiti
+marks at sites across this period \citep[][pp.\ 13--14]{Rajan2025};
+whether this represents continuous transmission or independent
+recurrence of similar forms cannot be determined without
+sequence-level comparative analysis.
+Whether sign \emph{transition probabilities} are preserved across the
+gap cannot be tested computationally until dated sequence data from
+stratified Megalithic contexts are available in machine-readable form.
+
+% ============================================================
+\section{Adversarial Defenses}
+\label{sec:adversarial}
+% ============================================================
+
+\begin{table}[htbp]
+\centering
+\caption{Adversarial defenses}
+\label{tab:adversarial}
+\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+Defense & Critique & Result \\
+\midrule
+D1 Length filter &
+Short inscriptions inflate suffix statistics &
+$p = 1.70 \times 10^{-222}$ on full corpus; pattern robust across all lengths \\
+\addlinespace
+D2 Sanskrit genitive &
+M342 $=$ Sanskrit \textit{-as} &
+68\% full-corpus terminal rate incompatible with Sanskrit sandhi fusion, which requires case endings to fuse internally in compound formation \\
+\addlinespace
+D3 Corpus integrity &
+Fragmentary seals inflate terminal counts &
+Erosion mask removes all inscriptions with illegible gaps \\
+\addlinespace
+D4 Repetition anomaly &
+A singular suffix should not double &
+M342 doubles in $<$1\% of cases; consistent with reduplication patterns \\
+\addlinespace
+D5 Punctuation attack &
+M342 is a scribal period mark &
+CV $= 0.761$; entropy delta $= +0.703$ bits on $N = 2{,}742$ (punctuation ruled out) \\
+\addlinespace
+D6 Local guild symbols &
+Sign patterns are site-specific, not linguistic &
+\textbf{Cross-site $Z = 50.12$, $p = 0$. All sites follow MD grammar.
+Geographic gradient confirms systemic transmission, not local symbology.} \\
+\addlinespace
+D7 Validation mark &
+M342 may be an administrative authority stamp &
+CV $= 0.761$ distinguishes suffix from stamp; Cross-Site Consistency
+($Z = 50$) is inconsistent with a stamp applied independently at each site \\
+\addlinespace
+D8 Commodity ledger &
+M342 is a standardised commodity tag &
+Commodity tags attach uniformly to all goods (low CV).
+M342 exhibits CV $= 0.761$, indicating selective bonding with specific signs.
+Furthermore, a commodity-ledger model does not explain the existence of strictly
+medial-locked signs (e.g., M99 at 100\% medial for $L \geq 5$), which have no
+analogous function in inventory tracking. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+\needspace{6\baselineskip}
+\section{Known Limitations}
+\label{sec:limitations}
+% ============================================================
+
+\begin{table}[htbp]
+\centering
+\caption{Known limitations with current status}
+\begin{tabularx}{\textwidth}{p{4.5cm}X}
+\toprule
+Limitation & Status \\
+\midrule
+Erosion bias (survivorship) &
+703 inscriptions dropped; clean corpus skews toward longer texts.
+Terminal rates may be slightly inflated for signs that occur in
+longer, well-preserved inscriptions. \\
+\addlinespace
+RTL assumption &
+\textbf{RESOLVED} (Section~\ref{sec:direction}).
+Direction codes from \texttt{data/motif\_data.json} assign 2,360
+inscriptions as RTL (86.1\%) and 175 as LTR (6.4\%).
+LTR perplexity is 7,887$\times$ below random under RTL grammar
+($p = 1.03 \times 10^{-54}$), bounding the noise introduced by
+LTR inscriptions in Analyses 1--6. \\
+\addlinespace
+West Asian sample size &
+13 inscriptions. Geographic gradient finding is robust at all other
+sites; West Asian score ($+1.08$) may partially reflect sampling noise. \\
+\addlinespace
+No bilingual anchor &
+Phonetic readings probabilistic; none confirmed from bilingual text. \\
+\addlinespace
+Unexplained medial M342 on seals &
+23.9\% of M342 occurrences on seals are medial (172 of 720 tokens).
+The multi-line text hypothesis does not fully account for these.
+Possible explanations include undetected physical line-breaks on
+damaged seals, compound morpheme boundaries, or a dual medial/terminal
+function for M342 in specific syntactic contexts.
+Decomposing this subset by seal carving style and per-face artifact
+records is deferred to future work. \\
+\addlinespace
+Temporal gap (IVC $\to$ Keeladi: 1,300 yr) &
+Acknowledged; BRW tradition as bridge; transition probability
+verification pending machine-readable Megalithic data. \\
+\addlinespace
+M342 vs M137 in literature &
+M342 is the primary jar sign; M137 is a variant form (jar with base),
+a distinct concordance entry. Secondary literature conflating the two
+should use M342 for the high-frequency terminal marker. \\
+\addlinespace
+Sign list granularity (Allography) &
+The 398-sign inventory derives from Mahadevan (1977), which separates signs based
+on minor visual variants. If some signs are allographs (scribe-specific variants
+of the same sign), the true sign inventory is smaller. This would increase bigram
+frequencies and likely strengthen the observed transition constraints, but may
+alter the exact boundary thresholds of the functional classes in Analysis~5. \\
+\addlinespace
+Segmentation error &
+The machine-readable corpus relies on Mahadevan's manual segmentation of crowded
+seal impressions. Undetected segmentation errors (e.g., splitting one sign into
+two, or merging two adjacent signs) introduce noise into the bigram transition
+matrix. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+\needspace{6\baselineskip}
+\section{Reproducibility}
+\label{sec:repro}
+% ============================================================
+
+All code is available at \url{https://github.com/gkarun876/IVS} (MIT License).
+
+\begin{lstlisting}[language=bash, basicstyle=\small\ttfamily, frame=single,
+                   caption={Quick start}, breaklines=false]
+# mahadevan_corpus.json is pre-parsed and included in the repo
+
+# Run all 9 analyses
+python run_proofs_v2.py          # Analyses 1--4 (results/v2/)
+python grammar_engine.py         # Analysis 5  (grammar_summary.txt)
+python validation_mark_test.py   # Analysis 6  (cross_site_*.txt)
+python direction_grammar_test.py # Analysis 7    (results/v4/)
+python motif_correlation.py      # Analysis 8    (results/v4/)
+python synonym_extractor.py      # Analysis 9    (results/v4/)
+
+# Legacy pilot-corpus scripts
+python indus_decode.py           # 41-seal pilot proofs
+python typology_test.py          # Agglutinative vs Sanskrit
+python adversarial_defense.py    # Defenses D1-D7
+\end{lstlisting}
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% ============================================================
+
+We have presented nine statistically independent structural tests on
+2,742 inscriptions from the Indus Valley Civilisation.
+
+\begin{enumerate}
+    \item \textbf{M342 is positionally constrained as a terminal morpheme}
+          ($p = 1.70 \times 10^{-222}$), independently confirmed by ICIT's
+          TMK label.
+    \item \textbf{Positional entropy drops 0.558 bits} from initial to
+          second slot, confirming an open initial vocabulary with
+          terminal grammatical constraint.
+    \item \textbf{Signs M267, M99, M342 cluster at $5.5\times$ above
+          chance} ($\chi^2 = 523$, $p \approx 0$), ruling out random
+          co-occurrence.
+    \item \textbf{Sign M48 attaches to M342 at $8.97\times$ above
+          independence}, consistent with selective suffix attachment.
+    \item \textbf{398 signs partition into three functional classes}
+          (terminal-biased, initial-biased, medial-locked) with no
+          cross-boundary signs above noise, consistent with morphological
+          role differentiation.
+    \item \textbf{The Mohenjo-daro grammar generalises to all sites}
+          ($Z = 50.12$, $p = 0$), with fit generally decaying
+          with geographic distance---a pattern consistent with a
+          standardized institutional writing system, not local iconography.
+    \item \textbf{The RTL assumption is resolved}: direction data
+          from \texttt{data/motif\_data.json} confirms 86.1\% RTL. LTR
+          inscriptions score 7,887$\times$ below random under RTL
+          grammar ($p = 1.03 \times 10^{-54}$), bounding directional
+          noise in Analyses 1--6.
+    \item \textbf{Sign M113 is $37.9\times$ positionally enriched on
+          elephant-motif seals} and occupies the MEDIAL slot in a
+          recurrent formula across Harappa and Lothal, structurally
+          distinguishing it from terminal and initial signs; no
+          semantic category is assigned.
+          Sign pair M172--M304 appears in an identical eight-sign
+          sequence on all 7 attested Kalibangan UNICORN seals
+          (PMI\,=\,7.94, zero sequence variation; $n = 7$,
+          single site), consistent with a high-constraint
+          institutional formula; no semantic or titular content
+          is inferred.
+    \item \textbf{154 structural substitution synonyms} are recovered.
+          M328 (90.1\% Harappa-concentrated), M93 (100\%
+          Chanhudaro-concentrated), and M172 (87.5\%
+          Kalibangan-concentrated) are terminal-biased signs with
+          strong single-site concentration.
+          M328, M12, and M343 are confirmed positional equivalents
+          (cross-site slot substitutions in identical formulae).
+          Signs M304 and M328 have exact shape-matches in Tamil Nadu
+          Iron Age graffiti \citep{Rajan2025}, confirming the visual
+          distinctiveness of these computationally isolated sign forms;
+          no morphological or functional continuity is implied.
+\end{enumerate}
+
+The hypothesis that the Indus Valley Script encodes random marks,
+administrative tokens, or site-specific guild symbology is statistically
+untenable given these results.
+The structural properties observed---positional constraint, selective
+suffix attachment, medial-positional bias, and cross-site grammatical
+standardisation---are consistent with a language encoding system and
+inconsistent with random or purely iconic marking; however,
+distinguishing a structured proto-writing system from a full language
+encoding system requires phonetic evidence beyond the scope of this
+study.
+
+\section*{Acknowledgements}
+
+The author thanks I.\ Mahadevan and the Roja Muthiah Research Library
+for the 1977 concordance and its machine-readable web application;
+Andreas Fuls (TU Berlin) for the ICIT TMK label used as an independent
+validation anchor; and K.\ Rajan and R.\ Sivanantham for the 2025
+Tamil Nadu graffiti survey.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

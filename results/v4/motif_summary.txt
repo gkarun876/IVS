@@ -1,0 +1,44 @@
+======================================================================
+  MOTIF CORRELATION ANALYSIS
+  Corpus: 2742 inscriptions | Motif data: 2906 textnums
+  Overlap: 2338 inscriptions have both sign seq + motif
+======================================================================
+
+BACKGROUND MOTIF DISTRIBUTION (all 2742 inscriptions with motif data)
+  NO-MOTIF                       1387  (50.6%)
+  UNICORN                         947  (34.5%)
+  BULL                            135  (4.9%)
+  VARIOUS-SYMBOLS-MOTI             56  (2.0%)
+  ELEPHANT                         42  (1.5%)
+  RHINO                            23  (0.8%)
+  SCENES-WITH-ANTHROPO             22  (0.8%)
+  REPTILE-FISH-BIRD                20  (0.7%)
+
+TOP 20 PMI PAIRS — MOTIF ENRICHMENT
+  Pair            PMI     N Top Motif                       Pair%  Base%  Enrich        p
+  -------------------------------------------------------------------------------------
+  M2-M   45   7.01     3 TREES-AND-LEAVES               100.0%   0.2%  457.0x      n/a
+  M201-M  277   6.68     3 BULL                            66.7%   4.9%   13.5x      n/a
+  M172-M  304   7.91     7 UNICORN                        100.0%  34.5%    2.9x      n/a
+  M32-M  319   5.84     3 UNICORN                        100.0%  34.5%    2.9x      n/a
+  M121-M  172   5.67     7 UNICORN                        100.0%  34.5%    2.9x      n/a
+  M113-M  263   6.68     3 NO-MOTIF                       100.0%  50.6%    2.0x      n/a
+  M294-M  337   6.21     3 NO-MOTIF                       100.0%  50.6%    2.0x      n/a
+  M41-M  137   6.20     9 NO-MOTIF                       100.0%  50.6%    2.0x      n/a
+  M183-M  407   6.00    10 NO-MOTIF                       100.0%  50.6%    2.0x      n/a
+  M190-M  374   5.88     3 NO-MOTIF                       100.0%  50.6%    2.0x      n/a
+  M205-M  367   5.84     4 NO-MOTIF                       100.0%  50.6%    2.0x      n/a
+  M177-M  192   5.78     6 NO-MOTIF                       100.0%  50.6%    2.0x      n/a
+  M19-M   96   6.11     3 UNICORN                         66.7%  34.5%    1.9x      n/a
+  M175-M  282   6.03     3 UNICORN                         66.7%  34.5%    1.9x      n/a
+  M19-M  409   5.88     3 UNICORN                         66.7%  34.5%    1.9x      n/a
+  M94-M  409   6.10     4 NO-MOTIF                        75.0%  50.6%    1.5x      n/a
+  M136-M  193   6.22     9 NO-MOTIF                        55.6%  50.6%    1.1x   0.5840
+  M189-M  252   6.14     4 NO-MOTIF                        50.0%  50.6%    1.0x   0.5985
+  M128-M  327   6.05     6 NO-MOTIF                        50.0%  50.6%    1.0x   0.9569
+  M96-M  409   6.82    14 UNICORN                         28.6%  34.5%    0.8x   0.0000
+
+PRIMARY TARGET: M172-M304 (PMI=7.906)
+  Inscriptions with both signs: 7
+  Dominant motif: UNICORN (100.0% vs 34.5% baseline)
+  Enrichment: 2.9x  p=n/a

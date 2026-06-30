@@ -1,0 +1,40 @@
+==============================================================
+  CROSS-SITE MARKOV CONSISTENCY TEST
+  Train: Mohenjo-daro | Test: Harappa
+==============================================================
+
+Corpus split:
+  Mohenjo-daro           1347 inscriptions
+  Harappa                1103 inscriptions
+  Lothal                 112 inscriptions
+  Kalibangan             80 inscriptions
+  Chanhudaro             58 inscriptions
+  Other Sites            29 inscriptions
+  West Asian             13 inscriptions
+
+Training matrix on 1347 Mohenjo-daro inscriptions...
+Matrix built: 341 unique signs, 13448 non-trivial transitions
+
+Real Harappa log-likelihood/bigram:  -5.8529
+MD self-score (upper bound ref):     -2.1002
+
+Generating 1000 random-shuffle baselines...
+Random baseline mean:                -12.0428
+Random baseline std:                 0.1235
+
+Z-score (real vs random):            50.12
+p-value (one-tailed t-test):         0.00e+00
+
+--------------------------------------------------------------
+VERDICT: UNIFIED_SYSTEM_CONFIRMED: Harappa inscriptions fit the Mohenjo-daro grammar significantly better than random. The script follows consistent structural rules across sites.
+--------------------------------------------------------------
+
+ALL SITES scored against Mohenjo-daro matrix:
+  Site                       N   LL/bigram   vs random
+  Mohenjo-daro            1347     -2.1002     +9.9426
+  Harappa                 1103     -5.8529     +6.1899
+  Lothal                   112     -6.0355     +6.0073
+  Kalibangan                80     -7.9974     +4.0455
+  Chanhudaro                58     -6.7554     +5.2874
+  Other Sites               29     -6.7060     +5.3369
+  West Asian                13    -10.9593     +1.0836
