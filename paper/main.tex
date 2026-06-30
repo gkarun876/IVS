@@ -151,7 +151,7 @@ This paper moves beyond the binary language/non-language question to
 ask: \emph{if the script encodes language, what structural properties
 does that language have?}
 
-We make six independently falsifiable structural claims (Sections~3--8),
+We make nine independently falsifiable structural claims (Sections~3--11),
 each grounded solely in sign-position and sign-transition statistics
 with no phonetic assumptions.
 Phonetic readings are isolated in Section~11 and are not necessary for
@@ -903,7 +903,7 @@ Every phonetic reading carries an explicit confidence label.
 \SAFE{} = independently confirmed in \citet{Parpola1994},
 \citet{Mahadevan1977}, or DEDR \citep{Burrow1984}.
 \PREDICTED{} = our inference, labelled as testable hypothesis.
-\textbf{The structural claims in Sections~3--8 do not depend on
+\textbf{The structural claims in Sections~3--11 do not depend on
 these phonetic readings}; they are listed for orientation only and
 can be removed without affecting any statistical result.
 
@@ -1218,17 +1218,20 @@ All code is available at \url{https://github.com/gkarun876/IVS} (MIT License).
 \begin{lstlisting}[language=bash, basicstyle=\small\ttfamily, frame=single,
                    caption={Quick start}, breaklines=true]
 # Parse corpus
-python parse_mahadevan.py       # -> data/mahadevan_corpus.json
+# data/mahadevan_corpus.json is pre-parsed and included in the repo
 
-# Run all 6 proofs
-python run_proofs_v2.py         # Proofs 1-4, results/v2/
-python grammar_engine.py        # Proof 5, grammar_summary.txt
-python validation_mark_test.py  # Proof 6, cross_site_*.txt
+# Run all 9 proofs
+python run_proofs_v2.py              # Proofs 1-4, results/v2/
+python grammar_engine.py             # Proof 5, grammar_summary.txt
+python validation_mark_test.py       # Proof 6, cross_site_*.txt
+python direction_grammar_test.py     # Proof 7, results/v4/direction_grammar_test.txt
+python motif_correlation.py          # Motif-sign correlation, results/v4/motif_summary.txt
+python synonym_extractor.py          # Geographic clusters + synonyms, results/v4/synonym_clusters.txt
 
 # Legacy pilot-corpus tests
-python indus_decode.py          # original 41-seal proofs
-python typology_test.py         # Agglutinative vs Sanskrit
-python adversarial_defense.py   # Defenses D1-D7
+python indus_decode.py               # original 41-seal proofs
+python typology_test.py              # Agglutinative vs Sanskrit
+python adversarial_defense.py        # Defenses D1-D7
 \end{lstlisting}
 
 % ============================================================
@@ -1236,7 +1239,7 @@ python adversarial_defense.py   # Defenses D1-D7
 \label{sec:conclusion}
 % ============================================================
 
-We have presented six statistically independent structural tests on
+We have presented nine statistically independent structural tests on
 2,742 inscriptions from the Indus Valley Civilisation.
 
 \begin{enumerate}
