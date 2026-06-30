@@ -100,7 +100,8 @@ baseline ($Z = 50.12$, $p = 0$).
 Crucially, the grammar fit decays with geographic distance: Harappa
 ($+6.19$), Lothal ($+6.01$), Chanhudaro ($+5.29$), Kalibangan ($+4.05$),
 West Asian finds ($+1.08$)---a spatial gradient consistent with
-standardized institutional grammar radiating from a centre.
+a geographically structured writing system, with highest inter-site
+grammatical similarity between the two largest sites.
 A \textbf{Direction Grammar Test} (Proof~7) resolves the prior RTL
 assumption: direction data from the \texttt{indusarrays} Firestore
 collection classifies 2,360 inscriptions as RTL and 175 as LTR.
@@ -108,17 +109,20 @@ LTR perplexity (97.68) is 7,887$\times$ below random ($p = 1.03 \times
 10^{-54}$, Cohen's $d = 1.634$), confirming that grammatical
 dependencies survive direction flip even as exact word order degrades
 ($13.3\times$ perplexity increase).
-A \textbf{Motif--Sign Correlation} test shows sign M113 appearing at
-$37.9\times$ enrichment on elephant seals in a stable medial formula
-across multiple sites; M172--M304 forms a frozen eight-sign formula
-appearing on 7/7 Kalibangan UNICORN seals (PMI\,=\,7.94).
+A \textbf{Motif--Sign Correlation} test shows sign M113 at
+$37.9\times$ positional enrichment on elephant-motif seals in a
+recurrent medial formula across two sites; no semantic inference
+follows from enrichment alone.
+M172--M304 appears in an identical eight-sign sequence on all 7
+attested Kalibangan UNICORN seals (PMI\,=\,7.94; $n = 7$,
+single site; sample-size caution warranted).
 A \textbf{Geographic Cluster} test identifies M328 as 90.1\%
 Harappa-concentrated and M93 as 100\% Chanhudaro-concentrated;
 154 structural substitution synonyms are recovered, with M328,
 M12, and M343 confirmed as cross-site positional equivalents.
-The targeted signs M304 and M328 are independently confirmed by
-\citet{Rajan2025} as morphological survivors in Tamil Nadu Iron Age
-graffiti, providing non-linguistic archaeological corroboration.
+Signs M304 and M328 have exact shape-matches in Tamil Nadu Iron Age
+graffiti documented by \citet{Rajan2025}; no functional or descent
+continuity is implied.
 All code is open-source and reproducible.
 \end{abstract}
 
@@ -967,11 +971,13 @@ Enrichment: $2.9\times$ over base.
 
 Frozen formulae with PMI $>7$ indicate institutional standardization
 rather than phonetic or semantic variation.
-This pattern is consistent with an administrative or religious title
-specific to Kalibangan UNICORN seals.
+This pattern is consistent with an institutionally fixed formula
+specific to Kalibangan UNICORN seals; whether it encodes an
+administrative, cultic, or ownership function cannot be determined
+from structural data.
 No phonetic inference is made.
 
-\subsection{Elephant Lexeme: M113}
+\subsection{Elephant-Motif Association: M113}
 
 We extracted all inscriptions paired with ELEPHANT motif seals
 (fs80\,=\,71; $n = 39$ corpus matches, 31 unique sequences).
@@ -1000,12 +1006,15 @@ $[\text{M267}, \text{M99}, \text{M113}, \text{M342}]$.
 At Harappa, an alternate opener produces
 $[\text{M263}, \text{M343}, \text{M113}, \text{M342}]$.
 
-M113's structural position (high enrichment, MEDIAL lock, formula
-stability across two cities with different openers) is consistent
-with a content-carrying sign---a noun or classifier for an
-elephant-related commodity---embedded between functionally fixed
-opener and suffix.
-No phonetic value is assigned.
+M113's structural position (high positional enrichment on
+elephant-motif inscriptions, 93.8\% MEDIAL, formula recurrence
+across Harappa and Lothal with distinct openers) distinguishes it
+structurally from terminal and initial signs.
+Whether this structural distinctiveness reflects a content category,
+a provenance marker, or another functional class cannot be determined
+from positional data alone.
+No semantic or syntactic category is assigned; no phonetic value
+is assigned.
 
 % ============================================================
 \section{Geographic Sign Clusters}
@@ -1042,9 +1051,11 @@ A city-name hypothesis predicts the sign appears in INITIAL position
 All four signs above are TERMINAL-biased (M328: 85.9\% terminal,
 M172: 85.7\% terminal) or MEDIAL, contradicting the city-name
 prediction.
-The geo-commodity interpretation (a sign marking a trade good
-associated with a specific production site) is consistent with
-the terminal position and the geographic lock.
+Geographic concentration combined with terminal position rules out
+the city-name prediction (which requires initial position).
+Remaining hypotheses---site-specific trade-good marking, origin
+marking, or scribal-school conventions---cannot be distinguished
+from positional data alone.
 
 \subsection{Structural Substitution Synonyms}
 
@@ -1071,10 +1082,11 @@ M66  & M207 & pos 2 & Lothal & Mohenjo-daro \\
 
 M328, M12, and M343 are cross-site structural synonyms in the slot
 immediately following sign M89 or M87.
-Structural synonyms are signs that are \emph{mathematically forced to
-carry equivalent grammatical function} by occupying the same slot in
-otherwise identical formulae.
-No phonetic claim is made; the equivalence is purely positional.
+Structural synonyms, as used here, are signs that occupy the same
+slot in otherwise identical formulae across different sites.
+This positional equivalence is a necessary but not sufficient
+condition for equivalent grammatical function; allographic variation
+and site-specific substitution conventions are not ruled out.
 
 % ============================================================
 \section{Archaeological Correlation: Keezhadi}
@@ -1091,29 +1103,31 @@ marks have IVC parallels.
 Both anchor signs (jar M342, fish M149) are physically present at
 Keeladi (2,132 sherds each).
 
-\paragraph{Convergent validation of M304 and M328.}
-A unique validation of these computational findings comes from
-independent archaeological fieldwork.
-\citet{Rajan2025} independently mapped Tamil Nadu graffiti signs to
-their Mahadevan numbers.
-Strikingly, the signs our algorithms isolated as highly localized
-markers---specifically M328 (Harappa's terminal formula sign, 90\%
-site-locked, 85.9\% terminal) and M304 (locked to Kalibangan via
-the M172--M304 PMI pair, $n = 7/7$ identical formula)---appear as
-exact shape-matches in the Iron Age graffiti of Tamil Nadu (Rajan
-sign numbers 32.0 and 31.0 respectively).
-This provides independent, non-linguistic, physical validation that
-the computational methods used here are isolating real, historically
-meaningful sign clusters, not statistical noise.
-No phonetic inference follows from this convergence; it confirms the
-morphological reality of the targeted signs only.
+\paragraph{Independent shape convergence: M304 and M328.}
+An independent convergence is noted with \citet{Rajan2025}, who
+mapped Tamil Nadu Iron Age graffiti signs to Mahadevan numbers.
+The signs our algorithms isolated as structurally distinctive---M328
+(90.1\% Harappa-concentrated, 85.9\% terminal) and M304 (co-occurs
+with M172 in an identical formula on all 7 attested Kalibangan
+UNICORN seals, PMI\,=\,7.94)---appear as exact shape-matches in
+Tamil Nadu graffiti (Rajan sign numbers 32.0 and 31.0 respectively).
+That signs computationally isolated as structurally distinctive are
+also visually identifiable in an independent dataset is consistent
+with those signs having stable, non-arbitrary graphic forms.
+This does not validate the Markov or PMI analyses; it confirms only
+the visual distinctiveness of the targeted sign shapes.
+No phonetic inference and no claim of morphological or functional
+continuity follows from this convergence.
 
 \paragraph{Temporal gap.}
 IVC ended $\sim$1900 \BCE; Keeladi dates to $\sim$600 \BCE: a gap
 of $\sim$1,300 years.
 Morphological overlap does not establish direct descent.
-The Megalithic Black-and-Red Ware pottery tradition provides an
-unbroken graffiti-mark record across this period \citep[][pp.\ 13--14]{Rajan2025}.
+The Megalithic Black-and-Red Ware pottery tradition shows graffiti
+marks at sites across this period \citep[][pp.\ 13--14]{Rajan2025};
+whether this represents continuous transmission or independent
+recurrence of similar forms cannot be determined without
+sequence-level comparative analysis.
 Whether sign \emph{transition probabilities} are preserved across the
 gap cannot be tested computationally until dated sequence data from
 stratified Megalithic contexts are available in machine-readable form.
@@ -1267,30 +1281,40 @@ We have presented nine statistically independent structural tests on
           inscriptions score 7,887$\times$ below random under RTL
           grammar ($p = 1.03 \times 10^{-54}$), bounding directional
           noise in Proofs 1--6.
-    \item \textbf{Sign M113 is $37.9\times$ enriched on elephant
-          seals} in a stable MEDIAL formula across Harappa and Lothal,
-          consistent with a content-carrying lexeme embedded between
-          functionally fixed signs.
-          Sign pair M172--M304 is frozen across all 7 Kalibangan
-          UNICORN seals (PMI\,=\,7.94, zero sequence variation),
-          consistent with an institutional title formula.
+    \item \textbf{Sign M113 is $37.9\times$ positionally enriched on
+          elephant-motif seals} and occupies the MEDIAL slot in a
+          recurrent formula across Harappa and Lothal, structurally
+          distinguishing it from terminal and initial signs; no
+          semantic category is assigned.
+          Sign pair M172--M304 appears in an identical eight-sign
+          sequence on all 7 attested Kalibangan UNICORN seals
+          (PMI\,=\,7.94, zero sequence variation; $n = 7$,
+          single site), consistent with a high-constraint
+          institutional formula; no semantic or titular content
+          is inferred.
     \item \textbf{154 structural substitution synonyms} are recovered.
-          M328 (90.1\% Harappa), M93 (100\% Chanhudaro), and M172
-          (87.5\% Kalibangan) are geographically locked terminal signs.
+          M328 (90.1\% Harappa-concentrated), M93 (100\%
+          Chanhudaro-concentrated), and M172 (87.5\%
+          Kalibangan-concentrated) are terminal-biased signs with
+          strong single-site concentration.
           M328, M12, and M343 are confirmed positional equivalents
           (cross-site slot substitutions in identical formulae).
-          Signs M304 and M328 are independently confirmed by
-          \citet{Rajan2025} as morphological survivors in Tamil Nadu
-          Iron Age graffiti---providing non-linguistic archaeological
-          corroboration of the computational findings.
+          Signs M304 and M328 have exact shape-matches in Tamil Nadu
+          Iron Age graffiti \citep{Rajan2025}, confirming the visual
+          distinctiveness of these computationally isolated sign forms;
+          no morphological or functional continuity is implied.
 \end{enumerate}
 
 The hypothesis that the Indus Valley Script encodes random marks,
 administrative tokens, or site-specific guild symbology is statistically
 untenable given these results.
 The structural properties observed---positional constraint, selective
-suffix attachment, medial-locked particles, and cross-site grammatical
-standardisation---are properties of language, not of marking systems.
+suffix attachment, medial-positional bias, and cross-site grammatical
+standardisation---are consistent with a language encoding system and
+inconsistent with random or purely iconic marking; however,
+distinguishing a structured proto-writing system from a full language
+encoding system requires phonetic evidence beyond the scope of this
+study.
 
 \section*{Acknowledgements}
 
