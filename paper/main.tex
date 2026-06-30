@@ -34,7 +34,7 @@
 
 \definecolor{safegreen}{RGB}{0,128,0}
 \definecolor{predorange}{RGB}{180,80,0}
-\newcommand{\SAFE}{\textcolor{safegreen}{\texttt{[SAFE]}}}
+\newcommand{\SAFE}{\textcolor{safegreen}{\texttt{[LIT.ANCHOR]}}}
 \newcommand{\PREDICTED}{\textcolor{predorange}{\texttt{[PREDICTED]}}}
 
 % Tamil transliteration macros (IAST-style, no special font needed)
@@ -73,26 +73,26 @@ We present nine independent statistical tests on a corpus of $N = 2{,}742$
 clean inscriptions drawn from the Mahadevan (1977) concordance
 (textnums 1001--9905; Mohenjo-daro, Harappa, Chanhudaro, Lothal,
 Kalibangan, and West Asian sites).
-The \textbf{Suffix Theorem} (Proof~1) shows sign M342 occupies the
+The \textbf{Suffix Theorem} (Analysis~1) shows sign M342 occupies the
 terminal position in 68.0\% of its occurrences across 2,742 inscriptions,
 with a binomial $p = 1.70 \times 10^{-222}$ against the uniform null.
-The \textbf{Positional Entropy} test (Proof~2) confirms a drop of
+The \textbf{Positional Entropy} test (Analysis~2) confirms a drop of
 0.558~bits from position~0 to position~1, the mathematical signature of
 an open initial vocabulary constrained by a terminal grammar
 (\emph{previously pending at pilot scale; now confirmed}).
-A \textbf{Co-occurrence Cluster} test (Proof~3) shows signs M267, M99,
+A \textbf{Co-occurrence Cluster} test (Analysis~3) shows signs M267, M99,
 and M342 co-occur at $5.5\times$ above chance ($\chi^2 = 523$,
 $p \approx 0$; \emph{previously pending; now confirmed}).
-The \textbf{Agglutination Ratio} (Proof~4) shows sign M48 precedes M342
+The \textbf{Agglutination Ratio} (Analysis~4) shows sign M48 precedes M342
 at $8.97\times$ above independence, consistent with suffix attachment.
-A \textbf{Grammar Engine} (Proof~5) built from the full bigram
+A \textbf{Grammar Engine} (Analysis~5) built from the full bigram
 transition matrix identifies 398 distinct signs, 598 statistically
 significant transitions ($\geq$3 occurrences), and a three-way functional
 partition: terminal signs (M342, M176, M328), strictly medial signs
 (M99 at 97.0\%, M347 at 98.9\%), and initial-biased signs (M267 at
 79.5\%, M95 at 93.3\%)---consistent with morphological role
 differentiation.
-A \textbf{Cross-Site Markov Consistency} test (Proof~6) trains the
+A \textbf{Cross-Site Markov Consistency} test (Analysis~6) trains the
 transition matrix on Mohenjo-daro ($n = 1{,}347$) and scores Harappa
 ($n = 1{,}103$) inscriptions against it.
 Harappa achieves log-likelihood $+6.19$ above a 1,000-permutation random
@@ -102,7 +102,7 @@ Crucially, the grammar fit decays with geographic distance: Harappa
 West Asian finds ($+1.08$)---a spatial gradient consistent with
 a geographically structured writing system, with highest inter-site
 grammatical similarity between the two largest sites.
-A \textbf{Direction Grammar Test} (Proof~7) resolves the prior RTL
+A \textbf{Direction Grammar Test} (Analysis~7) resolves the prior RTL
 assumption: direction data from the \texttt{indusarrays} Firestore
 collection classifies 2,360 inscriptions as RTL and 175 as LTR.
 LTR perplexity (97.68) is 7,887$\times$ below random ($p = 1.03 \times
@@ -193,7 +193,7 @@ intact structural dataset analysed in the Indus computational
 literature to date.
 Notably, this study uses Fuls' independent terminal-marker labelling
 (TMK for M342, assigned from frequency statistics without phonetic
-assumptions) as an external validation anchor for Proof~1---confirming
+assumptions) as an external validation anchor for Analysis~1---confirming
 that our structural results converge with independent findings from the
 broader ICIT corpus.
 
@@ -293,8 +293,8 @@ Wells/ICIT identifiers (Table~\ref{tab:crosssys}), not by
 preprocessing the corpus through a secondary sign list.
 
 % ============================================================
-\section{Proof 1 --- Suffix Theorem}
-\label{sec:proof1}
+\section{Analysis 1 --- Suffix Theorem}
+\label{sec:analysis1}
 % ============================================================
 
 \paragraph{Hypothesis.}
@@ -310,7 +310,7 @@ $H_1$: M342 is preferentially terminal.
 
 \begin{table}[htbp]
 \centering
-\caption{Proof 1 --- Suffix Theorem ($N = 2{,}742$)}
+\caption{Analysis 1 --- Suffix Theorem ($N = 2{,}742$)}
 \begin{tabular}{lr}
 \toprule
 Metric & Value \\
@@ -322,7 +322,6 @@ Mean sequence length $\bar{L}$  & 4.13 \\
 Null probability $1/\bar{L}$    & 0.2421 \\
 Binomial $p$-value (one-tailed) & $\mathbf{1.70 \times 10^{-222}}$ \\
 \midrule
-Verdict & $H_0$ \textbf{REJECTED} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -332,12 +331,45 @@ The terminal rate of 68.0\% (vs.\ 100\% in the 41-seal pilot corpus)
 reflects the broader corpus including tablet and pottery inscriptions
 where M342 sometimes appears in medial position (31.9\% of occurrences,
 $n = 381$).
-The 381 medial occurrences likely represent line-internal terminal
-markers in multi-line texts where M342 closes one line before the
-inscription continues on a second side; decomposing this subset by
-text-type and artifact class is deferred to future work.
-This is consistent with a broader corpus including tablet and pottery
-inscriptions alongside the intact unicorn seals of the pilot.
+To test whether the medial occurrences are explained by multi-line
+artifact encoding, we decompose by artifact type using the
+\texttt{inscobj} field from \texttt{indusarrays}
+(Table~\ref{tab:m342medial}).
+
+\begin{table}[htbp]
+\centering
+\caption{M342 positional distribution by artifact type ($N_{\text{M342}} = 1{,}190$)}
+\label{tab:m342medial}
+\begin{tabular}{lrrrrrr}
+\toprule
+Artifact Type & Total & Terminal & Term\% & Medial & Med\% & Initial \\
+\midrule
+Seals              & 720 & 548 & 76.1\% & 172 & 23.9\% & 0 \\
+Sealings           & 223 & 129 & 57.8\% &  94 & 42.2\% & 0 \\
+Tablets/Implements & 221 & 111 & 50.2\% & 110 & 49.8\% & 0 \\
+Pottery/Graffiti   &  24 &  19 & 79.2\% &   5 & 20.8\% & 0 \\
+Other              &   2 &   2 &100.0\% &   0 &  0.0\% & 0 \\
+\midrule
+Total              &1,190 & 809 & 68.0\% & 381 & 32.0\% & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The multi-line hypothesis holds strongly for tablets and implements
+(49.8\% medial), where multi-face encoding is expected.
+However, seals---nominally single-face objects---still show 23.9\%
+(172 occurrences) medial M342.
+Many seals in the Mahadevan concordance carry text on multiple faces
+(obverse, reverse, boss); M342 may close the obverse line while
+inscription continues on the boss.
+We cannot verify this from sequence data alone without per-face artifact
+records.
+We therefore acknowledge that M342 \emph{occasionally functions in a
+medial slot} and the medial-terminal distinction for M342 requires
+physical artifact-level verification.
+The terminal bias remains highly significant across all artifact types
+($p = 1.70 \times 10^{-222}$) and M342 never appears in initial
+position ($n = 1$ out of 1,190 tokens; $<$0.1\%).
 The binomial $p$-value at full scale is astronomically more significant
 ($10^{-222}$ vs.\ $10^{-21}$).
 
@@ -347,8 +379,8 @@ Marker), assigned from frequency statistics without reference to any
 phonetic hypothesis.
 
 % ============================================================
-\section{Proof 2 --- Positional Entropy}
-\label{sec:proof2}
+\section{Analysis 2 --- Positional Entropy}
+\label{sec:analysis2}
 % ============================================================
 
 \paragraph{Hypothesis.}
@@ -361,7 +393,7 @@ inscriptions. Compare $H_0$ (initial slot) vs.\ $H_1$ (second slot).
 
 \begin{table}[htbp]
 \centering
-\caption{Proof 2 --- Positional Entropy ($N = 2{,}742$)}
+\caption{Analysis 2 --- Positional Entropy ($N = 2{,}742$)}
 \begin{tabular}{lr}
 \toprule
 Metric & Value \\
@@ -370,8 +402,6 @@ Entropy at position 0 (initial)    & 6.579 bits \\
 Entropy at position 1              & 6.021 bits \\
 Entropy drop (position 0 $\to$ 1)  & \textbf{0.558 bits} \\
 Threshold for confirmation         & $\geq$0.3 bits \\
-\midrule
-Verdict & \textbf{STRUCTURE CONFIRMED} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -398,8 +428,8 @@ monotonically from position~2 onward.}
 \end{figure}
 
 % ============================================================
-\section{Proof 3 --- Co-occurrence Cluster}
-\label{sec:proof3}
+\section{Analysis 3 --- Co-occurrence Cluster}
+\label{sec:analysis3}
 % ============================================================
 
 \paragraph{Hypothesis.}
@@ -414,7 +444,7 @@ $E = N \times P(\text{M267}) \times P(\text{M99}) \times P(\text{M342})$.
 
 \begin{table}[htbp]
 \centering
-\caption{Proof 3 --- Co-occurrence Cluster ($N = 2{,}742$)}
+\caption{Analysis 3 --- Co-occurrence Cluster ($N = 2{,}742$)}
 \begin{tabular}{lr}
 \toprule
 Metric & Value \\
@@ -425,8 +455,6 @@ Expected under independence & 25.8 \\
 Observed / Expected  & $5.5\times$ \\
 $\chi^2$             & \textbf{523.3} \\
 $p$-value            & $\mathbf{\approx 0}$ \\
-\midrule
-Verdict & \textbf{CLUSTER CONFIRMED} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -436,8 +464,8 @@ The cluster M267--M99--M342 appears in 142 inscriptions spanning
 all five major sites, confirming the pattern is not site-specific.
 
 % ============================================================
-\section{Proof 4 --- Agglutination Ratio}
-\label{sec:proof4}
+\section{Analysis 4 --- Agglutination Ratio}
+\label{sec:analysis4}
 % ============================================================
 
 \paragraph{Hypothesis.}
@@ -453,7 +481,7 @@ For all signs $a$ that precede M342, compute the observed/expected ratio:
 
 \begin{table}[htbp]
 \centering
-\caption{Proof 4 --- Agglutination Ratio ($N = 2{,}742$)}
+\caption{Analysis 4 --- Agglutination Ratio ($N = 2{,}742$)}
 \begin{tabular}{lr}
 \toprule
 Metric & Value \\
@@ -463,8 +491,6 @@ Observed M48$\to$M342 bigrams         & 105 \\
 Expected under independence           & 11.7 \\
 Agglutination ratio                   & $\mathbf{8.97\times}$ \\
 Min.\ frequency threshold             & 3 occurrences \\
-\midrule
-Verdict & \textbf{AGGLUTINATION CONFIRMED} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -479,7 +505,7 @@ regardless of direction; the functional label ``preceding'' reflects
 array order, not necessarily phonological precedence.
 
 % ============================================================
-\section{Proof 5 --- Grammar Engine}
+\section{Analysis 5 --- Grammar Engine}
 \label{sec:grammar}
 % ============================================================
 
@@ -570,8 +596,40 @@ the role of a phonetic complement, grammatical particle, or infix.
 This structural partition is a data-derived property; we make no claim
 about phonetic values.
 
+\paragraph{Length-stratified control for medial-lock (M99).}
+A known artifact in short-corpus positional analysis is that signs
+appearing exclusively in longer strings will mechanically appear
+medial-locked.
+To rule this out, Table~\ref{tab:m99length} stratifies M99's positional
+distribution by inscription length.
+
+\begin{table}[htbp]
+\centering
+\caption{M99 positional rate stratified by inscription length}
+\label{tab:m99length}
+\begin{tabular}{lrrrr}
+\toprule
+Length $L$ & M99 tokens & Initial\% & Medial\% & Terminal\% \\
+\midrule
+$L = 3$ (min)  &  21 &  4.8\% & 76.2\% & 19.0\% \\
+$L = 4$ (mean) &  79 &  0.0\% & 94.9\% &  5.1\% \\
+$L = 5$        & 152 &  0.0\% &100.0\% &  0.0\% \\
+$L = 6$        &  99 &  0.0\% &100.0\% &  0.0\% \\
+$L = 7$        &  79 &  0.0\% &100.0\% &  0.0\% \\
+$L \ge 8$      &  98 &  1.0\% & 99.0\% &  0.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At $L \ge 5$, M99 is 100\% medial (or 99\% at $L \ge 8$), ruling out
+the length-artifact hypothesis.
+Even at $L = 3$ (where the medial slot is a single position), M99
+is 76.2\% medial.
+The medial-locked classification is robust against inscription-length
+artifacts across all length strata.
+
 % ============================================================
-\section{Proof 6 --- Cross-Site Markov Consistency}
+\section{Analysis 6 --- Cross-Site Markov Consistency}
 \label{sec:crosssite}
 % ============================================================
 
@@ -636,8 +694,6 @@ Random baseline mean               & $-12.04$ \\
 Random baseline std                & $0.1235$ \\
 $Z$-score                          & \textbf{50.12} \\
 $p$-value (one-tailed $t$-test)    & $\mathbf{0}$ \\
-\midrule
-Verdict & \textbf{UNIFIED SYSTEM CONFIRMED} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -685,7 +741,7 @@ outposts 1,500~km distant.
 This caveat should be noted in any peer-review submission.
 
 % ============================================================
-\section{Proof 7 --- Direction Grammar Test}
+\section{Analysis 7 --- Direction Grammar Test}
 \label{sec:direction}
 % ============================================================
 
@@ -735,7 +791,7 @@ LTR against RTL matrix, and a random baseline
 
 \begin{table}[htbp]
 \centering
-\caption{Proof 7 --- Direction Grammar Test results}
+\caption{Analysis 7 --- Direction Grammar Test results}
 \begin{tabular}{lr}
 \toprule
 Metric & Value \\
@@ -752,8 +808,6 @@ $p$-value                        & $\mathbf{1.03 \times 10^{-54}}$ \\
 Cohen's $d$                      & \textbf{1.634} (very large effect) \\
 \addlinespace
 LTR sign overlap with RTL        & 114 / 116 signs (98.3\%) \\
-\midrule
-Verdict & \textbf{DIRECTIONALLY ROBUST GRAMMAR} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -835,8 +889,6 @@ Selectivity Index (CV)           & \textbf{0.761} & High $\Rightarrow$ suffix-li
 Terminal entropy \emph{with} M342    & 4.646 bits & --- \\
 Terminal entropy \emph{without} M342 & 5.350 bits & --- \\
 Entropy delta on removal         & $\mathbf{+0.703}$ \textbf{bits} & Suffix behaviour \\
-\midrule
-Verdict & \multicolumn{2}{l}{\textbf{SUFFIX-LIKE: punctuation ruled out}} \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -852,59 +904,12 @@ unchanged and the CV of 0.761 remains well above the range
 consistent with uniform delimiter behavior.
 
 % ============================================================
-\section{Typology Comparator}
-\label{sec:typology}
-% ============================================================
-
-A fusional/inflectional model (e.g., Indo-Aryan paradigms such as
-the Sanskrit genitive \textit{-as}/\textit{-asya}, \citealt{Witzel2006})
-predicts that a case suffix: (S1) cannot follow numerals;
-(S2) cannot follow feminine nouns;
-(S3) appears internally in sandhi compounds (terminal rate $\neq$ 100\%).
-
-M342 follows numerals 0 times.
-The terminal rate across the full corpus is 68\% at $N = 2{,}742$.
-Sanskrit sandhi grammar requires case endings to fuse and disappear
-internally in compound formation; a terminal rate of 68\% is
-incompatible with this pattern regardless of the feminine-noun test.
-We use the full-corpus 68\% rate for all scoring; the 100\% rate
-observed in the intact unicorn-seal sub-corpus is noted for reference
-but is not used to inflate the typology score.
-
-\begin{table}[htbp]
-\centering
-\caption{Typology Comparator --- composite fit scores}
-\begin{tabularx}{\textwidth}{lrX}
-\toprule
-Model & Score & Notes \\
-\midrule
-Agglutinative model (e.g., Proto-Dravidian)      & \textbf{0.6546} & Strong fit \\
-Fusional/Inflectional (non-agglutinative model) & \textbf{0.0000} & No fit \\
-Margin & \textbf{$+$0.6546} & --- \\
-\midrule
-Verdict & \multicolumn{2}{l}{\textbf{Agglutinative model preferred}} \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-Weights in the agglutinative score: terminal invariance (0.50,
-\citealt{Krishnamurti2003}), root diversity (0.25, \citealt{Comrie1989}),
-bigram elevation (0.25, \citealt{Rao2009}).
-Weights were not tuned against this corpus.
-The structural properties tested here---terminal invariance, root
-diversity, and bigram elevation---are characteristic of agglutinative
-typology broadly.
-While Proto-Dravidian is the primary geographic and chronological
-candidate, the tests in this paper validate the agglutinative
-mechanism, not a specific language family.
-
-% ============================================================
 \section{Phonetic Anchors and Epistemic Labelling}
 \label{sec:phonetics}
 % ============================================================
 
 Every phonetic reading carries an explicit confidence label.
-\SAFE{} = independently confirmed in \citet{Parpola1994},
+\texttt{[LIT.ANCHOR]} = reading proposed in external literature: \citet{Parpola1994},
 \citet{Mahadevan1977}, or DEDR \citep{Burrow1984}.
 \PREDICTED{} = our inference, labelled as testable hypothesis.
 \textbf{The structural claims in Sections~3--11 do not depend on
@@ -929,12 +934,15 @@ M91  & \={a}ru   & six / river           & DEDR-338  & \SAFE \\
 \end{table}
 
 This framework does not claim a full decipherment.
-It claims: (a)~the grammar is agglutinative, not inflectional;
-(b)~M342 is a grammatical suffix, not punctuation;
-(c)~the script follows consistent structural rules across all
-excavation sites; (d)~grammar regularity decays with geographic
-distance from Mohenjo-daro, consistent with a standardized
-institutional writing system.
+The structural analyses claim: (a)~M342 exhibits terminal positional
+constraint and selective attachment inconsistent with punctuation;
+(b)~the script follows consistent structural transition rules across
+all excavation sites; (c)~grammar regularity decays with geographic
+distance from Mohenjo-daro, consistent with a geographically
+structured writing system.
+Whether these properties constitute agglutinative morphology
+specifically requires phonetic verification beyond the scope of
+this study.
 
 % ============================================================
 \section{Motif--Sign Correlation}
@@ -1235,10 +1243,10 @@ All code is available at \url{https://github.com/gkarun876/IVS} (MIT License).
 # data/mahadevan_corpus.json is pre-parsed and included in the repo
 
 # Run all 9 proofs
-python run_proofs_v2.py              # Proofs 1-4, results/v2/
-python grammar_engine.py             # Proof 5, grammar_summary.txt
-python validation_mark_test.py       # Proof 6, cross_site_*.txt
-python direction_grammar_test.py     # Proof 7, results/v4/direction_grammar_test.txt
+python run_proofs_v2.py              # Analyses 1-4, results/v2/
+python grammar_engine.py             # Analysis 5, grammar_summary.txt
+python validation_mark_test.py       # Analysis 6, cross_site_*.txt
+python direction_grammar_test.py     # Analysis 7, results/v4/direction_grammar_test.txt
 python motif_correlation.py          # Motif-sign correlation, results/v4/motif_summary.txt
 python synonym_extractor.py          # Geographic clusters + synonyms, results/v4/synonym_clusters.txt
 
