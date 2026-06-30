@@ -84,8 +84,8 @@ an open initial vocabulary constrained by a terminal grammar
 A \textbf{Co-occurrence Cluster} test (Analysis~3) shows signs M267, M99,
 and M342 co-occur at $5.5\times$ above chance ($\chi^2 = 523$,
 $p \approx 0$; \emph{previously pending; now confirmed}).
-The \textbf{Agglutination Ratio} (Analysis~4) shows sign M48 precedes M342
-at $8.97\times$ above independence, consistent with suffix attachment.
+The \textbf{Selective Attachment Ratio} (Analysis~4) shows sign M48 precedes M342
+at $8.97\times$ above independence, consistent with selective suffix attachment.
 A \textbf{Grammar Engine} (Analysis~5) built from the full bigram
 transition matrix identifies 398 distinct signs, 598 statistically
 significant transitions ($\geq$3 occurrences), and a three-way functional
@@ -129,7 +129,7 @@ All code is open-source and reproducible.
 
 \bigskip
 \noindent\textbf{Keywords:} Indus Valley Script, statistical grammar,
-agglutination, positional entropy, Markov transition matrix,
+positional constraint, positional entropy, Markov transition matrix,
 cross-site consistency, computational linguistics
 
 {\small\tableofcontents}
@@ -448,7 +448,7 @@ the terminal marker: M267, M99, M342.
 Expected co-occurrence computed under independence:
 $E = N \times P(\text{M267}) \times P(\text{M99}) \times P(\text{M342})$.
 
-\begin{table}[htbp]
+\begin{table}[h!]
 \centering
 \caption{Analysis 3 --- Co-occurrence Cluster ($N = 2{,}742$)}
 \begin{tabular}{lr}
@@ -470,7 +470,7 @@ The cluster M267--M99--M342 appears in 142 inscriptions spanning
 all five major sites, confirming the pattern is not site-specific.
 
 % ============================================================
-\section{Analysis 4 --- Agglutination Ratio}
+\section{Analysis 4 --- Selective Attachment Ratio}
 \label{sec:analysis4}
 % ============================================================
 
@@ -487,7 +487,7 @@ For all signs $a$ that precede M342, compute the observed/expected ratio:
 
 \begin{table}[htbp]
 \centering
-\caption{Analysis 4 --- Agglutination Ratio ($N = 2{,}742$)}
+\caption{Analysis 4 --- Selective Attachment Ratio ($N = 2{,}742$)}
 \begin{tabular}{lr}
 \toprule
 Metric & Value \\
@@ -495,7 +495,7 @@ Metric & Value \\
 Top predecessor sign                  & M48 \\
 Observed M48$\to$M342 bigrams         & 105 \\
 Expected under independence           & 11.7 \\
-Agglutination ratio                   & $\mathbf{8.97\times}$ \\
+Selective attachment ratio            & $\mathbf{8.97\times}$ \\
 Min.\ frequency threshold             & 3 occurrences \\
 \bottomrule
 \end{tabular}
@@ -1311,7 +1311,7 @@ We have presented nine statistically independent structural tests on
           chance} ($\chi^2 = 523$, $p \approx 0$), ruling out random
           co-occurrence.
     \item \textbf{Sign M48 attaches to M342 at $8.97\times$ above
-          independence}, consistent with agglutinative suffix attachment.
+          independence}, consistent with selective suffix attachment.
     \item \textbf{398 signs partition into three functional classes}
           (terminal-biased, initial-biased, medial-locked) with no
           cross-boundary signs above noise, consistent with morphological
