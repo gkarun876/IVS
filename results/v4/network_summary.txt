@@ -1,0 +1,74 @@
+=================================================================
+  MUTUAL INFORMATION NETWORK — SEMANTIC ARCHITECTURE
+  Corpus: 2742 inscriptions
+  Graph:  398 signs (nodes), 1293 MI edges
+  Min co-occurrence threshold: 3 inscriptions
+=================================================================
+
+TOP 10 HUBS — highest degree centrality
+  (appear with most different signs = likely grammatical function words)
+    Sign   Degree    DegCent    BetCent   TokFreq   DocFreq
+  ------------------------------------------------------------
+  M342        119     0.2997     0.1605      1190      1174
+  M99         101     0.2544     0.0659       534       533
+  M59          55     0.1385     0.0109       302       293
+  M343         52     0.1310     0.0055       144       143
+  M67          52     0.1310     0.0123       234       234
+  M65          50     0.1259     0.0505       183       183
+  M267         47     0.1184     0.0202       312       310
+  M123         47     0.1184     0.0036       159       158
+  M336         46     0.1159     0.0109       190       190
+  M391         44     0.1108     0.0310       172       160
+
+TOP 10 BRIDGES — highest betweenness centrality
+  (connect different clusters = likely infixes or medial connectors)
+    Sign   Degree    DegCent    BetCent   TokFreq   DocFreq
+  ------------------------------------------------------------
+  M342        119     0.2997     0.1605      1190      1174
+  M127         13     0.0327     0.1021        45        44
+  M99         101     0.2544     0.0659       534       533
+  M87          41     0.1033     0.0565       312       298
+  M65          50     0.1259     0.0505       183       183
+  M98          38     0.0957     0.0417        71        71
+  M176         37     0.0932     0.0393       312       301
+  M17          35     0.0882     0.0338        71        71
+  M391         44     0.1108     0.0310       172       160
+  M389         37     0.0932     0.0219       119       117
+
+TOP 10 LEAVES — degree 1 or 2 (n=247 total leaves)
+  (appear with only 1-2 partners = likely specialized content vocabulary)
+    Sign   Degree   TokFreq   DocFreq
+  --------------------------------------
+  M55           0         4         4
+  M393          0         4         4
+  M158          0         3         3
+  M219          0         8         8
+  M34           0         2         2
+  M297          0         5         5
+  M27           0         2         2
+  M163          0         4         4
+  M181          0         2         2
+  M396          0         1         1
+
+NETWORK TOPOLOGY SUMMARY
+  Average degree:       6.50
+  Max degree:           119
+  Isolated nodes:       193
+  Leaf nodes (deg≤2):   247
+  Hub nodes (deg≥20):   47
+  Connected components: 194
+  Largest component:    205 signs
+
+TOP 10 STRONGEST PMI PAIRS (highest mutual attraction)
+   Sign A   Sign B       PMI   CoOcc
+  ------------------------------------
+  M172     M304       7.9064       7
+  M2       M45        7.0060       3
+  M96      M409       6.8190      14
+  M201     M277       6.6840       3
+  M113     M263       6.6840       3
+  M136     M193       6.2246       9
+  M294     M337       6.2116       3
+  M41      M137       6.1986       9
+  M189     M252       6.1356       4
+  M19      M96        6.1112       3
