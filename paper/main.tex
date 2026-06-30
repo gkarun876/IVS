@@ -47,7 +47,7 @@
 \newcommand{\BCE}{\textsc{bce}}
 
 \title{%
-    \textbf{Statistical Evidence for Agglutinative Structure
+    \textbf{Statistical Evidence for Positional and Syntactic Structure
     in the Indus Valley Script}\\[0.3em]
     \large A Computational Analysis of 2,742 Inscriptions
 }
@@ -169,9 +169,11 @@ any structural result.
 
 \subsection{Corpus}
 
-The corpus is derived from the Mahadevan (1977) concordance database
-as made available in machine-readable form, covering textnums 1001--9905
-across all major Indus Valley Civilisation sites.
+The corpus is derived from the Mahadevan (1977) concordance
+\citep{Mahadevan1977} as made available in machine-readable form via
+the Indus Script Web Application \citep{IndusScript2021},
+covering textnums 1001--9905 across all major Indus Valley Civilisation
+sites.
 
 Raw records: 3,572 sign-rows (including multi-line inscriptions encoded
 as separate rows).
@@ -402,7 +404,6 @@ Metric & Value \\
 Entropy at position 0 (initial)    & 6.579 bits \\
 Entropy at position 1              & 6.021 bits \\
 Entropy drop (position 0 $\to$ 1)  & \textbf{0.558 bits} \\
-Threshold for confirmation         & $\geq$0.3 bits \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -414,7 +415,7 @@ Entropy generally decreases across positions 0--7
 with local variance at position~2 ($6.124 > 6.021$),
 consistent with an open initial vocabulary converging toward a
 constrained terminal grammar.
-\emph{This proof was pending at pilot scale ($N = 41$); it is now
+\emph{This analysis was pending at pilot scale ($N = 41$); it is now
 confirmed at $N = 2{,}742$.}
 
 \begin{figure}[t]
@@ -460,7 +461,7 @@ $p$-value            & $\mathbf{\approx 0}$ \\
 \end{tabular}
 \end{table}
 
-\emph{This proof was pending at pilot scale; it is now confirmed.}
+\emph{This analysis was pending at pilot scale; it is now confirmed.}
 The cluster M267--M99--M342 appears in 142 inscriptions spanning
 all five major sites, confirming the pattern is not site-specific.
 
@@ -833,7 +834,7 @@ affinities --- is so strong that even reversed-direction sequences
 score far above noise under an RTL-trained matrix.
 
 \paragraph{Consequence for earlier proofs.}
-The RTL assumption in Proofs 1--6 is now confirmed for 86.1\% of
+The RTL assumption in Analyses 1--6 is now confirmed for 86.1\% of
 inscriptions.
 The 175 LTR inscriptions (6.4\%) introduce a modest noise signal in
 bigram statistics, but because LTR perplexity is 7,887$\times$ above
@@ -924,7 +925,7 @@ can be removed without affecting any statistical result.
 \toprule
 Sign & IAST & Meaning & DEDR & Confidence \\
 \midrule
-M342 & -a\d{n}   & masc.\ nominal suffix & Krishnamurti 2003 \S3.5 & \SAFE \\
+M342 & -a\d{n}   & masc.\ nominal suffix & \citet{Krishnamurti2003} \S3.5 & \SAFE \\
 M149 & m\={i}n   & fish / star           & DEDR-4889 & \SAFE \\
 M316 & v\={e}l   & spear                 & DEDR-5541 & \SAFE \\
 M60  & k\={o}    & king / lord           & DEDR-2178 & \SAFE \\
@@ -1160,7 +1161,7 @@ $p = 1.70 \times 10^{-222}$ on full corpus; pattern robust across all lengths \\
 \addlinespace
 D2 Sanskrit genitive &
 M342 $=$ Sanskrit \textit{-as} &
-68\% full-corpus terminal rate incompatible with Sanskrit sandhi fusion; 0.000 typology score \\
+68\% full-corpus terminal rate incompatible with Sanskrit sandhi fusion, which requires case endings to fuse internally in compound formation \\
 \addlinespace
 D3 Corpus integrity &
 Fragmentary seals inflate terminal counts &
@@ -1211,7 +1212,7 @@ Direction codes from \texttt{indusarrays} Firestore assign 2,360
 inscriptions as RTL (86.1\%) and 175 as LTR (6.4\%).
 LTR perplexity is 7,887$\times$ below random under RTL grammar
 ($p = 1.03 \times 10^{-54}$), bounding the noise introduced by
-LTR inscriptions in Proofs 1--6. \\
+LTR inscriptions in Analyses 1--6. \\
 \addlinespace
 West Asian sample size &
 13 inscriptions. Geographic gradient finding is robust at all other
@@ -1299,7 +1300,7 @@ We have presented nine statistically independent structural tests on
           from \texttt{indusarrays} confirms 86.1\% RTL. LTR
           inscriptions score 7,887$\times$ below random under RTL
           grammar ($p = 1.03 \times 10^{-54}$), bounding directional
-          noise in Proofs 1--6.
+          noise in Analyses 1--6.
     \item \textbf{Sign M113 is $37.9\times$ positionally enriched on
           elephant-motif seals} and occupies the MEDIAL slot in a
           recurrent formula across Harappa and Lothal, structurally
@@ -1337,10 +1338,11 @@ study.
 
 \section*{Acknowledgements}
 
-The author thanks I.\ Mahadevan for the 1977 concordance;
-Andreas Fuls (TU Berlin) for maintaining the ICIT database;
-and K.\ Rajan and R.\ Sivanantham for the 2025 Tamil Nadu
-graffiti survey.
+The author thanks I.\ Mahadevan and the Roja Muthiah Research Library
+for the 1977 concordance and its machine-readable web application;
+Andreas Fuls (TU Berlin) for the ICIT TMK label used as an independent
+validation anchor; and K.\ Rajan and R.\ Sivanantham for the 2025
+Tamil Nadu graffiti survey.
 
 \bibliographystyle{plainnat}
 \bibliography{references}
