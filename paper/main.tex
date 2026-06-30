@@ -29,7 +29,7 @@
     linkcolor=blue!60!black,
     citecolor=blue!60!black,
     urlcolor=blue!60!black,
-    pdftitle={Statistical Evidence for Agglutinative Structure in the Indus Valley Script},
+    pdftitle={Statistical Evidence for Positional and Syntactic Structure in the Indus Valley Script},
     pdfauthor={Arun G K},
 }
 
@@ -156,7 +156,7 @@ This paper moves beyond the binary language/non-language question to
 ask: \emph{if the script encodes language, what structural properties
 does that language have?}
 
-We make nine independently falsifiable structural claims (Sections~3--11),
+We make nine independently falsifiable structural claims (Sections~3--13),
 each grounded solely in sign-position and sign-transition statistics
 with no phonetic assumptions.
 Phonetic readings are isolated in Section~11 and are not necessary for
@@ -332,7 +332,7 @@ Binomial $p$-value (one-tailed) & $\mathbf{1.70 \times 10^{-222}}$ \\
 \paragraph{Note on rate.}
 The terminal rate of 68.0\% (vs.\ 100\% in the 41-seal pilot corpus)
 reflects the broader corpus including tablet and pottery inscriptions
-where M342 sometimes appears in medial position (31.9\% of occurrences,
+where M342 sometimes appears in medial position (32.0\% of occurrences,
 $n = 381$).
 To test whether the medial occurrences are explained by multi-line
 artifact encoding, we decompose by artifact type using the
@@ -833,7 +833,7 @@ The ``glue'' between signs --- hub-sign co-occurrences, bigram
 affinities --- is so strong that even reversed-direction sequences
 score far above noise under an RTL-trained matrix.
 
-\paragraph{Consequence for earlier proofs.}
+\paragraph{Consequence for earlier analyses.}
 The RTL assumption in Analyses 1--6 is now confirmed for 86.1\% of
 inscriptions.
 The 175 LTR inscriptions (6.4\%) introduce a modest noise signal in
@@ -914,7 +914,7 @@ Every phonetic reading carries an explicit confidence label.
 \texttt{[LIT.ANCHOR]} = reading proposed in external literature: \citet{Parpola1994},
 \citet{Mahadevan1977}, or DEDR \citep{Burrow1984}.
 \PREDICTED{} = our inference, labelled as testable hypothesis.
-\textbf{The structural claims in Sections~3--11 do not depend on
+\textbf{The structural claims in Sections~3--13 do not depend on
 these phonetic readings}; they are listed for orientation only and
 can be removed without affecting any statistical result.
 
@@ -1255,7 +1255,7 @@ All code is available at \url{https://github.com/gkarun876/IVS} (MIT License).
 # data/mahadevan_corpus.json is pre-parsed and included in the repo
 
 # Run all 9 analyses
-python run_proofs_v2.py          # Analyses 1-4  (results/v2/)
+python run_proofs_v2.py          # Analyses 1--4 (results/v2/)
 python grammar_engine.py         # Analysis 5    (grammar_summary.txt)
 python validation_mark_test.py   # Analysis 6    (cross_site_*.txt)
 python direction_grammar_test.py # Analysis 7    (results/v4/)
